@@ -1,2 +1,19 @@
+# -------------------
+# Front-end
+# -------------------
+
 node_modules/
 *.log
+
+
+# -------------------
+# Report
+# -------------------
+
+report/*.aux
+report/*.bcf
+report/*.log
+report/*.out
+report/*.xml
+report/*.gz
+report/*.pdf
