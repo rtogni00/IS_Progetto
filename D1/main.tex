@@ -34,17 +34,76 @@
 \section{Slide Pitch e Obiettivi del Progetto}
 
 \begin{itemize}
-	\item \textbf{TODO} inserire slide
-	\item \textbf{TODO} Fornire spiegazione dettagliata del problema affrontato, della soluzione proposta, dei vantaggi offerti e i limiti dell’applicazione, in linea con quanto esposto nel pitch
+	\item \textbf{TODO} inserire slide (\textcolor{red}{forse non necessario visto che non partecipiamo?})
 \end{itemize}
 
 
 Nel contesto attuale, organizzare eventi è spesso complicato e inefficiente per organizzatori, gestori di spazi e partecipanti. Mancano soluzioni integrate e intuitive che semplifichino pianificazione, promozione e partecipazione agli eventi locali. Ciò comporta difficoltà nell'iscrizione, comunicazioni poco efficaci, scarsa visibilità per eventi minori e problemi nella gestione delle prenotazioni. L'app per la gestione eventi che ci proponiamo di sviluppare risponde a queste esigenze, offrendo una piattaforma completa che semplifica la vita agli organizzatori e facilita l'incontro tra domanda e offerta culturale, creando una comunità più attiva e connessa.
 
-Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare le esigenze di diversi stakeholder nell'ambito degli eventi, offrendo una soluzione completa e integrata per tutti coloro che desiderano organizzare, ospitare o partecipare a eventi nel territorio di Trento. L'app consentirà agli organizzatori di creare eventi personalizzati, gestire iscrizioni e pagamenti, interagire con i partecipanti e monitorare il successo delle attività. I proprietari di spazi potranno pubblicizzare le loro strutture disponibili, gestire prenotazioni e ricevere feedback dai clienti. Per gli utenti interessati, l'app offrirà un'ampia selezione di eventi locali, la possibilità di iscriversi facilmente, condividere esperienze su social media e scoprire nuovi interessi. Inoltre, il sistema includerà funzionalità avanzate come analisi di tendenze, raccomandazioni basate sui gusti individuali e strumenti di marketing per migliorare la visibilità degli eventi. Attraverso questa piattaforma, si mira a stimolare l'interazione comunitaria, favorire lo sviluppo culturale e sociale locale, e fornire uno strumento pratico e accessibile per tutti coloro che desiderano essere coinvolti nel mondo degli eventi.
+Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare le esigenze di diversi stakeholder nell'ambito degli eventi, offrendo una soluzione completa e integrata per tutti coloro che desiderano organizzare, ospitare o partecipare a eventi nel territorio di Trento. L'app consentirà agli organizzatori di creare eventi personalizzati, gestire iscrizioni e pagamenti, interagire con i partecipanti e monitorare il successo delle attività. I proprietari di spazi potranno pubblicizzare le loro strutture disponibili, gestire prenotazioni e ricevere feedback dai clienti. Per gli utenti interessati, l'app offrirà un'ampia selezione di eventi locali, la possibilità di iscriversi facilmente, condividere esperienze su social media e scoprire nuovi interessi. Inoltre, il sistema includerà funzionalità avanzate come analisi di tendenze, raccomandazioni basate sui gusti individuali e strumenti di marketing per migliorare la visibilità degli eventi \textcolor{red}{Forse un po' too much, lo toglierei}. Attraverso questa piattaforma, si mira a stimolare l'interazione comunitaria, favorire lo sviluppo culturale e sociale locale, e fornire uno strumento pratico e accessibile per tutti coloro che desiderano partecipare ad attività sociali di vario genere.
 
+\textbf{Vantaggi per gli Organizzatori}
+\begin{itemize}
+	\item Gestione centralizzata di iscrizioni e pagamenti, riducendo il carico di lavoro manuale.
+	\item Visione in tempo reale della partecipazione agli eventi.
+	\item Comunicazione facilitata con i partecipanti, grazie all'invio di aggiornamenti e notifiche rapide.
+	\item Strumenti di marketing integrati per promuovere gli eventi in modo più efficace e raggiungere un pubblico più ampio.
+	\item Monitoraggio dei feedback e analisi dei dati per migliorare la qualità degli eventi futuri.
+\end{itemize}
+
+\textbf{Vantaggi per i Proprietari di Spazi}
+\begin{itemize}
+	\item Promozione degli spazi direttamente sulla piattaforma, aumentando la visibilità.
+	\item Gestione semplificata delle prenotazioni, con strumenti per organizzare e confermare richieste.
+	\item Ricezione di feedback da parte degli organizzatori e partecipanti per migliorare i servizi offerti.
+	\item Accesso a una community di organizzatori che cercano costantemente location per eventi.
+	\item Ottimizzazione dell'occupazione degli spazi, riducendo i periodi di inattività e aumentando le opportunità di guadagno.
+\end{itemize}
+
+\textbf{Vantaggi per gli Utenti}
+\begin{itemize}
+	\item Ampia selezione di eventi locali, facilmente consultabili e accessibili.
+	\item Iscrizione semplice, senza processi complicati.
+	\item Notifiche personalizzate per rimanere aggiornati sugli eventi di proprio interesse.
+	\item Scoperta di nuovi interessi grazie a raccomandazioni basate su preferenze e partecipazioni passate.
+\end{itemize}
 
 \section{Requisiti Funzionali}
+
+\textbf{Requisiti Funzionali comuni alle 3 categorie di utente:}
+\begin{itemize}
+	\item \textbf{RF1:} Il sistema deve consentire la creazione di un account, e di effettuare i login alla piattaforma con un sistema sicuro (email e password o autenticazione tramite credenziali Google).
+	\item \textbf{RF2:} Ogni utente deve poter gestire un profilo con le proprie informazioni personali, preferenze, e attività (a prescindere dal fatto che si tratti di aventi creati, a cui si sia partecipato o che si abbia ospitato).
+	\item \textbf{RF3:} Tutti gli utenti devono poter cercare eventi o spazi tramite filtri (data, tipologia, luogo, categoria di interesse).
+	\item \textbf{RF4:} Tutti gli utenti devono poter lasciare e/o ricevere valutazioni e feedback su eventi, organizzatori e spazi.
+	\item \textbf{RF5:} La piattaforma deve consentire la condivisione di eventi e feedback sui principali social network (\textcolor{red}{ok?})
+	\item \textbf{RF6:} L'app deve essere disponibile in più lingue per garantire un'esperienza accessibile ad una comunità più ampia.	
+\end{itemize}
+
+
+
+\textbf{Requisiti Funzionali per gli Organizzatori}
+\begin{itemize}
+	\item \textbf{RF7:} Gli organizzatori devono poter creare eventi personalizzati, con descrizioni dettagliate, immagini, categorie e prezzo.
+	\item \textbf{RF8:} L’app deve permettere di accettare e gestire le iscrizioni dei partecipanti, nonché elaborare pagamenti tramite Paypal (\textcolor{red}{in teoria fattibile tramite API})
+	\item \textbf{RF9:} Gli organizzatori devono poter aggiornare la descrizione degli eventi.
+	\item \textbf{RF10:} La piattaforma deve consentire agli organizzatori la visualizzazione di statistiche statistiche in tempo reale su iscrizioni, vendite, partecipazione e feedback per valutare il successo dell’evento.
+\end{itemize}
+
+\textbf{Requisiti Funzionali per i Proprietari di Spazi}
+\begin{itemize}
+	\item \textbf{RF11:} I proprietari devono poter creare annunci dettagliati per promuovere i loro spazi, indicando la disponibilità, la capacità, le caratteristiche e i costi di affitto.
+	\item \textbf{RF12:} La piattaforma deve fornire un calendario integrato per monitorare in tempo reale le prenotazioni, la disponibilità e gestire i periodi di non disponibilità.
+\end{itemize}
+
+
+\textbf{Requisiti Funzionali per i Partecipanti}
+\begin{itemize}
+	\item \textbf{RF13:} I partecipanti devono poter visualizzare gli eventi ed iscriversi qualora interessati.
+	\item \textbf{RF14:} La piattaforma deve consentire il salvataggio degli eventi di interesse.
+	\item \textbf{RF15:} L'app deve consentire la visualizzazione degli eventi a cui si è partecipato in passato (qualora si abbia effettuato il login).
+\end{itemize}
+
 \section{Requisiti Non Funzionali}
 \section{Design Front-end}
 
