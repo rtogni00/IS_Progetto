@@ -14,6 +14,7 @@
 \usepackage{booktabs}
 \usepackage{caption}
 \usepackage{blindtext}
+\usepackage[table,xcdraw]{xcolor}
 
 
 % ------------------------------------------------------------------------------
@@ -85,7 +86,7 @@
 % ------------------------------------------------------------------------------
 
 \newcommand{\name}{Omati Alessandro, Pretto Alessandro, Togni Roberto}
-\newcommand{\projecttitle}{Vette e Spaghetti}
+\newcommand{\projecttitle}{EvenTrento}
 \newcommand{\course}{Ingegneria del Software}
 \newcommand{\customtitle}{
 	\vspace*{1cm}
@@ -104,13 +105,23 @@
 		\textbf{\Huge Descrizione di Progetto} \\
 	\end{center}
 	\vspace{1cm}
-	Document Info:\\
-%	\begin{center}
-%	\begin{tabular} {cc} \toprule
-%		Doc. Name & D1-Ve\\
-%		Description & Documenti di analisi dei requisiti funzionali, \\non funzionali e front-end
-%	\end{tabular}
-%	\end{center}
+	Document Info:
+	
+	\begingroup
+	\setlength{\tabcolsep}{10pt} % Default value: 6pt
+	\renewcommand{\arraystretch}{1.5}
+	
+	\begin{table}[!htb]
+		\begin{tabular}{lllll}
+			\cline{1-4}
+			\cellcolor[HTML]{13315C}{\color[HTML]{FFFFFF} Doc. Name}                         & D1-EvenTrentoDescrizioneProgetto & \multicolumn{1}{l|}{\cellcolor[HTML]{13315C}{\color[HTML]{FFFFFF} Doc. Number}} & \multicolumn{1}{l|}{D1 V0.1} &  \\ \cline{1-4}
+			\multicolumn{1}{|l|}{\cellcolor[HTML]{13315C}{\color[HTML]{FFFFFF} Description}} & \multicolumn{3}{l|}{Documento di analisi dei requisiti funzionali, non funzionali e front-end}                                                    &  \\ \cline{1-4}
+			&                                  &                                                                                 &                              &  \\
+			&                                  &                                                                                 &                              &  \\
+		\end{tabular}
+	\end{table}
+	
+	\endgroup
 	
 	\begin{center}
 		\vfill 
