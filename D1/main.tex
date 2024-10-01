@@ -33,14 +33,9 @@
 
 \section{Slide Pitch e Obiettivi del Progetto}
 
-\begin{itemize}
-	\item \textbf{TODO} inserire slide (\textcolor{red}{forse non necessario visto che non partecipiamo?})
-\end{itemize}
-
-
 Nel contesto attuale, organizzare eventi è spesso complicato e inefficiente per organizzatori, gestori di spazi e partecipanti. Mancano soluzioni integrate e intuitive che semplifichino pianificazione, promozione e partecipazione agli eventi locali. Ciò comporta difficoltà nell'iscrizione, comunicazioni poco efficaci, scarsa visibilità per eventi minori e problemi nella gestione delle prenotazioni. L'app per la gestione eventi che ci proponiamo di sviluppare risponde a queste esigenze, offrendo una piattaforma completa che semplifica la vita agli organizzatori e facilita l'incontro tra domanda e offerta culturale, creando una comunità più attiva e connessa.
 
-Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare le esigenze di diversi stakeholder nell'ambito degli eventi, offrendo una soluzione completa e integrata per tutti coloro che desiderano organizzare, ospitare o partecipare a eventi nel territorio di Trento. L'app consentirà agli organizzatori di creare eventi personalizzati, gestire iscrizioni e pagamenti, interagire con i partecipanti e monitorare il successo delle attività. I proprietari di spazi potranno pubblicizzare le loro strutture disponibili, gestire prenotazioni e ricevere feedback dai clienti. Per gli utenti interessati, l'app offrirà un'ampia selezione di eventi locali, la possibilità di iscriversi facilmente, condividere esperienze su social media e scoprire nuovi interessi. Inoltre, il sistema includerà funzionalità avanzate come analisi di tendenze, raccomandazioni basate sui gusti individuali e strumenti di marketing per migliorare la visibilità degli eventi \textcolor{red}{Forse un po' too much, lo toglierei}. Attraverso questa piattaforma, si mira a stimolare l'interazione comunitaria, favorire lo sviluppo culturale e sociale locale, e fornire uno strumento pratico e accessibile per tutti coloro che desiderano partecipare ad attività sociali di vario genere.
+Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare le esigenze di diversi stakeholder nell'ambito degli eventi, offrendo una soluzione completa e integrata per tutti coloro che desiderano organizzare, ospitare o partecipare a eventi nel territorio di Trento. L'app consentirà agli organizzatori di creare eventi personalizzati, gestire iscrizioni e pagamenti, interagire con i partecipanti e monitorare il successo delle attività. I proprietari di spazi potranno pubblicizzare le loro strutture disponibili, gestire prenotazioni e ricevere feedback dai clienti. Per gli utenti interessati, l'app offrirà un'ampia selezione di eventi locali, la possibilità di iscriversi facilmente, condividere esperienze su social media e scoprire nuovi interessi. Attraverso questa piattaforma, si mira a stimolare l'interazione comunitaria, favorire lo sviluppo culturale e sociale locale, e fornire uno strumento pratico e accessibile per tutti coloro che desiderano partecipare ad attività sociali di vario genere.
 
 \textbf{Vantaggi per gli Organizzatori}
 \begin{itemize}
@@ -105,6 +100,18 @@ Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare 
 \end{itemize}
 
 \section{Requisiti Non Funzionali}
+
+\begin{itemize}
+	\item \textbf{RNF1: Performance.} Il sistema deve garantire tempi di caricamento delle pagine inferiori a 3 secondi per la maggior parte delle operazioni, anche con un carico elevato di utenti.
+	\item \textbf{RNF2: Portabilità.} La piattaforma deve essere compatibile con tutti i principali browser (Chrome, Firefox, Safari, Edge) e supportare diversi sistemi operativi (Windows, macOS, Android, iOS).
+	\item \textbf{RNF3: Affidabilità}. Il sistema deve avere una disponibilità del 99,9\%, garantendo tempi di inattività limitati a manutenzioni programmate. Deve inoltre essere previsto un backup automatico dei dati giornaliero per prevenire la perdita di informazioni in caso di guasti.
+	\item \textbf{RNF4: Usabilità.} L’interfaccia utente deve essere semplice e intuitiva, con percorsi chiari per l’iscrizione, la creazione degli eventi e la prenotazione degli spazi.
+	Il sistema deve essere accessibile da dispositivi desktop e mobile, garantendo una user experience coerente su entrambe le piattaforme.
+	\item \textbf{RNF5: Manutenibilità.} Il codice deve essere modulare e documentato per facilitare l'aggiornamento e la manutenzione del sistema. Gli aggiornamenti del sistema devono poter essere implementati senza interruzioni significative del servizio (manutenzione zero-downtime).
+	\item \textbf{RNF6: Sicurezza.} Tutte le comunicazioni tra utenti e la piattaforma devono essere protette tramite crittografia SSL/TLS, garantendo la riservatezza e l’integrità dei dati trasmessi. I dati sensibili degli utenti, inclusi quelli relativi a pagamenti e informazioni personali, devono essere criptati e archiviati in conformità con le normative GDPR e altre leggi sulla protezione dei dati. Deve essere inoltre prevista una gestione sicura dei permessi, in modo che solo utenti autorizzati possano accedere a determinate funzionalità e dati sensibili.
+\end{itemize}
+
+
 \section{Design Front-end}
 
 
