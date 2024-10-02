@@ -82,22 +82,23 @@ Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare 
 \textbf{Requisiti Funzionali per gli Organizzatori}
 \begin{itemize}
 	\item \textbf{RF7:} Gli organizzatori devono poter creare eventi personalizzati, con descrizioni dettagliate, immagini, categorie e prezzo.
-	\item \textbf{RF8:} L’app deve permettere di accettare e gestire le iscrizioni dei partecipanti, nonché elaborare pagamenti tramite Paypal (\textcolor{red}{in teoria fattibile tramite API})
+	\item \textbf{RF8:} L’app deve permettere di accettare e gestire le iscrizioni dei partecipanti, nonché elaborare pagamenti tramite Paypal e GooglePay (\textcolor{red}{in teoria fattibile tramite API})
 	\item \textbf{RF9:} Gli organizzatori devono poter aggiornare la descrizione degli eventi.
-	\item \textbf{RF10:} La piattaforma deve consentire agli organizzatori la visualizzazione di statistiche statistiche in tempo reale su iscrizioni, vendite, partecipazione e feedback per valutare il successo dell’evento.
+	\item \textbf{RF10:} La piattaforma deve consentire agli organizzatori la visualizzazione di statistiche in tempo reale su iscrizioni, vendite, partecipazione e feedback per valutare il successo dell’evento.
 \end{itemize}
 
 \textbf{Requisiti Funzionali per i Proprietari di Spazi}
 \begin{itemize}
 	\item \textbf{RF11:} I proprietari devono poter creare annunci dettagliati per promuovere i loro spazi, indicando la disponibilità, la capacità, le caratteristiche e i costi di affitto.
 	\item \textbf{RF12:} La piattaforma deve fornire un calendario integrato per monitorare in tempo reale le prenotazioni, la disponibilità e gestire i periodi di non disponibilità.
+    \item \textbf{RF13} La piattaforma deve permettere ai Proprietari di Spazi di organizzare eventi allo stesso modo degli Organizzatori
 \end{itemize}
 
 
 \textbf{Requisiti Funzionali per i Partecipanti}
 \begin{itemize}
 	\item \textbf{RF13:} I partecipanti devono poter visualizzare gli eventi ed iscriversi qualora interessati.
-	\item \textbf{RF14:} La piattaforma deve consentire il salvataggio degli eventi di interesse.
+	\item \textbf{RF14:} La piattaforma deve consentire il salvataggio e la prenotazione degli eventi di interesse da parte del Partecipante.
 	\item \textbf{RF15:} L'app deve consentire la visualizzazione degli eventi a cui si è partecipato in passato (qualora si abbia effettuato il login).
 \end{itemize}
 
@@ -105,12 +106,13 @@ Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare 
 
 \begin{itemize}
 	\item \textbf{RNF1: Performance.} Il sistema deve garantire tempi di caricamento delle pagine inferiori a 3 secondi per la maggior parte delle operazioni, anche con un carico elevato di utenti.
-	\item \textbf{RNF2: Portabilità.} La piattaforma deve essere compatibile con tutti i principali browser (Chrome, Firefox, Safari, Edge) e supportare diversi sistemi operativi (Windows, macOS, Android, iOS).
+	\item \textbf{RNF2: Portabilità.} La piattaforma deve essere compatibile con tutti i principali browser (Chrome, Firefox, Safari, Edge, Opera) e supportare diversi sistemi operativi (Windows, macOS, Android, iOS).
 	\item \textbf{RNF3: Affidabilità}. Il sistema deve avere una disponibilità del 99,9\%, garantendo tempi di inattività limitati a manutenzioni programmate. Deve inoltre essere previsto un backup automatico dei dati giornaliero per prevenire la perdita di informazioni in caso di guasti.
 	\item \textbf{RNF4: Usabilità.} L’interfaccia utente deve essere semplice e intuitiva, con percorsi chiari per l’iscrizione, la creazione degli eventi e la prenotazione degli spazi.
-	Il sistema deve essere accessibile da dispositivi desktop e mobile, garantendo una user experience coerente su entrambe le piattaforme.
+	
+    \item \textbf{RNF: Compatibilità.} Il sistema deve essere accessibile da dispositivi desktop e mobile, garantendo una user experience coerente su entrambe le piattaforme.
 	\item \textbf{RNF5: Manutenibilità.} Il codice deve essere modulare e documentato per facilitare l'aggiornamento e la manutenzione del sistema. Gli aggiornamenti del sistema devono poter essere implementati senza interruzioni significative del servizio (manutenzione zero-downtime).
-	\item \textbf{RNF6: Sicurezza.} Tutte le comunicazioni tra utenti e la piattaforma devono essere protette tramite crittografia SSL/TLS, garantendo la riservatezza e l’integrità dei dati trasmessi. I dati sensibili degli utenti, inclusi quelli relativi a pagamenti e informazioni personali, devono essere criptati e archiviati in conformità con le normative GDPR e altre leggi sulla protezione dei dati. Deve essere inoltre prevista una gestione sicura dei permessi, in modo che solo utenti autorizzati possano accedere a determinate funzionalità e dati sensibili.
+    \item \textbf{RNF6: Sicurezza.} Tutte le comunicazioni tra utenti e la piattaforma devono essere protette tramite crittografia SSL/TLS, garantendo la riservatezza e l’integrità dei dati trasmessi. I dati sensibili degli utenti, inclusi quelli relativi a pagamenti e informazioni personali, devono essere criptati e archiviati in conformità con le normative GDPR e altre leggi sulla protezione dei dati. Deve essere inoltre prevista una gestione sicura dei permessi, in modo che solo utenti autorizzati possano accedere a determinate funzionalità e dati sensibili.
 \end{itemize}
 
 
