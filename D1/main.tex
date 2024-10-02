@@ -69,12 +69,12 @@ Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare 
 
 \textbf{Requisiti Funzionali comuni alle 3 categorie di utente:}
 \begin{itemize}
-	\item \textbf{RF1:} Il sistema deve consentire la creazione di un account, e di effettuare i login alla piattaforma con un sistema sicuro (email e password o autenticazione tramite credenziali Google).
+	\item \textbf{RF1:} Il sistema deve consentire la creazione di un account, e di effettuare i login alla piattaforma con un sistema sicuro (email e password o autenticazione tramite credenziali Google). Durante la fase di registrazione deve essere possibile selezionare la tipologia di account, scegliendo tra: utente, organizzatore, proprietario di spazi.
 	\item \textbf{RF2:} Ogni utente deve poter gestire un profilo con le proprie informazioni personali, preferenze, e attività (a prescindere dal fatto che si tratti di aventi creati, a cui si sia partecipato o che si abbia ospitato).
 	\item \textbf{RF3:} Tutti gli utenti devono poter cercare eventi o spazi tramite filtri (data, tipologia, luogo, categoria di interesse).
 	\item \textbf{RF4:} Tutti gli utenti devono poter lasciare e/o ricevere valutazioni e feedback su eventi, organizzatori e spazi.
 	\item \textbf{RF5:} La piattaforma deve consentire la condivisione di eventi e feedback sui principali social network (\textcolor{red}{ok?})
-	\item \textbf{RF6:} L'app deve essere disponibile in più lingue per garantire un'esperienza accessibile ad una comunità più ampia.	
+	\item \textbf{RF6:} L'app deve essere disponibile in più lingue per garantire un'esperienza accessibile ad una comunità più ampia.
 \end{itemize}
 
 
@@ -123,7 +123,7 @@ Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare 
 	\label{fig:mainPage}
 \end{figure}
 
-In Figura \ref{fig:mainPage} è rappresentata la schermata principale dell'applicazione. Da qui è possibile effettuare la ricerca di eventi senza dover necessariamente effettuare il login. Selezionando un evento direttamente sulla mappa se ne può visionare la descrizione, come mostrato in Figura \textcolor{red}{TODO}.
+In Figura \ref{fig:mainPage} è rappresentata la schermata principale dell'applicazione. Da qui è possibile effettuare la ricerca di eventi senza dover necessariamente effettuare il login. Selezionando un evento direttamente sulla mappa se ne può visionare la descrizione, come mostrato in Figura \ref{fig:eventView}.
 
 Il burger button situato in basso a destra consente invece il passaggio alla list view degli eventi rappresentata in Figura \ref{fig:eventList}.
 
@@ -132,6 +132,19 @@ Il burger button situato in basso a destra consente invece il passaggio alla lis
 	\includegraphics[width=.7\linewidth]{./images/EventList.pdf}
 	\caption{Event list.}
 	\label{fig:eventList}
+\end{figure}
+
+La visuale a lista degli eventi offre una "bird's eye view" di quanto offerto dalla piattaforma. Cliccando sul titolo di un evento si raggiunge la pagina mostrata in Figura \ref{fig:eventView}. Qui sono riportati i dettagli dell'evento selezionato, tra cui la descrizione dell'evento, immagini illustrative (qualora messe a disposizione dall'organizzatore), e il numero di persone già iscritte. Queste ultime possono apparire in due modalità:
+\begin{itemize}
+	\item Come "anonymous user", qualora l'iscrizione sia avvenuta senza effettuare il login;
+	\item Come utente loggato. In questo caso viene mostrata, qualora disponibile, l'immagine profilo dell'utente.
+\end{itemize}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.7\linewidth]{./images/EventView.pdf}
+	\caption{Event view.}
+	\label{fig:eventView}
 \end{figure}
 
 
@@ -155,8 +168,6 @@ Tramite il pulsante "Login" della pagina principale si raggiunge la pagina di ac
 \begin{itemize}
 	\item Creazione evento
 	\item Messa a disposizione di spazi
-	\item Lista eventi
-	\item EventView
 \end{itemize}
 
 \end{document}
