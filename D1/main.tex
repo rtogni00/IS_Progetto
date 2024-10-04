@@ -73,7 +73,7 @@ Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare 
 	\item \textbf{RF2:} Ogni utente deve poter gestire un profilo con le proprie informazioni personali, preferenze, e attività (a prescindere dal fatto che si tratti di aventi creati, a cui si sia partecipato o che si abbia ospitato).
 	\item \textbf{RF3:} Tutti gli utenti devono poter cercare eventi o spazi tramite filtri (data, tipologia, luogo, categoria di interesse).
 	\item \textbf{RF4:} Tutti gli utenti devono poter lasciare e/o ricevere valutazioni e feedback su eventi, organizzatori e spazi.
-	\item \textbf{RF5:} La piattaforma deve consentire la condivisione di eventi e feedback sui principali social network (\textcolor{red}{ok?})
+	\item \textbf{RF5:} La piattaforma deve consentire la condivisione di eventi e feedback sui principali social network
 	\item \textbf{RF6:} L'app deve essere disponibile in più lingue per garantire un'esperienza accessibile ad una comunità più ampia.
 \end{itemize}
 
@@ -82,7 +82,7 @@ Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare 
 \textbf{Requisiti Funzionali per gli Organizzatori}
 \begin{itemize}
 	\item \textbf{RF7:} Gli organizzatori devono poter creare eventi personalizzati, con descrizioni dettagliate, immagini, categorie e prezzo.
-	\item \textbf{RF8:} L’app deve permettere di accettare e gestire le iscrizioni dei partecipanti, nonché elaborare pagamenti tramite Paypal e GooglePay (\textcolor{red}{in teoria fattibile tramite API})
+	\item \textbf{RF8:} L’app deve permettere di accettare e gestire le iscrizioni dei partecipanti, nonché elaborare pagamenti tramite Paypal e GooglePay
 	\item \textbf{RF9:} Gli organizzatori devono poter aggiornare la descrizione degli eventi.
 	\item \textbf{RF10:} La piattaforma deve consentire agli organizzatori la visualizzazione di statistiche in tempo reale su iscrizioni, vendite, partecipazione e feedback per valutare il successo dell’evento.
 \end{itemize}
@@ -178,11 +178,55 @@ Qualora l'account sia di tipo "organizzatore", vi è la possibilità di creare n
 	\label{fig:eventCreation}
 \end{figure}
 
+Qualora l'account sia di tipo "Proprietario di Spazi", vi è la possibilità di aggiungere luoghi sulla mappa come mostrato in Figura \ref{fig:addLocation}. La pressione del pulsante "Confirm location" aggiunge il nuovo luogo al database, rendendolo visibile agli altri utenti.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.7\linewidth]{./images/AddLocation.pdf}
+	\caption{Add location page.}
+	\label{fig:addLocation}
+\end{figure}
+
+
+Una volta effettuato il login si raggiunge la propria area personale. Questa differisce a seconda del tipo di account, come mostrato nelle Figure \ref{fig:userPersonalArea}, \ref{fig:organizerPersonalArea} e \ref{fig:ownerPersonalArea}. In particolare, la pressione del pulsante "New Event" in Figura \ref{fig:organizerPersonalArea} rimanda alla pagina di creazione evento mostrata in Figura \ref{fig:eventCreation}. Similmente, il pulsante "New place" in Figura \ref{fig:ownerPersonalArea} rimanda alla pagina di aggiunta luoghi mostrata in Figura \ref{fig:addLocation}.
+
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.7\linewidth]{./images/UserPersonalArea.pdf}
+	\caption{User personal area.}
+	\label{fig:userPersonalArea}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.7\linewidth]{./images/OrganizerPersonalArea.pdf}
+	\caption{Organizer personal area.}
+	\label{fig:organizerPersonalArea}
+\end{figure}
+\newpage
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.7\linewidth]{./images/OwnerPersonalArea.pdf}
+	\caption{Owner personal area.}
+	\label{fig:ownerPersonalArea}
+\end{figure}
+
+Una volta effettuato il login, la main page diviene quella mostrata in Figura \ref{fig:seeAvailableLocations}. Il pulsante di login viene quindi rimpiazzato da quello per l'accesso alla propria area personale.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.7\linewidth]{./images/SeeAvailableLocations.pdf}
+	\caption{Main page after login.}
+	\label{fig:seeAvailableLocations}
+\end{figure}
+
+
 \textcolor{red}{TODOs}:
 \begin{itemize}
-	\item Messa a disposizione di spazi
-	\item Spazi disponibili
-	\item Area personale
+	\item Lista Spazi disponibili
+	\item Modificare area personale per visualizzare storico eventi
 \end{itemize}
 
 \end{document}
