@@ -1,0 +1,94 @@
+% !TeX document-id = {87432cc9-c386-48dc-9558-b3c42a74a150}
+% !TEX encoding = UTF-8
+% !TEX TS-program = pdflatex
+% !TEX spellcheck = it-IT
+%% !TEX root = 
+% !BIB TS-program = biber
+% Comandi speciali (o righe magiche) trattati come commenti da Latex ma non da 
+%editor come Texstudio e Texshop, che si impostano di conseguenza. In ordine:
+% dichiara la codifica dei caratteri con cui impostare l'editor (bisogna 
+%comunque caricare inputenc con la stessa codifica)
+% dichiara il motore di composizione (pdflatex o lualatex)
+% attiva il controllo ortografico della lingua del documento
+% dichiara la condizione di file principale e di file secondario nei documenti 
+%suddivisi in più file
+% imposta biber come motore bibliografico
+
+\documentclass[9pt]{extarticle}
+
+
+\input{packages}
+
+
+
+% ------------------------------------------------------------------------------
+% Document
+% ------------------------------------------------------------------------------
+
+
+\begin{document}
+\customtitle
+
+
+
+% TODO add chapters
+\tableofcontents
+\newpage
+
+\section{User Stories}
+
+
+	
+\begin{table}[!htb]
+	\centering
+	\begin{tabular}{clp{7cm}l} % Use 'p{7cm}' for the User Story column
+		\toprule
+		\multicolumn{4}{c}{\textbf{Profilo}}\\ \midrule
+		Id & Nome & User Story & Priorità \\ \midrule
+		A1  & Registrazione  & Come utente, voglio registrarmi per utilizzare il sistema & \\
+		A2  & Login & In qualità di utente, devo essere in grado di effettuare il login & \\
+		A3  & Visualizzazione profilo & Come utente, devo essere in grado di visualizzare lo storico eventi e le mie informazioni personali &  \\
+		\bottomrule
+	\end{tabular}
+	\caption{User stories relative all'epica "profilo".}
+	\label{tab:profili}
+\end{table}
+
+
+\begin{table}[!htb]
+	\centering
+	\begin{tabular}{clp{7cm}l} % Use 'p{7cm}' for the User Story column
+		\toprule
+		\multicolumn{4}{c}{\textbf{Eventi}}\\ \midrule
+		Id & Nome & User Story & Priorità \\ \midrule
+		B1  & Lista eventi            & In qualità di utente, devo essere in grado di scorrere una lista di eventi                                               &  \\
+		B2  & Filtri eventi           & In qualità di utente, devo essere in grado di filtrare gli eventi in base alla data                                      &  \\
+		B3  & Creazione evento        & In qualità di organizzatore, devo essere in grado di creare un nuovo evento in un determinato luogo                      &  \\
+		B4  & Condivisione evento     & In qualità di utente, devo essere in grado di condividere un evento tramite link                                         &  \\
+		B5  & Pagamento               & In qualità di utente, devo essere in grado di effettuare il pagamento per un evento a cui voglio iscrivermi              & \\
+		B6  & Aggiornamento evento    & In qualità di organizzatore, devo essere in grado di aggiornare la descrizione di un evento                              & \\
+		B7  & Statistiche evento      & In qualità di organizzatore, devo essere in grado di visualizzare gli iscritti all'evento                                & \\
+		B8  & Salvataggio evento      & In qualità di utente, devo essere in grado di salvare un evento in modo da poterlo visualizzare nella mia area personale & \\
+		\bottomrule
+	\end{tabular}
+	\caption{User stories relative all'epica "eventi".}
+	\label{tab:eventi}
+\end{table}
+
+
+\begin{table}[!htb]
+	\centering
+	\begin{tabular}{clp{7cm}l} % Use 'p{7cm}' for the User Story column
+		\toprule
+		\multicolumn{4}{c}{\textbf{Mappa}}\\ \midrule
+		Id & Nome & User Story & Priorità \\ \midrule
+		C1  & Esplorazione mappa      & In qualità di utente, devo essere in grado di muovermi nella mappa per visualizzare gli eventi                           &  \\
+		C2  & Aggiunta luogo          & In qualità di owner, devo essere in grado di aggiungere un nuovo luogo alla mappa                                        & \\
+		\bottomrule
+	\end{tabular}
+	\caption{User stories relative all'epica "mappa".}
+	\label{tab:mappa}
+\end{table}
+
+	
+\end{document}
