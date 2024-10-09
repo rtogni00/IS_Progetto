@@ -15,7 +15,13 @@
 \usepackage{caption}
 \usepackage{blindtext}
 \usepackage[table,xcdraw]{xcolor}
-
+\usepackage{enumitem}
+% Define a new counter for functional requirements
+\newcounter{rf}
+\newcommand{\FR}{\refstepcounter{rf}\textbf{FR\therf: }}
+% Define a new counter for non-functional requirements
+\newcounter{nonfunc}
+\newcommand{\NONFUNC}{\refstepcounter{nonfunc}\textbf{NFR\thenonfunc: }}
 
 % ------------------------------------------------------------------------------
 % Page setup

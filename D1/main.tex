@@ -19,6 +19,8 @@
 
 \input{packages}
 
+
+
 % ------------------------------------------------------------------------------
 % Document
 % ------------------------------------------------------------------------------
@@ -69,50 +71,51 @@ Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare 
 
 \textbf{Requisiti Funzionali comuni alle 3 categorie di utente:}
 \begin{itemize}
-	\item \textbf{RF1:} Il sistema deve consentire la creazione di un account, e di effettuare i login alla piattaforma con un sistema sicuro (email e password o autenticazione tramite credenziali Google). Durante la fase di registrazione deve essere possibile selezionare la tipologia di account, scegliendo tra: utente, organizzatore, proprietario di spazi.
-	\item \textbf{RF2:} Ogni utente deve poter gestire un profilo con le proprie informazioni personali, preferenze, e attività (a prescindere dal fatto che si tratti di aventi creati, a cui si sia partecipato o che si abbia ospitato).
-	\item \textbf{RF3:} Tutti gli utenti devono poter cercare eventi o spazi tramite filtri (data, tipologia, luogo, categoria di interesse).
-	\item \textbf{RF4:} Tutti gli utenti devono poter lasciare e/o ricevere valutazioni e feedback su eventi, organizzatori e spazi.
-	\item \textbf{RF5:} La piattaforma deve consentire la condivisione di eventi e feedback sui principali social network
-	\item \textbf{RF6:} L'app deve essere disponibile in più lingue per garantire un'esperienza accessibile ad una comunità più ampia.
+	\item \FR Il sistema deve consentire la creazione di un account, e di effettuare i login alla piattaforma con un sistema sicuro (email e password o autenticazione tramite credenziali Google). Durante la fase di registrazione deve essere possibile selezionare la tipologia di account, scegliendo tra: utente, organizzatore, proprietario di spazi.
+	\item \FR Ogni utente deve poter gestire un profilo con le proprie informazioni personali, preferenze, e attività (a prescindere dal fatto che si tratti di aventi creati, a cui si sia partecipato o che si abbia ospitato).
+	\item \FR Tutti gli utenti devono poter cercare eventi o spazi tramite filtri (data, tipologia, luogo, categoria di interesse).
+	\item \FR Tutti gli utenti devono poter lasciare e/o ricevere valutazioni e feedback su eventi, organizzatori e spazi.
+	\item \FR La piattaforma deve consentire la condivisione di eventi e feedback sui principali social network
+	\item \FR L'app deve essere disponibile in più lingue per garantire un'esperienza accessibile ad una comunità più ampia.
 \end{itemize}
 
 
 
 \textbf{Requisiti Funzionali per gli Organizzatori}
 \begin{itemize}
-	\item \textbf{RF7:} Gli organizzatori devono poter creare eventi personalizzati, con descrizioni dettagliate, immagini, categorie e prezzo.
-	\item \textbf{RF8:} L’app deve permettere di accettare e gestire le iscrizioni dei partecipanti, nonché elaborare pagamenti tramite Paypal e GooglePay
-	\item \textbf{RF9:} Gli organizzatori devono poter aggiornare la descrizione degli eventi.
-	\item \textbf{RF10:} La piattaforma deve consentire agli organizzatori la visualizzazione di statistiche in tempo reale su iscrizioni, vendite, partecipazione e feedback per valutare il successo dell’evento.
+	\item \FR Gli organizzatori devono poter creare eventi personalizzati, con descrizioni dettagliate, immagini, categorie e prezzo.
+	\item \FR L’app deve permettere di accettare e gestire le iscrizioni dei partecipanti, nonché elaborare pagamenti tramite Paypal e GooglePay
+	\item \FR Gli organizzatori devono poter aggiornare la descrizione degli eventi.
+	\item \FR La piattaforma deve consentire agli organizzatori la visualizzazione di statistiche in tempo reale su iscrizioni, vendite, partecipazione e feedback per valutare il successo dell’evento.
 \end{itemize}
 
 \textbf{Requisiti Funzionali per i Proprietari di Spazi}
 \begin{itemize}
-	\item \textbf{RF11:} I proprietari devono poter creare annunci dettagliati per promuovere i loro spazi, indicando la disponibilità, la capacità, le caratteristiche e i costi di affitto.
-	\item \textbf{RF12:} La piattaforma deve fornire un calendario integrato per monitorare in tempo reale le prenotazioni, la disponibilità e gestire i periodi di non disponibilità.
-    \item \textbf{RF13} La piattaforma deve permettere ai Proprietari di Spazi di organizzare eventi allo stesso modo degli Organizzatori
+	\item \FR I proprietari devono poter creare annunci dettagliati per promuovere i loro spazi, indicando la disponibilità, la capacità, le caratteristiche e i costi di affitto.
+	\item \FR La piattaforma deve fornire un calendario integrato per monitorare in tempo reale le prenotazioni, la disponibilità e gestire i periodi di non disponibilità.
+    \item \FR La piattaforma deve permettere ai Proprietari di Spazi di organizzare eventi allo stesso modo degli Organizzatori
 \end{itemize}
 
 
 \textbf{Requisiti Funzionali per i Partecipanti}
 \begin{itemize}
-	\item \textbf{RF13:} I partecipanti devono poter visualizzare gli eventi ed iscriversi qualora interessati.
-	\item \textbf{RF14:} La piattaforma deve consentire il salvataggio e la prenotazione degli eventi di interesse da parte del Partecipante.
-	\item \textbf{RF15:} L'app deve consentire la visualizzazione degli eventi a cui si è partecipato in passato (qualora si abbia effettuato il login).
+	\item \FR I partecipanti devono poter visualizzare gli eventi ed iscriversi qualora interessati.
+	\item \FR La piattaforma deve consentire il salvataggio e la prenotazione degli eventi di interesse da parte del Partecipante.
+	\item \FR L'app deve consentire la visualizzazione degli eventi a cui si è partecipato in passato (qualora si abbia effettuato il login).
 \end{itemize}
 
 \section{Requisiti Non Funzionali}
 
+
 \begin{itemize}
-	\item \textbf{RNF1: Performance.} Il sistema deve garantire tempi di caricamento delle pagine inferiori a 3 secondi per la maggior parte delle operazioni, anche con un carico elevato di utenti.
-	\item \textbf{RNF2: Portabilità.} La piattaforma deve essere compatibile con tutti i principali browser (Chrome, Firefox, Safari, Edge, Opera) e supportare diversi sistemi operativi (Windows, macOS, Android, iOS).
-	\item \textbf{RNF3: Affidabilità}. Il sistema deve avere una disponibilità del 99,9\%, garantendo tempi di inattività limitati a manutenzioni programmate. Deve inoltre essere previsto un backup automatico dei dati giornaliero per prevenire la perdita di informazioni in caso di guasti.
-	\item \textbf{RNF4: Usabilità.} L’interfaccia utente deve essere semplice e intuitiva, con percorsi chiari per l’iscrizione, la creazione degli eventi e la prenotazione degli spazi.
+	\item \NONFUNC \textbf{Performance.} Il sistema deve garantire tempi di caricamento delle pagine inferiori a 3 secondi per la maggior parte delle operazioni, anche con un carico elevato di utenti.
+	\item \NONFUNC \textbf{Portabilità.} La piattaforma deve essere compatibile con tutti i principali browser (Chrome, Firefox, Safari, Edge, Opera) e supportare diversi sistemi operativi (Windows, macOS, Android, iOS).
+	\item \NONFUNC\textbf{Affidabilità}. Il sistema deve avere una disponibilità del 99,9\%, garantendo tempi di inattività limitati a manutenzioni programmate. Deve inoltre essere previsto un backup automatico dei dati giornaliero per prevenire la perdita di informazioni in caso di guasti.
+	\item \NONFUNC\textbf{Usabilità.} L’interfaccia utente deve essere semplice e intuitiva, con percorsi chiari per l’iscrizione, la creazione degli eventi e la prenotazione degli spazi.
 	
-    \item \textbf{RNF: Compatibilità.} Il sistema deve essere accessibile da dispositivi desktop e mobile, garantendo una user experience coerente su entrambe le piattaforme.
-	\item \textbf{RNF5: Manutenibilità.} Il codice deve essere modulare e documentato per facilitare l'aggiornamento e la manutenzione del sistema. Gli aggiornamenti del sistema devono poter essere implementati senza interruzioni significative del servizio (manutenzione zero-downtime).
-    \item \textbf{RNF6: Sicurezza.} Tutte le comunicazioni tra utenti e la piattaforma devono essere protette tramite crittografia SSL/TLS, garantendo la riservatezza e l’integrità dei dati trasmessi. I dati sensibili degli utenti, inclusi quelli relativi a pagamenti e informazioni personali, devono essere criptati e archiviati in conformità con le normative GDPR e altre leggi sulla protezione dei dati. Deve essere inoltre prevista una gestione sicura dei permessi, in modo che solo utenti autorizzati possano accedere a determinate funzionalità e dati sensibili.
+    \item \NONFUNC\textbf{Compatibilità.} Il sistema deve essere accessibile da dispositivi desktop e mobile, garantendo una user experience coerente su entrambe le piattaforme.
+	\item \NONFUNC\textbf{Manutenibilità.} Il codice deve essere modulare e documentato per facilitare l'aggiornamento e la manutenzione del sistema. Gli aggiornamenti del sistema devono poter essere implementati senza interruzioni significative del servizio (manutenzione zero-downtime).
+    \item \NONFUNC\textbf{Sicurezza.} Tutte le comunicazioni tra utenti e la piattaforma devono essere protette tramite crittografia SSL/TLS, garantendo la riservatezza e l’integrità dei dati trasmessi. I dati sensibili degli utenti, inclusi quelli relativi a pagamenti e informazioni personali, devono essere criptati e archiviati in conformità con le normative GDPR e altre leggi sulla protezione dei dati. Deve essere inoltre prevista una gestione sicura dei permessi, in modo che solo utenti autorizzati possano accedere a determinate funzionalità e dati sensibili.
 \end{itemize}
 
 
