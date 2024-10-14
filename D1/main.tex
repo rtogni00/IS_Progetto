@@ -130,20 +130,31 @@ Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare 
 
 In Figura \ref{fig:mainPage} è rappresentata la schermata principale dell'applicazione. Da qui è possibile effettuare la ricerca di eventi senza dover necessariamente effettuare il login. Selezionando un evento direttamente sulla mappa se ne può visionare la descrizione, come mostrato in Figura \ref{fig:eventView}.
 
-Il burger button situato in basso a destra consente invece il passaggio alla list view degli eventi rappresentata in Figura \ref{fig:eventList}.
+Il burger button situato in basso a destra consente invece il passaggio alla list view degli eventi rappresentata in Figura \ref{fig:eventListSearch}.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=.7\linewidth]{./images/EventList.pdf}
+	\includegraphics[width=.7\linewidth]{./images/EventListSearch.pdf}
 	\caption{Event list.}
-	\label{fig:eventList}
+	\label{fig:eventListSearch}
 \end{figure}
+
 
 La visuale a lista degli eventi offre una "bird's eye view" di quanto offerto dalla piattaforma. Cliccando sul titolo di un evento si raggiunge la pagina mostrata in Figura \ref{fig:eventView}. Qui sono riportati i dettagli dell'evento selezionato, tra cui la descrizione dell'evento, immagini illustrative (qualora messe a disposizione dall'organizzatore), e il numero di persone già iscritte. Queste ultime possono apparire in due modalità:
 \begin{itemize}
 	\item Come "anonymous user", qualora l'iscrizione sia avvenuta senza effettuare il login;
 	\item Come utente loggato. In questo caso viene mostrata, qualora disponibile, l'immagine profilo dell'utente.
 \end{itemize}
+\newpage
+
+Dalla pagina mostrata in Figura \ref{fig:eventListSearch} è possibile filtrare gli eventi sia per nome che in base alla data. Quest'ultima può essere inserita manualmente o in modo interattivo cliccando sull'icona del calendario, come mostrato in Figura \ref{fig:eventListSearchCalendar}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.7\linewidth]{./images/eventListSearchCalendar.pdf}
+	\caption{Event list calendar.}
+	\label{fig:eventListSearchCalendar}
+\end{figure}
 \newpage
 
 \begin{figure}[!htb]
