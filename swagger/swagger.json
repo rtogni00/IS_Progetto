@@ -1,0 +1,113 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "EasyLib OpenAPI 3.0",
+    "description" : "API for managing events.",
+    "license" : {
+      "name" : "MIT"
+    },
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "https://virtserver.swaggerhub.com/RTOGNI00_1/EvenTrentoAPIs/1.0.0",
+    "description" : "SwaggerHub API Auto Mocking"
+  }, {
+    "url" : "http://localhost:8000/api/v1",
+    "description" : "Localhost"
+  } ],
+  "paths" : {
+    "/users" : {
+      "post" : {
+        "summary" : "Register a new user",
+        "description" : "Creates a new user in the system.",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/users_body"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "201" : {
+            "description" : "User created. Link in the Location header",
+            "headers" : {
+              "Location" : {
+                "description" : "Link to the newly created student.",
+                "style" : "simple",
+                "explode" : false,
+                "schema" : {
+                  "type" : "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/events" : {
+      "get" : {
+        "description" : "Returns a list of the events summary: View all books",
+        "responses" : {
+          "200" : {
+            "description" : "Collection of books",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "type" : "array",
+                  "items" : {
+                    "type" : "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/eventcreation" : {
+      "post" : {
+        "description" : "Creation of a new event by an organizer",
+        "requestBody" : {
+          "content" : {
+            "application/json" : { }
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "User" : {
+        "required" : [ "email", "pwd", "username" ],
+        "type" : "object",
+        "properties" : {
+          "username" : {
+            "type" : "string",
+            "description" : "ID of the user"
+          },
+          "email" : {
+            "type" : "string",
+            "description" : "Email address of the user"
+          },
+          "pwd" : {
+            "type" : "string",
+            "description" : "Pwd of the user"
+          }
+        }
+      },
+      "users_body" : {
+        "required" : [ "email" ],
+        "type" : "string",
+        "properties" : {
+          "email" : {
+            "type" : "string",
+            "description" : "Email address of the user"
+          }
+        },
+        "enum" : [ "user", "owner", "organizer" ]
+      }
+    }
+  }
+}
