@@ -1,0 +1,97 @@
+openapi: 3.0.0
+info:
+    version: 1.0.0
+    title: "EvenTrento OpenAPI 3.0"
+    description: API for managing events.
+    license:
+        name: MIT
+servers:
+    # Added by API Auto Mocking Plugin
+    - description: Localhost
+      url: http://localhost:8000/api/v1
+
+paths:
+    /users:
+        post:
+            description: >-
+                Creates a new user in the system.
+            summary: Register a new user
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/User'
+            responses:
+                "201":
+                    description: "User created. Link in the Location header"
+                    headers:
+                        "Location":
+                            schema:
+                                type: string
+                            description: Link to the newly created student.
+                "400":
+                    description: "Invalid input. Please verify the request body."
+                "409":
+                    description: "User already exists."
+    /events:
+        get:
+            description: >-
+                Returns a list of the events
+            summary: View all events
+            responses:
+                '200':
+                    description: 'Collection of events'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Event'
+                '500':
+                    description: 'Internal server error'
+
+# COMPONENTS SECTION
+
+components:
+    schemas:
+        User: # object definition
+            type: object
+            required:
+                - username
+                - email
+                - password
+            properties:
+                username:
+                    type: string
+                    description: "Username of the user"
+                email:
+                    type: string
+                    description: "Email address of the user"
+                password:
+                    type: string
+                    description: "Password for the user account"
+                role:
+                    type: string
+                    enum: [basicUser, owner, organizer]
+                    description: "Role of the user in the system"
+
+        Event:
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: "Unique identifier of the event"
+                name:
+                    type: string
+                    description: "Name of the event"
+                description:
+                    type: string
+                    description: "Brief description of the event"
+                date:
+                    type: string
+                    format: date-time
+                    description: "Date and time of the event"
+                location:
+                    type: string
+                    description: "Location where the event will be held"
