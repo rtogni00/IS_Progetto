@@ -15,7 +15,8 @@ servers:
 ###################
 
 paths:
-    /users:
+    # path per gestire la registrazione di un utente
+    /users/signup:
         post:
             description: >-
                 Creates a new user in the system.
@@ -38,6 +39,100 @@ paths:
                     description: "Invalid input. Please verify the request body."
                 "409":
                     description: "User already exists."
+
+    # path per gestire il login di un utente già registrato
+    /users/login:
+        post:
+            summary: Login to the system
+            description: Authenticate the user and return a JWT token.
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                email:
+                                    type: string
+                                    description: "Email address of the user"
+                                password:
+                                    type: string
+                                    description: "Password for the user account"
+                            required:
+                                - email
+                                - password
+            responses:
+                '200':
+                    description: Login successful
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    token:
+                                        type: string
+                                        description: "JWT token to authenticate future requests"
+                '400':
+                    description: Invalid email or password
+                '500':
+                    description: Internal server error
+        
+    # path per gestire gli eventi salvati dall'utente
+    /users/saved-events:
+        post:
+            summary: Save an event of interest for a user
+            description: Allows a user to save an event they are interested in.
+            security:
+                - bearerAuth: []   # Richiede un token JWT valido per accedere
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                eventId:
+                                    type: integer
+                                    description: The ID of the event to save
+                                userId:
+                                    type: integer
+                                    description: The ID of the user saving the event
+            responses:
+                '201':
+                    description: 'Event saved successfully'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                '404':
+                    description: 'Event not found'
+                '400':
+                    description: 'Invalid save request'
+                '500':
+                    description: 'Internal server error'
+        get:
+            summary: Retrieve saved events for the authenticated user
+            description: Returns a list of events saved by the authenticated user.
+            security:
+                - bearerAuth: []
+            responses:
+                '200':
+                    description: 'List of saved events'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Event'
+                '401':
+                    description: 'Unauthorized user'
+                '500':
+                    description: 'Internal server error'
+    
+    # path per creare e fare il retrieving di eventi
     /events:
         get:
             description: Returns a list of events, optionally filtered by date.
@@ -67,6 +162,8 @@ paths:
             description: >-
                 Creates a new event in the system.
             summary: Create a new event
+            security:
+                - bearerAuth: []   # Richiede un token JWT valido per accedere
             requestBody:
                 required: true
                 content:
@@ -87,11 +184,13 @@ paths:
                 '500':
                     description: 'Internal server error'
     
-    # Nuovo path per la modifica di un evento esistente
+    # path per la modifica di un evento esistente
     /events/{eventId}:
         put:
             summary: Update an existing event
             description: Allows an organizer to update an event they created.
+            security:
+                - bearerAuth: []   # Richiede un token JWT valido per accedere
             parameters:
                 - in: path
                   name: eventId
@@ -118,12 +217,45 @@ paths:
                     description: 'Event not found'
                 '500':
                     description: 'Internal server error'
+
+    # path per l'iscrizione ad un evento                
+    /events/{eventId}/registration:
+        post:
+            summary: Register a participant for an event
+            description: Allows a participant to register for a specific event.
+            security:
+                - bearerAuth: []   # Richiede un token JWT valido per accedere
+            parameters:
+                - in: path
+                  name: eventId
+                  required: true
+                  schema:
+                    type: integer
+            responses:
+                '201':
+                    description: 'Registration successful'
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    message:
+                                        type: string
+                '404':
+                    description: 'Event not found'
+                '400':
+                    description: 'Invalid registration request'
+                '500':
+                    description: 'Internal server error'
+
     
     # path per gli spazi
-    /spaces:
+    /places:
         get:
             summary: Retrieve a list of spaces
             description: Returns a list of all available spaces.
+            security:
+                - bearerAuth: []   # Richiede un token JWT valido per accedere
             responses:
                 '200':
                     description: 'A list of spaces'
@@ -132,35 +264,39 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                    $ref: '#/components/schemas/Space'
+                                    $ref: '#/components/schemas/Place'
                 '500':
                     description: 'Internal server error'
         post:
             summary: Create a new space
             description: Allows an owner to create a new space for events.
+            security:
+                - bearerAuth: []   # Richiede un token JWT valido per accedere
             requestBody:
                 required: true
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/Space'
+                            $ref: '#/components/schemas/Place'
             responses:
                 '201':
-                    description: 'Space created successfully'
+                    description: 'Place created successfully'
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Space'
+                                $ref: '#/components/schemas/Place'
                 '400':
                     description: 'Invalid input'
                 '500':
                     description: 'Internal server error'
 
     # path per la modifica di un spazio esistente
-    /spaces/{spaceId}:
+    /places/{placeId}:
         put:
             summary: Update an existing space
             description: Allows an owner to update a space they created.
+            security:
+                - bearerAuth: []   # Richiede un token JWT valido per accedere
             parameters:
                 - in: path
                   name: spaceId
@@ -172,18 +308,18 @@ paths:
                 content:
                     application/json:
                         schema:
-                            $ref: '#/components/schemas/SpaceUpdate'
+                            $ref: '#/components/schemas/PlaceUpdate'
             responses:
                 '200':
-                    description: 'Space updated successfully'
+                    description: 'Place updated successfully'
                     content:
                         application/json:
                             schema:
-                                $ref: '#/components/schemas/Space'
+                                $ref: '#/components/schemas/Place'
                 '403':
                     description: 'Forbidden. Owner is not authorized to modify this space.'
                 '404':
-                    description: 'Space not found'
+                    description: 'Place not found'
                 '400':
                     description: 'Invalid input'
                 '500':
@@ -194,6 +330,7 @@ paths:
 #######################
 
 components:
+    # oggetti dati che l'API invia o riceve
     schemas:
         User: # object definition
             type: object
@@ -300,7 +437,7 @@ components:
                     type: string
                     description: "Updated location of the event"
  
-        Space: # oggetto per la creazione e la visualizzazione dello spazio
+        Place: # oggetto per la creazione e la visualizzazione dello spazio
             type: object
             properties:
                 id:
@@ -321,7 +458,7 @@ components:
                         type: string
                     description: List of amenities available in the space
 
-        SpaceUpdate: # oggetto per l'aggiornamento dello spazio
+        PlaceUpdate: # oggetto per l'aggiornamento dello spazio
             type: object
             properties:
                 name:
@@ -338,3 +475,14 @@ components:
                     items:
                         type: string
                     description: Updated list of amenities available in the space
+    # modalità di autenticazione che le API utilizzano
+    securitySchemes:
+        bearerAuth:
+            type: http
+            scheme: bearer
+            bearerFormat: JWT
+
+# Esempio di Implementazione del Flusso di Autenticazione
+# - L'utente si registra tramite l'endpoint /users/signup.
+# - L'utente fa login tramite l'endpoint /users/login, ottenendo un token JWT.
+# - L'utente utilizza questo token per autenticarsi nelle richieste successive inviandolo nell'header Authorization: Bearer <token>.
