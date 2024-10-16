@@ -10,6 +10,10 @@ servers:
     - description: Localhost
       url: http://localhost:8000/api/v1
 
+##################
+# API ENDPOINTS
+###################
+
 paths:
     /users:
         post:
@@ -36,9 +40,15 @@ paths:
                     description: "User already exists."
     /events:
         get:
-            description: >-
-                Returns a list of the events
-            summary: View all events
+            description: Returns a list of events, optionally filtered by date.
+            summary: View all events (with optional date filter)
+            parameters:
+                - in: query
+                  name: startDate
+                  schema:
+                      type: string
+                      format: date-time
+                  required: false
             responses:
                 '200':
                     description: 'Collection of events'
@@ -47,11 +57,141 @@ paths:
                             schema:
                                 type: array
                                 items:
-                                    $ref: '#/components/schemas/Event'
+                                $ref: '#/components/schemas/Event'
+                '400':
+                    description: 'Invalid date format'
                 '500':
                     description: 'Internal server error'
 
+        post:
+            description: >-
+                Creates a new event in the system.
+            summary: Create a new event
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/EventCreation' # Creating a new event
+            responses:
+                '201':
+                    description: 'Event successfully created'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Event'  # Returning the created event
+                '400':
+                    description: 'Invalid input, check the event details'
+                '403':
+                    description: 'User not authorized to create an event (only organizers)'
+                '500':
+                    description: 'Internal server error'
+    
+    # Nuovo path per la modifica di un evento esistente
+    /events/{eventId}:
+        put:
+            summary: Update an existing event
+            description: Allows an organizer to update an event they created.
+            parameters:
+                - in: path
+                  name: eventId
+                  schema:
+                      type: integer
+                  required: true
+                  description: The ID of the event to be updated
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/EventUpdate'  # Schema per aggiornamento
+            responses:
+                '200':
+                    description: 'Event updated successfully'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Event'
+                '403':
+                    description: 'Forbidden. Organizer is not authorized to modify this event.'
+                '404':
+                    description: 'Event not found'
+                '500':
+                    description: 'Internal server error'
+    
+    # path per gli spazi
+    /spaces:
+        get:
+            summary: Retrieve a list of spaces
+            description: Returns a list of all available spaces.
+            responses:
+                '200':
+                    description: 'A list of spaces'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Space'
+                '500':
+                    description: 'Internal server error'
+        post:
+            summary: Create a new space
+            description: Allows an owner to create a new space for events.
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/Space'
+            responses:
+                '201':
+                    description: 'Space created successfully'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Space'
+                '400':
+                    description: 'Invalid input'
+                '500':
+                    description: 'Internal server error'
+
+    # path per la modifica di un spazio esistente
+    /spaces/{spaceId}:
+        put:
+            summary: Update an existing space
+            description: Allows an owner to update a space they created.
+            parameters:
+                - in: path
+                  name: spaceId
+                  required: true
+                  schema:
+                    type: integer
+            requestBody:
+                required: true
+                content:
+                    application/json:
+                        schema:
+                            $ref: '#/components/schemas/SpaceUpdate'
+            responses:
+                '200':
+                    description: 'Space updated successfully'
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/Space'
+                '403':
+                    description: 'Forbidden. Owner is not authorized to modify this space.'
+                '404':
+                    description: 'Space not found'
+                '400':
+                    description: 'Invalid input'
+                '500':
+                    description: 'Internal server error'
+
+#######################
 # COMPONENTS SECTION
+#######################
 
 components:
     schemas:
@@ -61,6 +201,7 @@ components:
                 - username
                 - email
                 - password
+                - role
             properties:
                 username:
                     type: string
@@ -78,6 +219,12 @@ components:
 
         Event:
             type: object
+            required:
+                - id
+                - name
+                - date
+                - location
+                - organizerId
             properties:
                 id:
                     type: integer
@@ -95,3 +242,99 @@ components:
                 location:
                     type: string
                     description: "Location where the event will be held"
+                organizerId:
+                    type: integer
+                    description: "The ID of the organizer who created the event"
+
+        EventCreation:
+            type: object
+            required:
+                - name
+                - date
+                - location
+            properties:
+                name:
+                    type: string
+                    description: "Name of the event"
+                description:
+                    type: string
+                    description: "Brief description of the event"
+                date:
+                    type: string
+                    format: date-time
+                    description: "Date and time of the event"
+                location:
+                    type: string
+                    description: "Location where the event will be held"
+
+# Creare un nuovo schema come EventCreation separato da Event serve a gestire la differenza tra:
+# - L'input necessario per creare un evento (richiesto nel corpo della richiesta).
+#   Quando un organizer crea un evento, non deve specificare l'id o l'organizerId, 
+#   poiché questi valori vengono generati e gestiti dal server
+# - L'oggetto completo di un evento che il server restituisce in risposta. Dopo la 
+#   creazione, il server deve restituire l'evento con campi come l'id (generato dal 
+#   sistema) e l'organizerId, che identifica l'utente che ha creato l'evento.
+# Usando lo schema Event sia per la creazione sia per la risposta potremmo avere 
+# incoerenze, come la richiesta di campi che l'utente non dovrebbe (o non può) fornire, 
+# come id e organizerId.
+
+        EventUpdate:
+            type: object
+            required:
+                - name
+                - description
+                - date
+                - location
+            properties:
+                name:
+                    type: string
+                    description: "Updated name of the event"
+                description:
+                    type: string
+                    description: "Updated description of the event"
+                date:
+                    type: string
+                    format: date-time
+                    description: "Updated date and time of the event"
+                location:
+                    type: string
+                    description: "Updated location of the event"
+ 
+        Space: # oggetto per la creazione e la visualizzazione dello spazio
+            type: object
+            properties:
+                id:
+                    type: integer
+                    description: Unique identifier of the space
+                name:
+                    type: string
+                    description: Name of the space
+                location:
+                    type: string
+                    description: Location of the space
+                capacity:
+                    type: integer
+                    description: Maximum capacity of the space
+                amenities:
+                    type: array
+                    items:
+                        type: string
+                    description: List of amenities available in the space
+
+        SpaceUpdate: # oggetto per l'aggiornamento dello spazio
+            type: object
+            properties:
+                name:
+                    type: string
+                    description: Updated name of the space
+                location:
+                    type: string
+                    description: Updated location of the space
+                capacity:
+                    type: integer
+                    description: Updated maximum capacity of the space
+                amenities:
+                    type: array
+                    items:
+                        type: string
+                    description: Updated list of amenities available in the space
