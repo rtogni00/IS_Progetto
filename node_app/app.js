@@ -1,8 +1,20 @@
 const express = require('express');
+const mongoose = require('mongoose')
 const routes = require('./index');
 
 const app = express();
 const port = 5000;
+
+// Database connection with mongoose
+// const dbURI = process.env.MONGODB_URI || 'your_default_mongo_uri_here';
+// mongoose.connect(dbURI, {
+    // useNewUrlParser: true,
+    // useUnifiedTopology: true,
+// })
+// .then(() => console.log('Connected to MongoDB'))
+// .catch((error) => console.error('MongoDB connection error:', error));
+
+
 
 app.use(express.json()); // Middleware to parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies

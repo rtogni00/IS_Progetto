@@ -17,3 +17,33 @@ report/*.out
 report/*.xml
 report/*.gz
 report/*.pdf
+
+# -------------------
+# D1
+# -------------------
+
+D1/*.aux
+D1/*.bcf
+D1/*.log
+D1/*.out
+D1/*.xml
+D1/*.gz
+D1/*.pdf
+
+# -------------------
+# D3
+# -------------------
+
+D3/*.aux
+D3/*.bcf
+D3/*.log
+D3/*.out
+D3/*.xml
+D3/*.gz
+D3/*.pdf
+
+# -------------------
+# Environment
+# -------------------
+
+node_app/.env
