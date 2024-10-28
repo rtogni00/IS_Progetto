@@ -16,7 +16,7 @@ report/*.log
 report/*.out
 report/*.xml
 report/*.gz
-report/*.pdf
+report/*.toc
 
 # -------------------
 # D1
@@ -28,7 +28,7 @@ D1/*.log
 D1/*.out
 D1/*.xml
 D1/*.gz
-D1/*.pdf
+D1/*.toc
 
 # -------------------
 # D3
@@ -40,7 +40,7 @@ D3/*.log
 D3/*.out
 D3/*.xml
 D3/*.gz
-D3/*.pdf
+D3/*.toc
 
 # -------------------
 # Environment
