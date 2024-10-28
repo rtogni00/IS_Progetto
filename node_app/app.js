@@ -1,18 +1,17 @@
 const express = require('express');
 const mongoose = require('mongoose')
 const routes = require('./index');
+require('dotenv').config(); // Load environment variables from .env file
+// console.log(process.env)
 
 const app = express();
 const port = 5000;
 
 // Database connection with mongoose
-// const dbURI = process.env.MONGODB_URI || 'your_default_mongo_uri_here';
-// mongoose.connect(dbURI, {
-    // useNewUrlParser: true,
-    // useUnifiedTopology: true,
-// })
-// .then(() => console.log('Connected to MongoDB'))
-// .catch((error) => console.error('MongoDB connection error:', error));
+const dbURI = process.env.MONGODB_URI;
+mongoose.connect(dbURI)
+.then(() => console.log('Connected to MongoDB'))
+.catch((error) => console.error('MongoDB connection error:', error));
 
 
 
