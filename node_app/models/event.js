@@ -27,7 +27,8 @@ const EventSchema = new Schema({
         description: "Maximum number of participants"
     },
     organizer: {
-        type: Schema.Types.ObjectId,
+        // type: Schema.Types.ObjectId,
+        type: String,
         ref: 'User',
         required: true,
         description: "Reference to the organizer who created the event"

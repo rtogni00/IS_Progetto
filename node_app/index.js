@@ -4,9 +4,13 @@
 const usersRoute = require('./routes/users');
 const eventsRoute = require('./routes/events');
 const placesRoute = require('./routes/places');
+const authentication = require('./authentication');
+const tokenChecker = require('./tokenChecker');
 
 module.exports = {
     usersRoute,
     eventsRoute,
     placesRoute,
+    authentication,
+    tokenChecker,
 };
