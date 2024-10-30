@@ -15,9 +15,14 @@ Project description, featuring:
 
 ### D2
 
+Diagrams describing system functionalities, including:
+
+-   Use case diagrams;
+-   Activity diagrams.
+
 ### D3
 
-Implementation details.
+Implementation details expressed through user stories and user flow diagrams.
 
 ### D4
 
