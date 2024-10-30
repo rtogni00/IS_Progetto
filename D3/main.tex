@@ -36,6 +36,7 @@
 
 \section{User Stories}
 
+Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche. Ad ogn user story è associata una priorità (ad un numero più piccolo corrisponde una priorità maggiore) rappresentante l'importanza della funzionalità in questione per l'operatività del sistema.
 
 	
 \begin{table}[!htb]
@@ -44,8 +45,8 @@
 		\toprule
 		\multicolumn{4}{c}{\textbf{Profilo}}\\ \midrule
 		Id & Nome & User Story & Priorità \\ \midrule
-		A1  & Registrazione  & Come utente, voglio registrarmi per utilizzare il sistema & \\
-		A2  & Login & In qualità di utente, devo essere in grado di effettuare il login & \\
+		A1  & Registrazione  & Come utente, voglio registrarmi per utilizzare il sistema & 1 \\
+		A2  & Login & In qualità di utente, devo essere in grado di effettuare il login & 1 \\
 		A3  & Visualizzazione profilo & Come utente, devo essere in grado di visualizzare lo storico eventi e le mie informazioni personali &  \\
 		\bottomrule
 	\end{tabular}
@@ -62,7 +63,7 @@
 		Id & Nome & User Story & Priorità \\ \midrule
 		B1  & Lista eventi            & In qualità di utente, devo essere in grado di scorrere una lista di eventi                                               &  \\
 		B2  & Filtri eventi           & In qualità di utente, devo essere in grado di filtrare gli eventi in base alla data                                      &  \\
-		B3  & Creazione evento        & In qualità di organizzatore, devo essere in grado di creare un nuovo evento in un determinato luogo                      &  \\
+		B3  & Creazione evento        & In qualità di organizzatore, devo essere in grado di creare un nuovo evento in un determinato luogo                      &  2 \\
 		B4  & Condivisione evento     & In qualità di utente, devo essere in grado di condividere un evento tramite link                                         &  \\
 		B5  & Pagamento               & In qualità di utente, devo essere in grado di effettuare il pagamento per un evento a cui voglio iscrivermi              & \\
 		B6  & Aggiornamento evento    & In qualità di organizzatore, devo essere in grado di aggiornare la descrizione di un evento                              & \\
@@ -73,6 +74,22 @@
 	\caption{User stories relative all'epica "eventi".}
 	\label{tab:eventi}
 \end{table}
+
+\begin{table}[!htb]
+	\centering
+	\begin{tabular}{clp{7cm}l} % Use 'p{7cm}' for the User Story column
+		\toprule
+		\multicolumn{4}{c}{\textbf{Spazi}}\\ \midrule
+		Id & Nome & User Story & Priorità \\ \midrule
+		C1  & Aggiunta spazio  & In qualità di owner, devo essere in grado di pubblicare uno spazio disponibile & 2\\
+		C2 & Rimozione spazio & In qualità di owner, devo essere in grado di rimuovere uno spazio esistente & 2\\
+		C3 & Visualizzazione spazi & In qualità di organizzatore, devo essere in grado di visualizzare gli spazi disponibili & \\
+		\bottomrule
+	\end{tabular}
+	\caption{User stories relative all'epica "spazi".}
+	\label{tab:spazi}
+\end{table}
+
 
 
 \begin{table}[!htb]
@@ -92,11 +109,11 @@
 \newpage
 \section{User Flow}
 
-Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow corrispondenti ad una serie di user stories. La notazione utilizzata nelle descrizioni si riferisce a quella riportata nelle Tabelle \ref{tab:profili}, \ref{tab:eventi} e \ref{tab:mappa}.
+Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow corrispondenti ad una serie di user stories. La notazione utilizzata nelle descrizioni si riferisce a quella riportata nelle Tabelle \ref{tab:profili}, \ref{tab:eventi}, \ref{tab:spazi} e \ref{tab:mappa}.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=0.8\linewidth]{./images/A1-A2.drawio.pdf}
+	\includegraphics[width=0.8\linewidth]{./images/A1-A2.pdf}
 	\caption{User Flowchart relativo alle user stories A1 e A2.}
 	\label{fig:A1-A2}
 \end{figure}
