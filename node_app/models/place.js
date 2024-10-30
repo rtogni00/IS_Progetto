@@ -16,8 +16,7 @@ const PlaceSchema = new Schema({
         required: true
     },
     owner: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
+        type: String,
         required: true
     }
 }, { timestamps: true });
