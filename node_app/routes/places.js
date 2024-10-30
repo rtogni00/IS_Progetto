@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const PlaceModel = require('../models/place'); // Import the Place model
+const tokenChecker = require('../tokenChecker');
 
 // Route to get a place by its name
 router.get('/:name', async (req, res) => {
@@ -20,8 +21,13 @@ router.get('/:name', async (req, res) => {
 });
 
 // Route to create a new place
-router.post('/create', async (req, res) => {
+router.post('/create', tokenChecker, async (req, res) => {
     try {
+        // check if logged in user is a place owner
+        if (req.loggedUser.role != 'owner') {
+            return res.status(403).json({ message: 'Unauthorized: Must be a place owner to create a place.' });
+
+        }
         const newPlace = new PlaceModel(req.body);
         const savedPlace = await newPlace.save();
 

@@ -33,7 +33,7 @@ connectDB();
 app.use(express.json()); // Middleware to parse JSON request bodies
 app.use(express.urlencoded({ extended: true })); //Parse URL-encoded bodies
 
-app.use('/api/v1/authentications', routes.authentication);
+// app.use('/api/v1/authentications', routes.authentication);
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //                      RESOURCE ROUTING
