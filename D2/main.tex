@@ -34,7 +34,73 @@
 \tableofcontents
 \newpage
 
-\section{Use Case Diagrams}
+\section{Scopo del documento}
+
+\newpage
+
+\section{Requisiti Funzionali}
+
+Di seguito sono riportati i functional requirements (FR) del sistema sia in linguaggio naturale che tramite Use Case Diagrams (UCDs). La notazione è coerente con quella utilizzata all'interno del documento D1.
+
+
+
+\subsection*{FR1 e FR2: Login e Registrazione} 
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.7\linewidth]{./images/FR1-2.pdf}
+	\caption{UCD relativo a FR1 e FR2.}
+	\label{fig:UCD_FR1-2}
+\end{figure}
+
+\subsubsection*{Use Case FR1: Login}
+
+
+\begin{itemize}
+	\item L'utente visualizza una pagina con un form
+	\item Se l'utente inserisce le credenziali (vedi  \hyperref[Estensioni]{Estensioni}) corrette (vedi \hyperref[Eccezioni]{Eccezioni}) e preme sul pulsante "Login", si apre la schermata principale dell'applicazione.
+	\item Qualora l'utente selezioni il logo di Google, il processo di autenticazione verrà gestito da Google SSO
+\end{itemize}
+
+\subsubsection*{Use Case FR2: Registrazione}
+
+\begin{itemize}
+	\item 
+\end{itemize}
+
+
+\subsubsection*{Eccezioni}\label{Eccezioni}
+
+\begin{itemize}
+	\item Qualora le credenziali inserite non siano corrette, l'applicazione restituisce un messaggio di errore
+\end{itemize}
+
+\subsubsection*{Estensioni}\label{Estensioni}
+
+\begin{itemize}
+	\item 
+\end{itemize}
+
+\subsection*{FR4: Visualizzazione Eventi}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.7\linewidth]{./images/FR4.pdf}
+	\caption{UCD relativo al FR4.}
+	\label{fig:UCD_FR4}
+\end{figure}
+
+
+\section{Analisi dei Componenti}
+
+\subsection{Definizione dei Componenti}
+
+
+\subsection{Diagramma dei Componenti}
+
+\section{Diagramma delle Classi}
+
+
 
 
 	
