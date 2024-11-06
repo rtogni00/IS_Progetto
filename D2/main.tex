@@ -58,27 +58,30 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 
 \begin{itemize}
 	\item L'utente visualizza una pagina con un form
-	\item Se l'utente inserisce le credenziali (vedi  \hyperref[Estensioni]{Estensioni}) corrette (vedi \hyperref[Eccezioni]{Eccezioni}) e preme sul pulsante "Login", si apre la schermata principale dell'applicazione.
+	\item Se l'utente inserisce le credenziali (vedi  \hyperref[Estensioni-FR2]{Estensioni}) corrette (vedi \hyperref[Eccezioni-FR2]{Eccezioni}) e preme sul pulsante "Login", si apre la schermata principale dell'applicazione.
 	\item Qualora l'utente selezioni il logo di Google, il processo di autenticazione verrà gestito da Google SSO
 \end{itemize}
 
 \subsubsection*{Use Case FR2: Registrazione}
 
 \begin{itemize}
-	\item 
+	\item L'utente visualizza una pagina dalla quale inserire nome, cognome, indirizzo mail (vedi \hyperref[Eccezioni-FR2]{Eccezioni})
+	\item Il sistema invia una mail all'indirizzo fornito dall'utente contenente un link e una password temporanea
+	\item L'utente deve confermare la registrazione tramite il link di cui sopra (vedi \hyperref[Eccezioni-FR2]{Eccezioni}). Può quindi accedere al sistema tramite la password temporanea
 \end{itemize}
 
 
-\subsubsection*{Eccezioni}\label{Eccezioni}
+\subsubsection*{Eccezioni}\label{Eccezioni-FR2}
 
 \begin{itemize}
 	\item Qualora le credenziali inserite non siano corrette, l'applicazione restituisce un messaggio di errore
+	\item Qualora l'utente non apra il link contenuto nella mail automatica, la registrazione non viene finalizzata
 \end{itemize}
 
-\subsubsection*{Estensioni}\label{Estensioni}
+\subsubsection*{Estensioni}\label{Estensioni-FR2}
 
 \begin{itemize}
-	\item 
+	\item La password contenuta nella mail generata automaticamente dal sistema a seguito della registrazione dev'essere modificata a seguito del primo login
 \end{itemize}
 
 \subsection*{FR4: Visualizzazione Eventi}
@@ -89,6 +92,68 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 	\caption{UCD relativo al FR4.}
 	\label{fig:UCD_FR4}
 \end{figure}
+
+\subsubsection*{Use Case FR34: Visualizzazione Eventi}
+
+\begin{itemize}
+	\item La ricerca di eventi può essere effettuata da qualsiasi utente, anche non loggato
+	\item L'utente può scegliere se esplorare la mappa integrata nella schermata iniziale, o se visualizzare gli eventi in forma di lista
+	\item Qualora l'utente decida di visualizzare la lista degli eventi, viene messo a disposizione un servizio di filtering basato su 3 possibili criteri: data, luogo e nome dell'evento
+\end{itemize}
+
+\subsection{FR8 e FR10: Creazione ed Aggiornamento Eventi}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\linewidth]{./images/FR8-10.pdf}
+	\caption{UCD relativo a FR8 e FR10.}
+	\label{fig:UCD_FR8-10}
+\end{figure}
+
+\subsubsection*{Use Case FR8: Creazione Eventi}
+
+\begin{itemize}
+	\item Qualora l'utente appartenga alla categoria "Owner" o a quella "Organizer" e sia loggato (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni}), dalla pagina del profilo personale è visibile un pulsante "New event"
+	\item La pressione del pulsante rimanda alla pagina di creazione eventi. Per la creazione di un nuovo evento è necessario l'inserimento di un nome, di una data, di una location e di una descrizione (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni})
+	\item L'aggiunta di immagini è facoltativa, così come lo è il prezzo 
+\end{itemize}
+
+\subsubsection*{Use case FR10: Modifica Eventi}
+\begin{itemize}
+	\item Qualora un utente appartenente alle categorie "Owner" o "Organizer" sia loggato e abbia precedentemente creato un evento (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni}), dalla propria pagina personale può raggiungere l'evento in questione tramite il pulsante "My events" \textcolor{red}{TODO update D1}
+	\item La pressione del pulsante rimanda ad una lista degli eventi creati. Selezionandone uno è possibile modificare uno qualsiasi dei vari campi entro una settimana dall'evento (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni} e \hyperref[Estensioni-FR8-10]{Estensioni})
+\end{itemize}
+
+\subsubsection*{Eccezioni}\label{Eccezioni-FR8-10}
+
+\begin{itemize}
+	\item Qualora l'utente non sia loggato, non esiste alcun profilo personale
+	\item Qualora l'utente appartenga alla categoria "User", la pagina del profilo personale è priva del pulsante per la creazione di eventi
+	\item Se durante la creazione di un evento non viene compilato uno dei campi obbligatori, il pulsante "Create Event" rimane inattivo
+	\item Qualora l'utente non abbia mai creato eventi, il pulsante "My Events" non è attivo
+	\item Qualora manchi meno di una settimana all'evento in questione, i campi non risultano modificabili
+\end{itemize}
+
+\subsubsection*{Estensioni}\label{Estensioni-FR8-10}
+
+\begin{itemize}
+	\item Gli eventi passati rimangono visualizzabili tramite il pulsante "My events", tuttavia non risultano più editabili
+\end{itemize}
+
+\newpage
+
+\subsection{FR12-: Aggiunta e Modifica Luogo}
+
+\textcolor{red}{TODO update D1}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\linewidth]{./images/FR12.pdf}
+	\caption{UCD relativo al FR12.}
+	\label{fig:UCD_FR12}
+\end{figure}
+
+
 
 
 \section{Analisi dei Componenti}
