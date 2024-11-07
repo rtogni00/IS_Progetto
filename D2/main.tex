@@ -36,6 +36,9 @@
 
 \section{Scopo del documento}
 
+
+Il seguente documento riporta la specifica dei requisiti funzionali del sistema tramite un linguaggio semi-formale. Si tratta dunque di un approfondimento (nonché di una formalizzazione) di quanto riportato in linguaggio naturale all'interno del D1. Il linguaggio utilizzato per la formalizzazione dei requisiti è UML (Unified Modeling Language), declinato in Use Case Diagrams (UCDs), Component Diagrams, Sequence Diagrams, e Class Diagrams.
+
 \newpage
 
 \section{Requisiti Funzionali}
@@ -101,7 +104,7 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 	\item Qualora l'utente decida di visualizzare la lista degli eventi, viene messo a disposizione un servizio di filtering basato su 3 possibili criteri: data, luogo e nome dell'evento
 \end{itemize}
 
-\subsection{FR8 e FR10: Creazione ed Aggiornamento Eventi}
+\subsection*{FR8 e FR10: Creazione ed Aggiornamento Eventi}
 
 \begin{figure}[!htb]
 	\centering
@@ -120,7 +123,7 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 
 \subsubsection*{Use case FR10: Modifica Eventi}
 \begin{itemize}
-	\item Qualora un utente appartenente alle categorie "Owner" o "Organizer" sia loggato e abbia precedentemente creato un evento (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni}), dalla propria pagina personale può raggiungere l'evento in questione tramite il pulsante "My events" \textcolor{red}{TODO update D1}
+	\item Qualora un utente appartenente alle categorie "Owner" o "Organizer" sia loggato e abbia precedentemente creato un evento (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni}), dalla propria pagina personale può raggiungere l'evento in questione tramite il pulsante "My events"
 	\item La pressione del pulsante rimanda ad una lista degli eventi creati. Selezionandone uno è possibile modificare uno qualsiasi dei vari campi entro una settimana dall'evento (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni} e \hyperref[Estensioni-FR8-10]{Estensioni})
 \end{itemize}
 
@@ -142,9 +145,8 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 
 \newpage
 
-\subsection{FR12-: Aggiunta e Modifica Luogo}
+\subsection*{FR12-13: Aggiunta e Modifica Luogo}
 
-\textcolor{red}{TODO update D1}
 
 \begin{figure}[!htb]
 	\centering
@@ -153,8 +155,26 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 	\label{fig:UCD_FR12}
 \end{figure}
 
+\subsubsection*{Use Case FR12: Aggiunta Luogo}
+\begin{itemize}
+	\item Qualora l'utente sia loggato con un profilo di tipo "Owner" (vedi \hyperref[Eccezioni-FR12-13]{Eccezioni}), dal proprio profilo personale ha la possibilità di aggiungere un luogo tramite il pulsante "New Place"
+	\item La pressione del pulsante rimanda alla pagina di aggiunta luoghi. Per l'aggiunta di un nuovo luogo occorre inserire una location, un nome, una descrizione, ed un prezzo (vedi \hyperref[Eccezioni-FR12-13]{Eccezioni}). Opzionalmente è possibile inserire delle foto
+\end{itemize}
 
+\subsubsection*{Use Case FR13: Modifica Luogo}
 
+\begin{itemize}
+	\item Qualora l'utente sia loggato con un profilo di tipo "Owner" e abbia precedentemente aggiunto una location, dalla propria pagina personale può raggiungere l'evento in questione tramite il pulsante "My places"
+	\item La pressione del pulsante rimanda ad una lista degli spazi aggiunti. Selezionandone uno è possibile modificare uno qualsiasi dei campi e/o eliminare lo spazio se e solo se lo spazio non è attualmente collegato ad un evento (vedi \hyperref[Eccezioni-FR12-13]{Eccezioni})
+\end{itemize}
+
+\subsubsection*{Eccezioni}\label{Eccezioni-FR12-13}
+\begin{itemize}
+	\item Qualora l'utente non sia loggato, non esiste alcun profilo personale
+	\item Qualora l'utente non appartenga alla categoria "Owner", la pagina del profilo personale è priva del pulsante per l'aggiunta di spazi
+	\item Se durante l'aggiunta di uno spazio non viene compilato uno dei campi obbligatori, il pulsante "Create Place" rimane inattivo
+	\item Qualora lo spazio sia collegato ad un evento, le modifiche sono disattivate a partire da 7 giorni prima della data prevista per l'evento
+\end{itemize}
 
 \section{Analisi dei Componenti}
 

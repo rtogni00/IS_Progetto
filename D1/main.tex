@@ -93,6 +93,7 @@ Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare 
 \textbf{Requisiti Funzionali per i Proprietari di Spazi}
 \begin{itemize}
 	\item \FR I proprietari devono poter creare annunci dettagliati per promuovere i loro spazi, indicando la disponibilità, la capacità, le caratteristiche e i costi di affitto.
+	\item \FR I proprietari devono poter modificare la descrizione degli spazi, nonché rimuoverli dalla piattaforma qualora non più disponibili.
 	\item \FR La piattaforma deve fornire un calendario integrato per monitorare in tempo reale le prenotazioni, la disponibilità e gestire i periodi di non disponibilità.
     \item \FR La piattaforma deve permettere ai Proprietari di Spazi di organizzare eventi allo stesso modo degli Organizzatori
 \end{itemize}
@@ -122,22 +123,15 @@ Nella fattispecie, si tratta di un innovativo sistema web che mira a soddisfare 
 
 \section{Design Front-end}
 
-\begin{figure}[!htb]
-	\centering
-	\includegraphics[width=.7\linewidth]{./images/MainPage.pdf}
-	\caption{Main page.}
-	\label{fig:mainPage}
-\end{figure}
-
 In Figura \ref{fig:mainPage} è rappresentata la schermata principale dell'applicazione. Da qui è possibile effettuare la ricerca di eventi senza dover necessariamente effettuare il login. Selezionando un evento direttamente sulla mappa se ne può visionare la descrizione, come mostrato in Figura \ref{fig:eventView}.
 
 Il burger button situato in basso a destra consente invece il passaggio alla list view degli eventi rappresentata in Figura \ref{fig:eventListSearch}.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=.7\linewidth]{./images/EventListSearch.pdf}
-	\caption{Event list.}
-	\label{fig:eventListSearch}
+	\includegraphics[width=.7\linewidth]{./images/MainPage.pdf}
+	\caption{Main page.}
+	\label{fig:mainPage}
 \end{figure}
 
 
@@ -146,7 +140,14 @@ La visuale a lista degli eventi offre una "bird's eye view" di quanto offerto da
 	\item Come "anonymous user", qualora l'iscrizione sia avvenuta senza effettuare il login;
 	\item Come utente loggato. In questo caso viene mostrata, qualora disponibile, l'immagine profilo dell'utente.
 \end{itemize}
-\newpage
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.7\linewidth]{./images/EventListSearch.pdf}
+	\caption{Event list.}
+	\label{fig:eventListSearch}
+\end{figure}
+
 Qualora l'evento in questione sia a pagamento, la pressione del pulsante "Join" in Figura \ref{fig:eventView} reindirizza alla pagina di pagamento mostrata in Figura \ref{fig:paymentPage}.
 
 
@@ -163,14 +164,14 @@ Dalla pagina mostrata in Figura \ref{fig:eventListSearch} è possibile filtrare 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=.7\linewidth]{./images/EventView.pdf}
-	\caption{Payment page.}
+	\caption{Event view.}
 	\label{fig:eventView}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=.7\linewidth]{./images/PaymentPage.pdf}
-	\caption{Event view.}
+	\caption{Payment page.}
 	\label{fig:paymentPage}
 \end{figure}
 
@@ -240,6 +241,17 @@ Una volta effettuato il login si raggiunge la propria area personale. Questa dif
 Una volta effettuato il login, la main page diviene quella mostrata in Figura \ref{fig:seeAvailableLocations}. Il pulsante di login viene quindi rimpiazzato da quello per l'accesso alla propria area personale.\\
 Da quest'ultima diviene quindi possibile visualizzare la history degli eventi a cui si è partecipato, come mostrato in Figura \ref{fig:userEventHistory}.
 
+Inoltre, qualsiasi utente loggato ha la possibilità di cambiare la password dalla propria area personale tramite il pulsante "Change password". La pressione di quest'ultimo rimanda alla pagina mostrata in Figura \ref{fig:ChangePwd}.
+
+\newpage
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.7\linewidth]{./images/ChangePwd.pdf}
+	\caption{Change password page.}
+	\label{fig:ChangePwd}
+\end{figure}
+
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=.7\linewidth]{./images/SeeAvailableLocations.pdf}
@@ -250,11 +262,25 @@ Da quest'ultima diviene quindi possibile visualizzare la history degli eventi a 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=.7\linewidth]{./images/userEventHistory.pdf}
-	\caption{Main page after login.}
+	\caption{User event history.}
 	\label{fig:userEventHistory}
 \end{figure}
 
+Una volta volta effettuato il login, gli utenti di tipo "Organizer" possono accedere alla lista degli eventi da loro creati come mostrato in Figura \ref{fig:OrganizerEventStats}. Analogamente, gli utenti di tipo "Owner" possono visualizzare la lista degli spazi messi a disposizione, come mostrato in Figura \ref{fig:OwnerPlaceStats}.
 
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.7\linewidth]{./images/OrganizerEventStats.pdf}
+	\caption{Organizer event list.}
+	\label{fig:OrganizerEventStats}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.7\linewidth]{./images/OwnerPlaceStats.pdf}
+	\caption{Owner place list.}
+	\label{fig:OwnerPlaceStats}
+\end{figure}
 
 
 \end{document}
