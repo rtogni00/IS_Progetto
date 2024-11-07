@@ -47,7 +47,7 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 
 
 
-\subsection*{FR1 e FR2: Login e Registrazione} 
+\subsection{FR1 e FR2: Login e Registrazione} 
 
 \begin{figure}[!htb]
 	\centering
@@ -87,7 +87,7 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 	\item La password contenuta nella mail generata automaticamente dal sistema a seguito della registrazione dev'essere modificata a seguito del primo login
 \end{itemize}
 
-\subsection*{FR4: Visualizzazione Eventi}
+\subsection{FR4: Visualizzazione Eventi}
 
 \begin{figure}[!htb]
 	\centering
@@ -96,7 +96,7 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 	\label{fig:UCD_FR4}
 \end{figure}
 
-\subsubsection*{Use Case FR34: Visualizzazione Eventi}
+\subsubsection*{Use Case FR4: Visualizzazione Eventi}
 
 \begin{itemize}
 	\item La ricerca di eventi può essere effettuata da qualsiasi utente, anche non loggato
@@ -104,7 +104,28 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 	\item Qualora l'utente decida di visualizzare la lista degli eventi, viene messo a disposizione un servizio di filtering basato su 3 possibili criteri: data, luogo e nome dell'evento
 \end{itemize}
 
-\subsection*{FR8 e FR10: Creazione ed Aggiornamento Eventi}
+\subsection{FR5, FR6, FR16 e FR17: Feedback, Condivisione, Iscrizione e salvataggio Eventi}
+
+\subsubsection*{Use Cases FR5, FR6, FR16, FR17}
+
+\begin{itemize}
+	\item Oltre a poter visualizzare gli eventi (come mostrato nello UCD precedente), qualsiasi utente può condividerli
+	\item Previo login, qualsiasi tipologia di utente può salvare e/o iscriversi ad un evento. L'iscrizione comporta l'eventuale pagamento del biglietto
+	\item Qualsiasi utente iscritto ad un evento può, dopo il suo verificarsi, lasciare una review
+\end{itemize}
+
+\newpage
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.6\linewidth]{./images/FR5-6-16-17.pdf}
+	\caption{UCD relativo a FR5, FR6, FR16 e FR17.}
+	\label{fig:UCD_FR5-6-16-17}
+\end{figure}
+
+
+
+\subsection{FR8 e FR10: Creazione ed Aggiornamento Eventi}
 
 \begin{figure}[!htb]
 	\centering
@@ -145,7 +166,7 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 
 \newpage
 
-\subsection*{FR12-13: Aggiunta e Modifica Luogo}
+\subsection{FR12-13: Aggiunta e Modifica Luogo}
 
 
 \begin{figure}[!htb]

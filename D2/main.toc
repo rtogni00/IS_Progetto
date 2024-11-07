@@ -1,6 +1,11 @@
 \contentsline {section}{\numberline {1}Scopo del documento}{i}{section.1}%
 \contentsline {section}{\numberline {2}Requisiti Funzionali}{ii}{section.2}%
-\contentsline {section}{\numberline {3}Analisi dei Componenti}{vi}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Definizione dei Componenti}{vi}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Diagramma dei Componenti}{vi}{subsection.3.2}%
-\contentsline {section}{\numberline {4}Diagramma delle Classi}{vi}{section.4}%
+\contentsline {subsection}{\numberline {2.1}FR1 e FR2: Login e Registrazione}{ii}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}FR4: Visualizzazione Eventi}{iii}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}FR5, FR6, FR16 e FR17: Feedback, Condivisione, Iscrizione e salvataggio Eventi}{iii}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}FR8 e FR10: Creazione ed Aggiornamento Eventi}{iv}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}FR12-13: Aggiunta e Modifica Luogo}{vi}{subsection.2.5}%
+\contentsline {section}{\numberline {3}Analisi dei Componenti}{vii}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Definizione dei Componenti}{vii}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Diagramma dei Componenti}{vii}{subsection.3.2}%
+\contentsline {section}{\numberline {4}Diagramma delle Classi}{vii}{section.4}%
