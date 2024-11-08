@@ -36,7 +36,7 @@
 
 \section{User Stories}
 
-Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche. Ad ogn user story è associata una priorità (ad un numero più piccolo corrisponde una priorità maggiore) rappresentante l'importanza della funzionalità in questione per l'operatività del sistema.
+Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche. Ad ogni user story è associata una priorità (ad un numero più piccolo corrisponde una priorità maggiore) rappresentante l'importanza della funzionalità in questione per l'operatività del sistema.
 
 	
 \begin{table}[!htb]
@@ -47,7 +47,7 @@ Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche
 		Id & Nome & User Story & Priorità \\ \midrule
 		A1  & Registrazione  & Come utente, voglio registrarmi per utilizzare il sistema & 1 \\
 		A2  & Login & In qualità di utente, devo essere in grado di effettuare il login & 1 \\
-		A3  & Visualizzazione profilo & Come utente, devo essere in grado di visualizzare lo storico eventi e le mie informazioni personali &  \\
+		A3  & Visualizzazione profilo & Come utente, devo essere in grado di visualizzare lo storico eventi, le mie informazioni personali, e gli eventi salvati &  3\\
 		\bottomrule
 	\end{tabular}
 	\caption{User stories relative all'epica "profilo".}
@@ -61,14 +61,14 @@ Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche
 		\toprule
 		\multicolumn{4}{c}{\textbf{Eventi}}\\ \midrule
 		Id & Nome & User Story & Priorità \\ \midrule
-		B1  & Lista eventi            & In qualità di utente, devo essere in grado di scorrere una lista di eventi                                               &  \\
-		B2  & Filtri eventi           & In qualità di utente, devo essere in grado di filtrare gli eventi in base alla data                                      &  \\
+		B1  & Lista eventi            & In qualità di utente, devo essere in grado di scorrere una lista di eventi                                               &  2\\
+		B2  & Filtri eventi           & In qualità di utente, devo essere in grado di filtrare gli eventi in base alla data                                      &  2 \\
 		B3  & Creazione evento        & In qualità di organizzatore, devo essere in grado di creare un nuovo evento in un determinato luogo                      &  2 \\
-		B4  & Condivisione evento     & In qualità di utente, devo essere in grado di condividere un evento tramite link                                         &  \\
-		B5  & Pagamento               & In qualità di utente, devo essere in grado di effettuare il pagamento per un evento a cui voglio iscrivermi              & \\
-		B6  & Aggiornamento evento    & In qualità di organizzatore, devo essere in grado di aggiornare la descrizione di un evento                              & \\
-		B7  & Statistiche evento      & In qualità di organizzatore, devo essere in grado di visualizzare gli iscritti all'evento                                & \\
-		B8  & Salvataggio evento      & In qualità di utente, devo essere in grado di salvare un evento in modo da poterlo visualizzare nella mia area personale & \\
+		B4  & Condivisione evento     & In qualità di utente, devo essere in grado di condividere un evento tramite link                                         &  4\\
+		B5  & Pagamento               & In qualità di utente, devo essere in grado di effettuare il pagamento per un evento a cui voglio iscrivermi              & 2\\
+		B6  & Aggiornamento evento    & In qualità di organizzatore, devo essere in grado di aggiornare la descrizione di un evento                              & 3\\
+		B7  & Statistiche evento      & In qualità di organizzatore, devo essere in grado di visualizzare gli iscritti all'evento                                & 4\\
+		B8  & Salvataggio evento      & In qualità di utente, devo essere in grado di salvare un evento in modo da poterlo visualizzare nella mia area personale & 3\\
 		\bottomrule
 	\end{tabular}
 	\caption{User stories relative all'epica "eventi".}
@@ -83,7 +83,7 @@ Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche
 		Id & Nome & User Story & Priorità \\ \midrule
 		C1  & Aggiunta spazio  & In qualità di owner, devo essere in grado di pubblicare uno spazio disponibile & 2\\
 		C2 & Rimozione spazio & In qualità di owner, devo essere in grado di rimuovere uno spazio esistente & 2\\
-		C3 & Visualizzazione spazi & In qualità di organizzatore, devo essere in grado di visualizzare gli spazi disponibili & \\
+		C3 & Visualizzazione spazi & In qualità di organizzatore, devo essere in grado di visualizzare gli spazi disponibili & 3\\
 		\bottomrule
 	\end{tabular}
 	\caption{User stories relative all'epica "spazi".}
@@ -98,8 +98,8 @@ Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche
 		\toprule
 		\multicolumn{4}{c}{\textbf{Mappa}}\\ \midrule
 		Id & Nome & User Story & Priorità \\ \midrule
-		C1  & Esplorazione mappa      & In qualità di utente, devo essere in grado di muovermi nella mappa per visualizzare gli eventi                           &  \\
-		C2  & Aggiunta luogo          & In qualità di owner, devo essere in grado di aggiungere un nuovo luogo alla mappa                                        & \\
+		D1  & Esplorazione mappa      & In qualità di utente, devo essere in grado di muovermi nella mappa per visualizzare gli eventi                           & 1 \\
+%		D2  & Aggiunta luogo          & In qualità di owner, devo essere in grado di aggiungere un nuovo luogo alla mappa                                        & \\
 		\bottomrule
 	\end{tabular}
 	\caption{User stories relative all'epica "mappa".}
@@ -113,15 +113,15 @@ Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow cor
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=0.8\linewidth]{./images/A1-A2.pdf}
-	\caption{User Flowchart relativo alle user stories A1 e A2.}
+	\includegraphics[width=0.7\linewidth]{./images/A1-A2-A3.pdf}
+	\caption{User Flowchart relativo alle user stories A1, A2 e A3.}
 	\label{fig:A1-A2}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=\linewidth]{./images/EventSelection.pdf}
-	\caption{User Flowchart relativo alle user stories B1 e C1.}
+	\includegraphics[width=\linewidth]{./images/B1-B2-B4-B8-D1.pdf}
+	\caption{User Flowchart relativo alle user stories B1, B2, B4, B8 e D1.}
 	\label{fig:B1-C1}
 \end{figure}
 

@@ -58,6 +58,11 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 
 \subsubsection*{Use Case FR1: Login}
 
+\textbf{Riassunto}
+
+Lo use case in questione descrive come un utente può effettuare il login al sistema.
+
+\textbf{Descrizione}
 
 \begin{itemize}
 	\item L'utente visualizza una pagina con un form
@@ -66,6 +71,12 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 \end{itemize}
 
 \subsubsection*{Use Case FR2: Registrazione}
+
+\textbf{Riassunto}
+
+Lo use case in questione descrive come un utente può registrarsi al sistema.
+
+\textbf{Descrizione}
 
 \begin{itemize}
 	\item L'utente visualizza una pagina dalla quale inserire nome, cognome, indirizzo mail (vedi \hyperref[Eccezioni-FR2]{Eccezioni})
@@ -98,6 +109,12 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 
 \subsubsection*{Use Case FR4: Visualizzazione Eventi}
 
+\textbf{Riassunto}
+
+Lo use case in questione descrive come un utente può filtrare gli eventi presenti all'interno del sistema.
+
+\textbf{Descrizione}
+
 \begin{itemize}
 	\item La ricerca di eventi può essere effettuata da qualsiasi utente, anche non loggato
 	\item L'utente può scegliere se esplorare la mappa integrata nella schermata iniziale, o se visualizzare gli eventi in forma di lista
@@ -106,15 +123,6 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 
 \subsection{FR5, FR6, FR16 e FR17: Feedback, Condivisione, Iscrizione e salvataggio Eventi}
 
-\subsubsection*{Use Cases FR5, FR6, FR16, FR17}
-
-\begin{itemize}
-	\item Oltre a poter visualizzare gli eventi (come mostrato nello UCD precedente), qualsiasi utente può condividerli
-	\item Previo login, qualsiasi tipologia di utente può salvare e/o iscriversi ad un evento. L'iscrizione comporta l'eventuale pagamento del biglietto
-	\item Qualsiasi utente iscritto ad un evento può, dopo il suo verificarsi, lasciare una review
-\end{itemize}
-
-\newpage
 
 \begin{figure}[!htb]
 	\centering
@@ -123,6 +131,19 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 	\label{fig:UCD_FR5-6-16-17}
 \end{figure}
 
+\subsubsection*{Use Cases FR5, FR6, FR16, FR17}
+
+\textbf{Riassunto}
+
+Lo use case in questione descrive come un utente può interagire con gli eventi offerti dal sistema. In particolare, descrive le attività di salvataggio, di iscrizione, di condivisione, nonché di valutazione della qualità di un evento.
+
+\textbf{Descrizione}
+
+\begin{itemize}
+	\item Oltre a poter visualizzare gli eventi (come mostrato nello UCD precedente), qualsiasi utente può condividerli
+	\item Previo login, qualsiasi tipologia di utente può salvare e/o iscriversi ad un evento. L'iscrizione comporta l'eventuale pagamento del biglietto
+	\item Qualsiasi utente iscritto ad un evento può, dopo il suo verificarsi, lasciare una review
+\end{itemize}
 
 
 \subsection{FR8 e FR10: Creazione ed Aggiornamento Eventi}
@@ -136,6 +157,14 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 
 \subsubsection*{Use Case FR8: Creazione Eventi}
 
+\textbf{Riassunto}
+
+Lo use case in questione descrive come un utente appartenente alla categoria "Organizer" oppure "Owner" può creare nuovi eventi.
+
+\newpage
+
+\textbf{Descrizione}
+
 \begin{itemize}
 	\item Qualora l'utente appartenga alla categoria "Owner" o a quella "Organizer" e sia loggato (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni}), dalla pagina del profilo personale è visibile un pulsante "New event"
 	\item La pressione del pulsante rimanda alla pagina di creazione eventi. Per la creazione di un nuovo evento è necessario l'inserimento di un nome, di una data, di una location e di una descrizione (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni})
@@ -143,6 +172,12 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 \end{itemize}
 
 \subsubsection*{Use case FR10: Modifica Eventi}
+
+\textbf{Riassunto}
+
+Lo use case in questione descrive come un utente appartenente alla categoria "Organizer" oppure "Owner" può modificare eventi precedentemente creati.
+
+\textbf{Descrizione}
 \begin{itemize}
 	\item Qualora un utente appartenente alle categorie "Owner" o "Organizer" sia loggato e abbia precedentemente creato un evento (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni}), dalla propria pagina personale può raggiungere l'evento in questione tramite il pulsante "My events"
 	\item La pressione del pulsante rimanda ad una lista degli eventi creati. Selezionandone uno è possibile modificare uno qualsiasi dei vari campi entro una settimana dall'evento (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni} e \hyperref[Estensioni-FR8-10]{Estensioni})
@@ -164,7 +199,6 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 	\item Gli eventi passati rimangono visualizzabili tramite il pulsante "My events", tuttavia non risultano più editabili
 \end{itemize}
 
-\newpage
 
 \subsection{FR12-13: Aggiunta e Modifica Luogo}
 
@@ -177,12 +211,25 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 \end{figure}
 
 \subsubsection*{Use Case FR12: Aggiunta Luogo}
+
+\textbf{Riassunto}
+
+Lo use case in questione descrive come un utente appartenente alla categoria "Owner" può aggiungere una location.
+
+\textbf{Descrizione}
+
 \begin{itemize}
 	\item Qualora l'utente sia loggato con un profilo di tipo "Owner" (vedi \hyperref[Eccezioni-FR12-13]{Eccezioni}), dal proprio profilo personale ha la possibilità di aggiungere un luogo tramite il pulsante "New Place"
 	\item La pressione del pulsante rimanda alla pagina di aggiunta luoghi. Per l'aggiunta di un nuovo luogo occorre inserire una location, un nome, una descrizione, ed un prezzo (vedi \hyperref[Eccezioni-FR12-13]{Eccezioni}). Opzionalmente è possibile inserire delle foto
 \end{itemize}
 
 \subsubsection*{Use Case FR13: Modifica Luogo}
+
+\textbf{Riassunto}
+
+Lo use case in questione descrive come un utente appartenente alla categoria "Owner" può modificare una location precedentemente inserita nel sistema.
+
+\textbf{Descrizione}
 
 \begin{itemize}
 	\item Qualora l'utente sia loggato con un profilo di tipo "Owner" e abbia precedentemente aggiunto una location, dalla propria pagina personale può raggiungere l'evento in questione tramite il pulsante "My places"
@@ -196,6 +243,8 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 	\item Se durante l'aggiunta di uno spazio non viene compilato uno dei campi obbligatori, il pulsante "Create Place" rimane inattivo
 	\item Qualora lo spazio sia collegato ad un evento, le modifiche sono disattivate a partire da 7 giorni prima della data prevista per l'evento
 \end{itemize}
+
+\newpage
 
 \section{Analisi dei Componenti}
 
