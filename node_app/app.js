@@ -4,6 +4,7 @@ const express = require('express');
 const mongoose = require('mongoose')
 const routes = require('./index');
 require('dotenv').config(); // Load environment variables from .env file
+const cors = require('cors'); // Import CORS
 
 // Initialize express app
 const app = express();
@@ -25,6 +26,18 @@ async function connectDB() {
     }
 }
 connectDB();
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//                      CORS MIDDLEWARE SETUP (to allow Front-End Origin)
+///////////////////////////////////////////////////////////////////////////////////////////
+
+app.use(cors({
+    // origin: 'http://localhost:3000', // Allow requests from frontend
+    origin: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //                      EXPRESS MIDDLEWARE SETUP + AUTHENTICATION ROUTING

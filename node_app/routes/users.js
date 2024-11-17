@@ -12,10 +12,16 @@ router.post('/signup', async (req, res) => {
     try {
         const { username, email, password, role } = req.body;
 
-        // Check if the user already exists
-        const existingUser = await UserModel.findOne({ email });
-        if (existingUser) {
+        // Check if the email already exists
+        const existingUserEmail = await UserModel.findOne({ email });
+        if (existingUserEmail) {
             return res.status(400).json({ message: 'Email already in use' });
+        }
+
+        // Check if the username is already taken
+        const existingUserUsername = await UserModel.findOne({ username });
+        if (existingUserUsername) {
+            return res.status(400).json({ message: 'Username already in use' });
         }
 
         // Create a new user
