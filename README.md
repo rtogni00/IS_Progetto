@@ -35,3 +35,10 @@ The back-end is based on MongoDB and Mongoose. Mongoose collections are defined 
 ## API
 
 Documentation created using swagger, see `swagger/evenTrentoAPIs.yaml`. API routes are defined in `node_app/routes`
+
+## Front-end
+
+Entry point in `index.html` (main page).
+
+-   `pages/login.html` &rarr; connects to db, if login successful then redirects to main page
+-   `pages/register.html` &rarr; connects to db, if successful then redirects to login page
