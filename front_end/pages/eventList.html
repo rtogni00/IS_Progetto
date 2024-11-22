@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event List</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-blue-600 text-white py-4 px-6">
+        <h1 class="text-2xl font-bold">Event List</h1>
+    </header>
+
+    <!-- Filters Section -->
+    <section class="p-6">
+        <div class="flex flex-col md:flex-row gap-4">
+            <!-- Search Bar -->
+            <input type="text" id="searchBar" placeholder="Search by name or place"
+                class="border border-gray-300 rounded-lg px-4 py-2 w-full md:w-1/3 focus:ring-blue-500 focus:border-blue-500">
+
+            <!-- Calendar Inputs -->
+            <input type="date" id="startDate" class="border border-gray-300 rounded-lg px-4 py-2 w-full md:w-1/3">
+            <input type="date" id="endDate" class="border border-gray-300 rounded-lg px-4 py-2 w-full md:w-1/3">
+
+            <!-- Search Button -->
+            <button onclick="applyFilters()"
+                class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">
+                Search
+            </button>
+        </div>
+    </section>
+
+    <!-- Event List Section -->
+    <section id="eventList" class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Event boxes will be appended here dynamically -->
+    </section>
+
+    <script>
+        // Fetch events with optional filters
+        async function fetchEvents(filters = {}) {
+            try {
+                const queryParams = new URLSearchParams(filters).toString();
+                const response = await fetch(`http://localhost:5000/api/v1/events?${queryParams}`, {
+                    method: 'GET',
+                });
+
+                const events = await response.json();
+                if (response.ok) {
+                    displayEvents(events);
+                } else {
+                    alert(events.message || 'Failed to fetch events');
+                }
+            } catch (error) {
+                console.error('Error fetching events:', error);
+            }
+        }
+
+        // Display events on the page
+        function displayEvents(events) {
+            const eventListContainer = document.getElementById('eventList');
+            eventListContainer.innerHTML = ''; // Clear the container
+
+            if (events.length === 0) {
+                eventListContainer.innerHTML = '<p class="text-gray-500">No events found.</p>';
+                return;
+            }
+
+            events.forEach(event => {
+                const eventBox = document.createElement('div');
+                eventBox.className = 'event-box p-4 border rounded shadow-sm bg-white';
+                eventBox.innerHTML = `
+                    <h3 class="font-bold text-lg">${event.name}</h3>
+                    <p>Place: ${event.place}</p>
+                    <p>Date: ${new Date(event.date).toLocaleString()}</p>
+                    <button onclick="showEventDetails('${event._id}')" 
+                        class="mt-2 text-blue-500 underline">View Details</button>
+                `;
+                eventListContainer.appendChild(eventBox);
+            });
+        }
+
+        // Show full details of a specific event (expand on click)
+        async function showEventDetails(eventId) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}`);
+                const event = await response.json();
+
+                if (response.ok) {
+                    alert(`
+                        Name: ${event.name}
+                        Place: ${event.place}
+                        Date: ${new Date(event.date).toLocaleString()}
+                        Description: ${event.description}
+                    `);
+                } else {
+                    alert('Failed to fetch event details');
+                }
+            } catch (error) {
+                console.error('Error fetching event details:', error);
+            }
+        }
+
+        // Apply filters and fetch events
+        function applyFilters() {
+            const nameOrPlace = document.getElementById('searchBar').value;
+            const startDate = document.getElementById('startDate').value;
+            const endDate = document.getElementById('endDate').value;
+
+            const filters = {};
+            if (nameOrPlace) filters.name = nameOrPlace;
+            if (startDate) filters.startDate = startDate;
+            if (endDate) filters.endDate = endDate;
+
+            fetchEvents(filters);
+        }
+
+        // Fetch events on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchEvents();
+        });
+    </script>
+
+</body>
+
+</html>
