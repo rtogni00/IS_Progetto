@@ -85,7 +85,7 @@
                 localStorage.setItem('authToken', result.token);  // Store the JWT token in localStorage
 
                 // Redirect to the main page (relative path to go up to the root)
-                window.location.href = '../index.html';
+                window.location.href = '../pages/mainPageAfterLogin.html';
             } else {
                 // If login fails, show the error message
                 alert(result.message || 'Invalid login credentials');
