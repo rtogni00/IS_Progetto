@@ -44,6 +44,7 @@
                 <div class="text-gray-600 text-left" >
                     <strong>Email:</strong> <span id="email-text">Loading...</span>
                 </div>
+                
             </div>
         
             <!-- Actions Section (right part) -->
@@ -83,6 +84,7 @@
 
                     if (response.ok) {
                         const data = await response.json();
+                        console.log('User Data:', data.user);  // Log the user object
                         const user = data.user;
                         document.getElementById('username-text').textContent = user.username;
                         document.getElementById('email-text').textContent = user.email;

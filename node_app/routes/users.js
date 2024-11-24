@@ -75,9 +75,22 @@ router.post('/login', async (req, res) => {
 });
 
 // Profile route that requires a valid token to access
-router.get('/profile', tokenChecker, (req, res) => {
-  // If the token is valid, you can access the user info from `req.loggedUser`
-  res.json({ message: 'Welcome to your profile', user: req.loggedUser });
+router.get('/profile', tokenChecker, async (req, res) => {
+  // If the token is valid, you can retrieve user info
+    try {
+    // Retrieve the user from the database using the user ID from the token
+    const user = await UserModel.findById(req.loggedUser._id).select('username email role'); // Fetch user info, including email
+    
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+
+    // Send the user data, including username, email, and role
+    res.json({ message: 'Welcome to your profile', user: user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
 // Logout route
