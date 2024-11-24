@@ -61,6 +61,8 @@
     async function loginUser(event) {
         event.preventDefault(); // Prevent the form from submitting normally
 
+        console.log('loginUser function triggered');
+
         const form = document.getElementById('loginForm');
         const formData = new FormData(form);
 
@@ -79,15 +81,17 @@
             });
 
             const result = await response.json();
+            console.log('Login Response: ', result);
 
             if (response.ok) {
                 // If login is successful, store the token and redirect to the main page
                 localStorage.setItem('authToken', result.token);  // Store the JWT token in localStorage
 
-                // Redirect to the main page (relative path to go up to the root)
-                window.location.href = '../pages/mainPageAfterLogin.html';
+                // Wait a moment to ensure localStorage is updated before redirecting
+                setTimeout(() => {
+                    window.location.href = '../pages/mainPageAfterLogin.html';
+                }, 2000);  // Delay before redirecting, just in case
             } else {
-                // If login fails, show the error message
                 alert(result.message || 'Invalid login credentials');
             }
         } catch (error) {

@@ -3,6 +3,7 @@ const router = express.Router();
 const UserModel = require('../models/user')
 const jwt = require('jsonwebtoken');
 require('dotenv').config(); // Load environment variables from .env file
+const tokenChecker = require('../tokenChecker');
 
 
 const SECRET = process.env.SUPER_SECRET;
@@ -72,5 +73,28 @@ router.post('/login', async (req, res) => {
         res.status(500).json({ message: 'Error during login', error: error.message });
     }
 });
+
+// Profile route that requires a valid token to access
+router.get('/profile', tokenChecker, (req, res) => {
+  // If the token is valid, you can access the user info from `req.loggedUser`
+  res.json({ message: 'Welcome to your profile', user: req.loggedUser });
+});
+
+// Logout route
+router.post('/logout', async (req, res) => {
+  try {
+    // Invalidate JWT token
+    req.session.destroy((err) => {
+      if (err) throw err;
+      res.clearCookie('connect.sid'); // Clear session cookie
+      res.json({ message: 'Logged out successfully' });
+    });
+  } catch (error) {
+    console.error('Error during logout:', error);
+    res.status(500).json({ message: 'Error during logout', error: error.message });
+  }
+});
+
+
 
 module.exports = router;

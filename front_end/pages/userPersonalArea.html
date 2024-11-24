@@ -17,28 +17,96 @@
         <h1 class="text-center text-2xl font-bold">My Profile</h1>
     </header>
     
-    <!-- Adjust layout for header -->
-    <div class="flex-grow flex flex-col items-center justify-center mt-0">
+    <!-- Profile Section -->
+    <div class="text-center mt-30">
     
-        <!-- Profile Section -->
-        <div class="text-center">
-            <!-- Profile Picture Placeholder -->
-            <div class="w-40 h-40 bg-blue-600 rounded-full flex items-center justify-center text-white text-6xl mx-auto">
-                <i class="fa-solid fa-user"></i>
+        <!-- Back Button -->
+        <button onclick="window.location.href='mainPageAfterLogin.html'"
+            class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-600 mb-10">
+            <i class="fa-solid fa-arrow-left"></i> Back to Main Page
+        </button>
+    
+        <!-- Profile Picture Placeholder -->
+        <div class="w-40 h-40 bg-blue-600 rounded-full flex items-center justify-center text-white text-6xl mx-auto mb-10">
+            <i class="fa-solid fa-user"></i>
+        </div>
+    
+        <!-- Displaying User Info and Actions in a Two-Column Layout -->
+        <div id="user-info"
+            class="mt-10 bg-white shadow-md rounded-lg p-6 w-full max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+            <!-- User Info Section (left part) -->
+            <div class="space-y-4">
+                <h2 class="text-lg font-bold text-gray-700">User Information</h2>
+                <div class="text-gray-600 text-left">
+                    <strong>Username:</strong> <span id="username-text">Loading...</span>
+                </div>
+                <div class="text-gray-600 text-left" >
+                    <strong>Email:</strong> <span id="email-text">Loading...</span>
+                </div>
             </div>
-    
-            <!-- Action Box -->
-            <div class="mt-10 bg-white shadow-md rounded-lg p-6 w-80">
-                <h2 class="text-lg font-bold text-gray-700 mb-4">Actions</h2>
+        
+            <!-- Actions Section (right part) -->
+            <div class="space-y-4">
+                <h2 class="text-lg font-bold text-gray-700">Actions</h2>
                 <ul class="space-y-2">
-                    <li>
+                    <li class="text-left">
                         <a href="#" class="block text-blue-500 hover:text-blue-600">Change Password</a>
+                    </li>
+                    <li class="text-left">
+                        <a href="#" class="block text-blue-500 hover:text-blue-600" id="logout">Log Out</a>
                     </li>
                 </ul>
             </div>
-        </div>
-    </div>
-    
-    </body>
-    
-    </html>
+            </div>
+            </div>
+
+    <script>
+        // Function to check if the user is logged in and retrieve their profile info
+        async function loadUserProfile() {
+                const token = localStorage.getItem('authToken');  // Use the correct key for the token
+
+                console.log('Token from localStorage:', token); // Log the token to check if it's retrieved correctly
+
+                if (!token) {
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                try {
+                    const response = await fetch('http://localhost:5000/api/v1/users/profile', {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
+                        const user = data.user;
+                        document.getElementById('username-text').textContent = user.username;
+                        document.getElementById('email-text').textContent = user.email;
+                    } else {
+                        console.log('Invalid token response:', response);
+                        localStorage.removeItem('authToken');
+                        window.location.href = 'login.html';
+                    }
+                } catch (error) {
+                    console.error('Error loading user profile:', error);
+                    localStorage.removeItem('authToken');
+                    window.location.href = 'login.html';
+                }
+        }
+        // Log out function
+            document.getElementById('logout').addEventListener('click', () => {
+                localStorage.removeItem('authToken'); // Remove token
+                window.location.href = 'login.html'; // Redirect to login page
+            });
+
+        // Load the user profile when the page loads
+        window.onload = loadUserProfile;
+    </script>
+
+</body>
+
+</html>
