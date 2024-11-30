@@ -245,8 +245,60 @@ Lo use case in questione descrive come un utente appartenente alla categoria "Ow
 \end{itemize}
 
 \newpage
+\section{Sequence and Activity Diagram}
 
+Gli use case diagrams riportati nel capitolo precendente rappresentano una overview delle funzionalità del sistema. Nel presente capitolo tali funzionalità vengono estese tramite l'introduzione di un aspetto temporale. L'impiego di sequence diagrams consente quindi di rappresentare l'ordine cronologico con cui i vari elementi dei singoli scenari si verificano, dettagliando il modo in cui gli oggetti collaborano al fine di ottenere la piena funzionalità del sistema.
+
+\textbf{Login}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\linewidth]{./images/SequenceDiagramLogin.pdf}
+	\caption{Sequence diagram rappresentante la procedura di login.}
+	\label{fig:SeqDiagLogin}
+\end{figure}
+
+\newpage
+\textbf{Registrazione utente}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\linewidth]{./images/SequenceDiagramRegistration.pdf}
+	\caption{Sequence diagram rappresentante la procedura di registrazione.}
+	\label{fig:SeqDiagReg}
+\end{figure}
+
+\newpage
+\textbf{Browsing eventi}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\linewidth]{./images/SequenceDiagramBrowseEvents.pdf}
+	\caption{Sequence diagram rappresentante il browsing degli eventi.}
+	\label{fig:SeqDiagBrowseEvents}
+\end{figure}
+
+\newpage
+\textbf{Iscrizione ad un evento}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\linewidth]{./images/SequenceDiagramEventEnrolling.pdf}
+	\caption{Sequence diagram rappresentante l'iscrizione ad un evento.}
+	\label{fig:SeqDiagEventEnroll}
+\end{figure}
+
+
+\begin{itemize}
+	\item event creation
+	\item event deletion
+	\item event modification
+	\item add place
+	\item remove place
+	\item edit place
+\end{itemize}
+
+\newpage
 \section{Analisi dei Componenti}
+
+In questo capitolo vengono presentati i componenti che costituiscono l'architettura del sistema, e che sottostanno alle funzionalità definite in precedenza. L'interconnessione tra i vari componenti è rappresentata tramite l'utilizzo di un component diagram, il quale rende esplicita la presenza di interfacce sia tra i componenti  stessi che con sistemi esterni.
+
 
 \subsection{Definizione dei Componenti}
 
