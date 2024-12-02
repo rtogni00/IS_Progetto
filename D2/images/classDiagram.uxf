@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.1">
+  <zoom_level>11</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>902</x>
+      <y>429</y>
+      <w>209</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>Owner
+--
+ownedPlaces: Place[0..n]
+--
+createPlace()
+updatePlace(placeId)
+deletePlace(placeId)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>242</x>
+      <y>473</y>
+      <w>264</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>Event
+--
+eventId: string
+description: EventDescription
+date: Date
+startTime: int
+endTime: int
+location: Address
+organizerID: string
+--</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1243</x>
+      <y>374</y>
+      <w>209</w>
+      <h>143</h>
+    </coordinates>
+    <panel_attributes>Place
+--
+id: string
+name: string
+location: Address
+capacity: int
+ownerId: string
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>209</x>
+      <y>209</y>
+      <w>253</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>EventEnrollment
+--
+registrationId
+eventId: string
+participantId: string
+registrationDate: Date
+--
+registerParticipant(userId, eventId)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>407</x>
+      <y>33</y>
+      <w>176</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Authentication
+--
+token: string
+--
+generateToken(user)
+verifyToken(token)
+authorize(user, action)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1166</x>
+      <y>660</y>
+      <w>187</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>Search
+--
+criteria: Object
+--
+filterEvents(criteria)
+filterSpaces(criteria)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>495</x>
+      <y>495</y>
+      <w>198</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1= 1
+m2= 0..*
+organizes</panel_attributes>
+    <additional_attributes>160.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1100</x>
+      <y>451</y>
+      <w>165</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1= 1
+m2= 0..*
+owns</panel_attributes>
+    <additional_attributes>10.0;20.0;130.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>715</x>
+      <y>143</y>
+      <w>286</w>
+      <h>209</h>
+    </coordinates>
+    <panel_attributes>BasicUser
+--
+username: string
+email: string
+password: string
+role: enum[basicUser, organizer, owner]
+--
+register()
+login()
+logout()
+saveEvent(eventId)
+getSavedEvents()
+cambiaPassword()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>671</x>
+      <y>429</y>
+      <w>209</w>
+      <h>121</h>
+    </coordinates>
+    <panel_attributes>Organizer
+--
+organizedEvents: Event[0..n]
+--
+createEvent()
+updateEvent(eventId)
+deleteEvent(eventId)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>847</x>
+      <y>341</y>
+      <w>33</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>913</x>
+      <y>341</y>
+      <w>33</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>451</x>
+      <y>264</y>
+      <w>286</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1= 0..*
+m2= 0..*
+</panel_attributes>
+    <additional_attributes>240.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>363</x>
+      <y>330</y>
+      <w>55</w>
+      <h>165</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1= 0..*
+m2= 1
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>572</x>
+      <y>110</y>
+      <w>165</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;80.0;10.0;80.0;70.0;130.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>902</x>
+      <y>605</y>
+      <w>110</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Address
+--
+city: String
+street: String
+streetNumber: int
+cap: number</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>374</x>
+      <y>737</y>
+      <w>198</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>EventDescription
+--
+eventName: string
+eventDescription: string[]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>495</x>
+      <y>649</y>
+      <w>429</w>
+      <h>33</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;370.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1001</x>
+      <y>506</y>
+      <w>319</w>
+      <h>187</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>270.0;10.0;270.0;80.0;90.0;80.0;90.0;150.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>462</x>
+      <y>660</y>
+      <w>33</w>
+      <h>99</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+  </element>
+</diagram>
