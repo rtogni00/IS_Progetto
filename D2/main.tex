@@ -329,6 +329,8 @@ In questo capitolo vengono presentati i componenti che costituiscono l'architett
 
 \subsection{Diagramma dei Componenti}
 
+\newpage
+
 \section{Diagramma delle Classi}
 
 Nel seguente capitolo vengono presentate le classi previste nell'ambito del progetto "EvenTrento". Ogni classe rappresenta un elemento del sistema, ed è caratterizzata da un nome, da una lista di attributi e da (opzionale) una lista di metodi.
@@ -340,15 +342,71 @@ Di seguito sono riportate le classi individuate, raggruppate per sottosistema di
 
 \textbf{Categorie di utente}
 
+
+I tre tipi di utente previsti dal sistema sono formalizzate mediante l'utilizzo di ereditarietà. In particolare, la classe \verb*|BasicUser| include tutte le caratteristiche offerte ad utenti appartenti a tutte e tre le categorie. Ogni utente è associato a dei dati personali, e può effettuare quanto previsto dai requisiti funzionali tramite i metodi \verb*|register()|, \verb*|login()|, \verb*|logout()|, \verb*|saveEvent(eventId)|, \verb*|getSavedEvents()|, e \verb*|changePwd()|.
+
+
+La classe \verb*|Organizer| estende \verb*|BasicUser| aggiungendo tutte le attività collegate alla creazione, alla modifica e alla rimozione di eventi. Analogamente, la classe \verb*|Owner| estende \verb*|BasicUser| tramite l'aggiunta delle attività relative alla gestione degli spazi.
+
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=.6\linewidth]{./images/classDiagramUsers.pdf}
-	%	\caption{}
+		\caption{}
 	\label{fig:classDiagramUsers}
+\end{figure}
+
+\newpage
+
+\textbf{Autenticazione}
+
+L'autenticazione è gestita tramite JWT tokens. Tale processo è rappresentato mediante la classe \verb*|Authentication|, come mostrato in Figura \ref{fig:classDiagramAuthentication}.
+
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.5\linewidth]{./images/classDiagramAuthentication.pdf}
+	\caption{}
+	\label{fig:classDiagramAuthentication}
+\end{figure}
+
+\textbf{Gestione eventi}
+
+Gli eventi sono rappresentati dalla classe \verb*|Event|, la quale si appoggia alle classi :
+\begin{itemize}
+	\item \verb*|Place| per la scelta del luogo in cui si svolgerà l'evento
+	\item \verb*|Date| per specificare il giorno previsto per l'evento
+	\item \verb*|EventDescription| per fornire una descrizione dettagliata dell'evento
+\end{itemize}
+
+La ricerca di eventi e l'iscrizione ad essi sono gestite rispettivamente dalle classi \verb*|EventSearch| e \verb*|EventEnrollment|, le quali a loro volta comunicano con la classe \verb*|BasicUser|.
+
+La classe \verb*|Event| è inoltre collegata alla classe \verb*|Organizer|, a rappresentare l'attività di creazione eventi associata a tale categoria di utente.
+
+\newpage
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\linewidth]{./images/classDiagramEventEnrollment.pdf}
+	\caption{}
+	\label{fig:classDiagramEventEnrollment}
+\end{figure}
+
+\textbf{Gestione degli spazi}
+
+Gli spazi sono rappresentati dalla classe \verb*|Places|, la quale si appoggia alla classe \verb*|Address| per meglio rappresentare la collocazione del locale. L'attributo \verb*|available| ha lo scopo di rappresentare la disponibilità del locale, in modo che questo non possa essere scelto come location per più eventi simultaneamente.
+
+\newpage
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=.6\linewidth]{./images/classDiagramPlaces.pdf}
+	\caption{}
+	\label{fig:classDiagramPlaces}
 \end{figure}
 
 
 \subsection{Diagramma delle Classi Complessivo}
+
+Di seguito è riportato il diagramma di tutte le classi precedentemente descritte.
 
 \begin{figure}[!htb]
 	\centering
