@@ -4,20 +4,20 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>275</x>
-      <y>770</y>
+      <x>583</x>
+      <y>143</y>
       <w>220</w>
       <h>66</h>
     </coordinates>
     <panel_attributes>symbol=component
-Authentication Service</panel_attributes>
+Authentication Module</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>561</x>
-      <y>165</y>
+      <x>891</x>
+      <y>396</y>
       <w>220</w>
       <h>66</h>
     </coordinates>
@@ -29,8 +29,8 @@ Module</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>220</x>
-      <y>352</y>
+      <x>550</x>
+      <y>374</y>
       <w>220</w>
       <h>66</h>
     </coordinates>
@@ -41,34 +41,34 @@ Database</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>275</x>
-      <y>682</y>
+      <x>605</x>
+      <y>704</y>
       <w>220</w>
       <h>66</h>
     </coordinates>
     <panel_attributes>symbol=component
 User Management 
-Module</panel_attributes>
+Service</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>814</x>
-      <y>572</y>
+      <x>1144</x>
+      <y>594</y>
       <w>220</w>
       <h>66</h>
     </coordinates>
     <panel_attributes>symbol=component
 Place Management 
-Module</panel_attributes>
+Service</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>275</x>
-      <y>594</y>
+      <x>605</x>
+      <y>616</y>
       <w>220</w>
       <h>66</h>
     </coordinates>
@@ -79,45 +79,45 @@ Registration Service</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>847</x>
-      <y>165</y>
+      <x>1177</x>
+      <y>187</y>
       <w>220</w>
       <h>66</h>
     </coordinates>
     <panel_attributes>symbol=component
-Event Search Service</panel_attributes>
+Event Search Module</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>847</x>
-      <y>264</y>
+      <x>1177</x>
+      <y>286</y>
       <w>220</w>
       <h>66</h>
     </coordinates>
     <panel_attributes>symbol=component
 Event Enrollment
-Service</panel_attributes>
+Module</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>253</x>
-      <y>264</y>
-      <w>77</w>
-      <h>110</h>
+      <x>440</x>
+      <y>297</y>
+      <w>176</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>lt=()-
 places</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;140.0;70.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>319</x>
-      <y>264</y>
+      <x>649</x>
+      <y>286</y>
       <w>66</w>
       <h>110</h>
     </coordinates>
@@ -128,20 +128,20 @@ users</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>374</x>
-      <y>264</y>
-      <w>77</w>
-      <h>110</h>
+      <x>704</x>
+      <y>330</y>
+      <w>143</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=()-
 events</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>110.0;10.0;10.0;40.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>242</x>
-      <y>407</y>
+      <x>572</x>
+      <y>429</y>
       <w>88</w>
       <h>99</h>
     </coordinates>
@@ -152,8 +152,8 @@ places</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>308</x>
-      <y>407</y>
+      <x>638</x>
+      <y>429</y>
       <w>77</w>
       <h>99</h>
     </coordinates>
@@ -164,20 +164,20 @@ users</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>363</x>
-      <y>407</y>
-      <w>88</w>
+      <x>704</x>
+      <y>429</y>
+      <w>132</w>
       <h>99</h>
     </coordinates>
     <panel_attributes>lt=)-
 events</panel_attributes>
-    <additional_attributes>20.0;60.0;20.0;10.0</additional_attributes>
+    <additional_attributes>90.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>231</x>
-      <y>66</y>
+      <x>352</x>
+      <y>143</y>
       <w>220</w>
       <h>66</h>
     </coordinates>
@@ -188,20 +188,20 @@ Map Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>242</x>
-      <y>121</y>
+      <x>429</x>
+      <y>198</y>
       <w>121</w>
-      <h>165</h>
+      <h>121</h>
     </coordinates>
     <panel_attributes>lt=)-
 show places</panel_attributes>
-    <additional_attributes>20.0;120.0;20.0;10.0</additional_attributes>
+    <additional_attributes>20.0;80.0;20.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>319</x>
-      <y>484</y>
+      <x>649</x>
+      <y>506</y>
       <w>88</w>
       <h>132</h>
     </coordinates>
@@ -212,37 +212,74 @@ new user</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>583</x>
-      <y>77</y>
-      <w>99</w>
-      <h>110</h>
+      <x>814</x>
+      <y>451</y>
+      <w>143</w>
+      <h>66</h>
     </coordinates>
     <panel_attributes>lt=()-
 new event</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;80.0</additional_attributes>
+    <additional_attributes>10.0;40.0;110.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>693</x>
-      <y>220</y>
-      <w>132</w>
+      <x>825</x>
+      <y>319</y>
+      <w>121</w>
       <h>99</h>
     </coordinates>
     <panel_attributes>lt=)-
 search event</panel_attributes>
-    <additional_attributes>20.0;60.0;20.0;10.0</additional_attributes>
+    <additional_attributes>20.0;20.0;90.0;70.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>814</x>
-      <y>484</y>
+      <x>110</x>
+      <y>363</y>
       <w>220</w>
       <h>66</h>
     </coordinates>
     <panel_attributes>symbol=component
 Place Search Service</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>638</x>
+      <y>198</y>
+      <w>132</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=)-
+authenticate
+user</panel_attributes>
+    <additional_attributes>20.0;70.0;20.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>440</x>
+      <y>363</y>
+      <w>132</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+places</panel_attributes>
+    <additional_attributes>10.0;20.0;100.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>319</x>
+      <y>363</y>
+      <w>143</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes>lt=)-
+show places</panel_attributes>
+    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
   </element>
 </diagram>
