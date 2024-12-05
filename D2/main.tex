@@ -421,22 +421,33 @@ Di seguito è riportato il diagramma di tutte le classi precedentemente descritt
 Lo scopo di questo capitolo consiste nel rappresentare un punto di incontro tra l'aspetto progettuale e quello implementativo del progetto. In particolare, nella seguente tabella sono riportati i vari metodi presenti all'interno del class diagram mostrato in Figura \ref{fig:classDiagram} e la loro controparte in termini di APIs. 
 
 \begin{table}[!htb]
-\begin{tabular}{ccccccc}
+\begin{tabular}{lllllll}
 \toprule
-Classe      & Metodo & HTTP Method & URI + query params & Request & Response & Note \\ \midrule
-BasicUser       &        &             &                    &         &          &      \\ \midrule
-Organizer       &        &             &                    &         &          &      \\ \midrule
-Owner           &        &             &                    &         &          &      \\ \midrule
-Event           &        &             &                    &         &          &      \\ \midrule
-EventSearch     &        &             &                    &         &          &      \\ \midrule
-EventEnrollment &        &             &                    &         &          &      \\ \midrule
-Authentication  &        &             &                    &         &          &      \\ \midrule
-Place           &        &             &                    &         &          &      \\ \bottomrule
+Classe          & Metodo                               & HTTP Method & URI + query params & Request & Response & Note \\ \midrule
+BasicUser       & register()                           &             &                    &         &          &      \\
+                & login()                              &             &                    &         &          &      \\
+                & logout()                             &             &                    &         &          &      \\
+                & getSavedEvents()                     &             &                    &         &          &      \\
+                & saveEvent(eventId)                   &             &                    &         &          &      \\
+                & changePwd()                          &             &                    &         &          &      \\
+Organizer       & createEvent()                        &             &                    &         &          &      \\\midrule
+                & updateEvent(eventId)                 &             &                    &         &          &      \\
+                & deleteEvent(eventId)                 &             &                    &         &          &      \\
+Owner           & createPlace()                        &             &                    &         &          &      \\
+                & updatePlace(placeId)                 &             &                    &         &          &      \\
+                & deletePlace(placeId)                 &             &                    &         &          &      \\\midrule
+Event           & setPlace()                           &             &                    &         &          &      \\
+EventSearch     & filterEvents(criteria)               &             &                    &         &          &      \\\midrule
+EventEnrollment & registerParticipant(userId, eventId) &             &                    &         &          &      \\\midrule
+Authentication  & generateToken(userId)                &             &                    &         &          &      \\
+                & verifyToken(token)                   &             &                    &         &          &      \\
+                & authorize(user, action)              &             &                    &         &          &      \\\bottomrule
 \end{tabular}
 \caption{Dal class diagram alle APIs.}
 \label{tab:class2API}
 \end{table}
 
 
-	
+
+
 \end{document}
