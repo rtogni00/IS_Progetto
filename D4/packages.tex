@@ -14,7 +14,17 @@
 \usepackage{booktabs}
 \usepackage{caption}
 \usepackage{blindtext}
-
+\usepackage[table,xcdraw]{xcolor}
+\usepackage{booktabs} % For better table rules
+\usepackage{array} % For better column definitions
+\usepackage{enumitem}
+%\usepackage{svg}
+% Define a new counter for functional requirements
+\newcounter{rf}
+\newcommand{\FR}{\refstepcounter{rf}\textbf{FR\therf: }}
+% Define a new counter for non-functional requirements
+\newcounter{nonfunc}
+\newcommand{\NONFUNC}{\refstepcounter{nonfunc}\textbf{NFR\thenonfunc: }}
 
 % ------------------------------------------------------------------------------
 % Page setup
@@ -22,7 +32,8 @@
 \usepackage{geometry} 
 \geometry{a4paper, margin=1in, twoside}
 \usepackage{setspace}
-\doublespacing
+\setstretch{1.2}  % Adjust the number as needed
+%\doublespacing
 
 
 % ------------------------------------------------------------------------------
@@ -74,7 +85,7 @@
 \pagestyle{fancy}   
 \setlength{\headheight}{14.5pt}
 \renewcommand{\headrulewidth}{0.3pt}
-\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}}
+%\renewcommand{\chaptermark}[1]{\markboth{\chaptername\ \thechapter.\ #1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}   
 \fancyhead[LE,RO]{\rightmark}
 \fancyhead[LO,RE]{\leftmark}
@@ -90,13 +101,49 @@
 	\vspace*{1cm}
 	\begin{center}
 		\includegraphics[width = 7cm]{images/logo_rosso} \\
-		\vspace{2cm}
-		\textbf{\LARGE{\course}} \\
 		\vspace{1cm}
-		\textbf{\Large \name} \\
-		\vspace{1cm}
-		\textbf{\Huge \projecttitle} \\
-		
+	\end{center}
+	\LARGE{Progetto:}
+	\begin{center}
+%		\vspace{2cm}
+		\textbf{\Huge{\projecttitle}} \\
+	\end{center}
+	\LARGE{Titolo del documento:}
+	\begin{center}
+%		\vspace{1cm}
+		\textbf{\Huge Implementazione} \\
+	\end{center}
+	\LARGE{Autore:}
+	\begin{center}
+		%		\vspace{1cm}
+		\textbf{\name} \\
+	\end{center}
+	\vspace{1cm}
+	Document Info:
+	
+	\begingroup
+	\setlength{\tabcolsep}{10pt} % Default value: 6pt
+	\renewcommand{\arraystretch}{1.5}
+
+\begin{table}[!htb]
+	\centering
+	\resizebox{\textwidth}{!}{
+		\begin{tabular}{|p{4cm}|p{4.5cm}|p{4cm}|p{4.5cm}|}
+			\hline
+			\cellcolor[HTML]{13315C}{\color[HTML]{FFFFFF} Doc. Name} 
+			& D3-EvenTrentoReportFinale 
+			& \cellcolor[HTML]{13315C}{\color[HTML]{FFFFFF} Doc. Number} 
+			& D3 V0.1 \\ \hline
+			\multicolumn{1}{|l|}{\cellcolor[HTML]{13315C}{\color[HTML]{FFFFFF} Description}} 
+			& \multicolumn{3}{|p{9cm}|}{Report Finale del progetto: organizzazione del lavoro, tempo complessivo dedicato al progetto, criticità, autovalutazione} \\ \hline
+		\end{tabular}
+	}
+\end{table}
+
+
+	\endgroup
+	
+	\begin{center}
 		\vfill 
 		\textbf{\Large Dipartimento di Ingegneria e Scienza dell'Informazione}
 		\vspace{1cm}
@@ -109,10 +156,10 @@
 % ------------------------------------------------------------------------------
 % Theorem enivornments
 % ------------------------------------------------------------------------------
-\newtheorem{theorem}{Theorem}[chapter]
-\newtheorem{definition}{Definition}[chapter]
-\newtheorem{corollary}{Corollary}[theorem]
-\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{theorem}{Theorem}[chapter]
+%\newtheorem{definition}{Definition}[chapter]
+%\newtheorem{corollary}{Corollary}[theorem]
+%\newtheorem{lemma}[theorem]{Lemma}
 
 \newtheoremstyle{break}%
     {}{}%
@@ -120,4 +167,4 @@
     {\bfseries}{}% % Note that final punctuation is omitted.
     {\newline}{}
 \theoremstyle{break}
-\newtheorem{example}{Example}[chapter]
+%\newtheorem{example}{Example}[chapter]

@@ -34,6 +34,20 @@
 \tableofcontents
 \newpage
 
+\section{Scopo del Documento}
+
+Il presente documento ha lo scopo di riportare le informazioni riguardanti lo
+sviluppo di una parte dell'applicazione EvenTrento. Partendo dalle user stories,
+il documento presenta un walk-throgh delle funzionalità effettivemente
+implementate, con un focus sull'interazione dell'utente con queste ultime.
+Prosegue dunque con la descrizione delle web APIs del'applicazione, nonché
+della modalità di sviluppo collaborativo, del database e del testing delle varie
+funzionalità.
+Infine, viene presentato il front-end realizzato, accompagnato da una
+descrizione della modalità di deployment utilizzata.
+
+\newpage
+
 \section{User Stories}
 
 Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche. Ad ogni user story è associata una priorità (ad un numero più piccolo corrisponde una priorità maggiore) rappresentante l'importanza della funzionalità in questione per l'operatività del sistema.
@@ -118,6 +132,8 @@ Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow cor
 	\label{fig:A1-A2}
 \end{figure}
 
+\newpage 
+
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=\linewidth]{./images/B1-B2-B4-B8-D1.pdf}
@@ -125,7 +141,6 @@ Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow cor
 	\label{fig:B1-C1}
 \end{figure}
 
-\newpage
 
 \begin{figure}[!htb]
 	\centering
@@ -133,6 +148,8 @@ Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow cor
 	\caption{User Flowchart relativo alla user story B5.}
 	\label{fig:B5}
 \end{figure}
+
+\newpage  
 
 \begin{figure}[!htb]
 	\centering
@@ -149,23 +166,87 @@ Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow cor
 \end{figure}
 
 \newpage
-
 \section{Web APIs}
-
+\newpage
 
 \section{Implementation}
 \subsection{Repository Implementation}
 
+Il codice del progetto, disponibile su \href{https://github.com/rtogni00/IS_Progetto}{GitHub}, è organizzato secondo questo schema:
+
+\begin{verbatim}
+.
++-- D1
++-- D2
++-- D3
++-- D4
++-- front_end
+|   +-- index.html
+|   +-- pages
++-- node_app
+|   +-- app.js
+|   +-- authentication.js  // middleware per l'autenticazione
+|   +-- clearDB.js  // funzione ausiliaria utilizzata durante lo sviluppo
+|   +-- .env.example // esempio di file di configurazione delle
+|   |                // variabili d'ambiente
+|   +-- index.js
+|   +-- models // modelli dati mongoose
+|   +-- package.json  // file di configurazione del progetto npm
+|   +-- package-lock.json
+|   +-- routes  // endpoint routes per le APIs
+|   +-- tokenChecker.js
++-- README.md
+|   +-- .gitignore // configurazione git repo
++-- swagger
+    +-- evenTrentoAPIs.yaml // documentazione API
+\end{verbatim}
+
 
 \subsection{Branching strategy e organizzazione del lavoro}
 
+Malgrado i propositi di collaborazione iniziali, verso la fine del mese di
+settembre ho preso la decisione di proseguire lo sviluppo in modo individuale.
+Come facilmente osservabile dalla commit history del progetto, il contributo
+degli altri due membri del gruppo è limitato al processo di brainstorming e
+alla realizzazione di alcuni grafici relativi allo User Flow. Tali grafici non
+sono presenti nella versione finale del presente documento a causa della loro
+modifica nel corso dello sviluppo dell'applicazione. Una descrizione dettagliata
+delle statistiche finali è riportata in Figura \textbf{TODO}.
+
+
+
+\begin{verbatim}
+git log --format='%aN <%aE>' | sort | uniq -c | sort -nr
+\end{verbatim}
+
+
+
 \subsection{Dependencies}
+
+Il progetto npm fa uso dei seguenti moduli:
+\begin{itemize}
+    \item \textbf{Cors} per il supporto alle chiamate cross-origin
+    \item \textbf{Express} come framework per il backend
+    \item \textbf{Jsonwebtoken} per gestire l'autenticazione
+    \item \textbf{Mongoose} per interfacciarsi con mongoDB
+\end{itemize}
+
+Sono inoltre riportate le seguenti dipendenze di sviluppo:
+\begin{itemize}
+    \item \textbf{Dotenv} per la gestione delle variabili d'ambiente
+    \item \textbf{TODO}
+\end{itemize}
 
 \subsection{Database}
 
+La gestione dei dati è stata realizzata basandosi su un database non
+relazionale. In particolare, si è fatto uso del servizio offerto da
+\href{https://www.mongodb.com/products/platform/atlas-database}{Atlas MongoDB}.
+
+\newpage
 \subsection{Testing}
 
-
+\textbf{TODO}
 
 \section{Front-End}
 

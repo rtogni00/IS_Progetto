@@ -1,6 +1,7 @@
 # Software Engineering Project
 
-This repository tracks the development of an event management app for the Software Engineering course at the University of Trento.
+This repository tracks the development of an event management app for the 
+Software Engineering course at the University of Trento.
 
 ## Documentation
 

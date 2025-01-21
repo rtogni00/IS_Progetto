@@ -10,13 +10,13 @@ node_modules/
 # Report
 # -------------------
 
-report/*.aux
-report/*.bcf
-report/*.log
-report/*.out
-report/*.xml
-report/*.gz
-report/*.toc
+D4/*.aux
+D4/*.bcf
+D4/*.log
+D4/*.out
+D4/*.xml
+D4/*.gz
+D4/*.toc
 
 # -------------------
 # D1
