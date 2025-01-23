@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Details</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-blue-600 text-white py-4 px-6">
+        <h1 id="eventName" class="text-2xl font-bold">Event Details</h1>
+    </header>
+
+    <!-- Event Details Section -->
+    <section class="p-6">
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <!-- Event Name -->
+            <h2 id="eventNameHeader" class="text-xl font-bold text-gray-800"></h2>
+
+            <!-- Date -->
+            <p id="eventDate" class="text-gray-600 mt-2"></p>
+
+            <!-- Description -->
+            <p id="eventDescription" class="mt-4 text-gray-700"></p>
+
+            <!-- Pictures of the place -->
+            <div id="eventPictures" class="mt-6 grid grid-cols-2 md:grid-cols-3 gap-4">
+                <!-- Images will be dynamically loaded -->
+            </div>
+
+            <!-- Max participants and currently enrolled participants -->
+            <div class="mt-6">
+                <p id="participantsInfo" class="text-gray-600"></p>
+            </div>
+
+            <!-- Buttons -->
+            <div class="mt-6 flex gap-4">
+                <!-- Save Button -->
+                <button id="saveButton" onclick="saveEvent()"
+                    class="bg-gray-300 text-gray-800 px-4 py-2 rounded-lg hover:bg-gray-400">
+                    Save Event
+                </button>
+
+                <!-- Enroll Button -->
+                <button id="enrollButton" onclick="enrollEvent()"
+                    class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">
+                    Enroll
+                </button>
+
+                <!-- Share Button -->
+                <button id="shareButton" onclick="shareEvent()"
+                    class="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700">
+                    Share
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Fetch event details
+        async function fetchEventDetails(eventId) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}`);
+                const event = await response.json();
+
+                if (response.ok) {
+                    populateEventDetails(event);
+                } else {
+                    alert('Failed to fetch event details');
+                }
+            } catch (error) {
+                console.error('Error fetching event details:', error);
+            }
+        }
+
+        // Populate the page with event details
+        function populateEventDetails(event) {
+            document.getElementById('eventName').innerText = event.name;
+            document.getElementById('eventNameHeader').innerText = event.name;
+            document.getElementById('eventDate').innerText = `Date: ${new Date(event.date).toLocaleString()}`;
+            document.getElementById('eventDescription').innerText = event.description || 'No description available.';
+            document.getElementById('participantsInfo').innerText =
+                `Max Participants: ${event.maxParticipants} | Enrolled: ${event.enrolledParticipants || 0}`;
+
+            const picturesContainer = document.getElementById('eventPictures');
+            picturesContainer.innerHTML = ''; // Clear existing pictures
+
+            if (event.pictures && event.pictures.length > 0) {
+                event.pictures.forEach(picUrl => {
+                    const img = document.createElement('img');
+                    img.src = picUrl;
+                    img.alt = 'Event picture';
+                    img.className = 'w-full h-32 object-cover rounded-lg';
+                    picturesContainer.appendChild(img);
+                });
+            } else {
+                picturesContainer.innerHTML = '<p class="text-gray-500">No pictures available.</p>';
+            }
+        }
+
+        // Logic for Save Event button
+        async function saveEvent() {
+                const eventId = getEventIdFromURL();
+                const token = localStorage.getItem('token');
+                try {
+                    const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}/save`, {
+                        method: 'POST',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (response.ok) alert('Event saved successfully!');
+                    else alert('Failed to save the event');
+                } catch (error) {
+                    console.error('Error saving event:', error);
+                }
+            }
+
+        // Logic for Enroll button
+        async function enrollEvent() {
+                try {
+                    const eventId = getEventIdFromURL(); // Helper function to extract the event ID from the URL
+                    const token = localStorage.getItem('token'); // Assuming the token is stored in localStorage
+
+                    // Send POST request to the register endpoint
+                    const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}/register`, {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                            'Content-Type': 'application/json'
+                        }
+                    });
+
+                    // Handle response
+                    if (response.ok) {
+                        alert('Successfully registered for the event!');
+                    } else {
+                        const errorData = await response.json();
+                        alert(errorData.message || 'Failed to register for the event');
+                    }
+                } catch (error) {
+                    console.error('Error registering for the event:', error);
+                    alert('An error occurred while trying to register for the event');
+                }
+            }
+
+        // Logic for Share button
+        function shareEvent() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url)
+                .then(() => alert('Event link copied to clipboard!'))
+                .catch(() => alert('Failed to copy link'));
+        }
+
+        // Helper: Get event ID from URL
+        function getEventIdFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('id'); // Assumes the event ID is passed as a query parameter (e.g., ?id=12345)
+        }
+
+        // Fetch event details on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const eventId = getEventIdFromURL();
+            if (eventId) {
+                fetchEventDetails(eventId);
+            } else {
+                alert('No event ID provided in the URL');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

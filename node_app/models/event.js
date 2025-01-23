@@ -1,7 +1,3 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-
-// Define the event schema
 const EventSchema = new Schema({
     name: {
         type: String,
@@ -27,18 +23,15 @@ const EventSchema = new Schema({
         description: "Maximum number of participants"
     },
     organizer: {
-        // type: Schema.Types.ObjectId,
         type: String,
         ref: 'User',
         required: true,
         description: "Reference to the organizer who created the event"
+    },
+    pictures: {
+        type: [String], // Array of strings for picture URLs
+        description: "Array of picture URLs of the event location"
     }
 }, {
     timestamps: true
 });
-
-// Create and export the Event model
-const EventModel = mongoose.model('Event', EventSchema);
-module.exports = EventModel;
-
-

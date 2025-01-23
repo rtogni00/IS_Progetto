@@ -21,7 +21,19 @@ const UserSchema = new Schema({
         type: String,
         enum: ['basicUser', 'owner', 'organizer'],
         required: true
-    }
+    },
+
+    // Array of saved event IDs
+    savedEvents: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Event'
+    }],
+
+    // Array of past events (event history)
+    pastEvents: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Event'
+    }]
 }, { timestamps: true });
 
 // Create and export the User model

@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 
 <body class="bg-gray-100 h-screen flex flex-col items-center">
@@ -28,10 +30,8 @@
                 class="w-full p-3 border border-gray-300 rounded-md shadow-sm focus:ring-2 focus:ring-blue-400">
         </div>
 
-        <!-- Map Placeholder -->
-        <div class="w-full h-80 bg-gray-300 mt-6 rounded-lg flex items-center justify-center shadow-md">
-            <p class="text-gray-500">[Interactive Map Placeholder]</p>
-        </div>
+        <!-- Map container -->
+        <div id="map" class="w-full h-80 mt-6 rounded-lg shadow-md"></div>
 
         <!-- Buttons -->
         <div class="flex space-x-4 mt-6">
@@ -48,6 +48,13 @@
     <footer class="w-full bg-gray-800 text-white py-4 text-center">
         <p>&copy; 2024 Event Management</p>
     </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <!-- Map JS-->
+     <script src="scripts/map.js"></script>
+
 
 </body>
 
