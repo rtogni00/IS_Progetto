@@ -25,6 +25,11 @@ router.post('/signup', async (req, res) => {
             return res.status(400).json({ message: 'Username already in use' });
         }
 
+        const allowedRoles = ['user', 'owner', 'organizer'];
+        if (!allowedRoles.includes(role)) {
+            return res.status(400).json({ message: 'Invalid role provided' });
+        }
+
         // Create a new user
         const newUser = new UserModel({
             username: req.body.username,

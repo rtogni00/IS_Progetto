@@ -19,7 +19,7 @@ const UserSchema = new Schema({
     },
     role: {
         type: String,
-        enum: ['basicUser', 'owner', 'organizer'],
+        enum: ['user', 'owner', 'organizer'], // user = basicUser
         required: true
     },
 

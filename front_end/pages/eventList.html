@@ -15,21 +15,34 @@
         <h1 class="text-2xl font-bold">Event List</h1>
     </header>
 
+    <!-- Back to Main Page Button -->
+    <section class="p-6">
+        <button onclick="goToMainPage()"
+            class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">
+            Back to Main Page
+        </button>
+    </section>
+
     <!-- Filters Section -->
     <section class="p-6">
         <div class="flex flex-col md:flex-row gap-4">
             <!-- Search Bar -->
-            <input type="text" id="searchBar" placeholder="Search by name or place"
+            <input type="text" id="searchByName" placeholder="Search by name"
+                class="border border-gray-300 rounded-lg px-4 py-2 w-full md:w-1/3 focus:ring-blue-500 focus:border-blue-500">
+            <input type="text" id="searchByLocation" placeholder="Search by location"
                 class="border border-gray-300 rounded-lg px-4 py-2 w-full md:w-1/3 focus:ring-blue-500 focus:border-blue-500">
 
             <!-- Calendar Inputs -->
-            <input type="date" id="startDate" class="border border-gray-300 rounded-lg px-4 py-2 w-full md:w-1/3">
-            <input type="date" id="endDate" class="border border-gray-300 rounded-lg px-4 py-2 w-full md:w-1/3">
+            <input type="date" id="date" class="border border-gray-300 rounded-lg px-4 py-2 w-full md:w-1/3">
+            <!-- <input type="date" id="endDate" class="border border-gray-300 rounded-lg px-4 py-2 w-full md:w-1/3"> -->
 
             <!-- Search Button -->
             <button onclick="applyFilters()"
                 class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">
                 Search
+            </button>
+            <button onclick="clearFilters()" class="bg-gray-300 text-black px-6 py-2 rounded-lg hover:bg-gray-400">
+                Clear Filters
             </button>
         </div>
     </section>
@@ -73,12 +86,12 @@
                 const eventBox = document.createElement('div');
                 eventBox.className = 'event-box p-4 border rounded shadow-sm bg-white';
                 eventBox.innerHTML = `
-                    <h3 class="font-bold text-lg">${event.name}</h3>
-                    <p>Place: ${event.place}</p>
-                    <p>Date: ${new Date(event.date).toLocaleString()}</p>
-                    <button onclick="showEventDetails('${event._id}')" 
-                        class="mt-2 text-blue-500 underline">View Details</button>
-                `;
+        <h3 class="font-bold text-lg">${event.name}</h3>
+        <p>Place: ${event.location}</p>
+        <p>Date: ${new Date(event.date).toLocaleString()}</p>
+        <button onclick="showEventDetails('${event._id}')" 
+            class="mt-2 text-blue-500 underline">View Details</button>
+    `;
                 eventListContainer.appendChild(eventBox);
             });
         }
@@ -91,11 +104,11 @@
 
                 if (response.ok) {
                     alert(`
-                        Name: ${event.name}
-                        Place: ${event.place}
-                        Date: ${new Date(event.date).toLocaleString()}
-                        Description: ${event.description}
-                    `);
+            Name: ${event.name}
+            Place: ${event.location}
+            Date: ${new Date(event.date).toLocaleString()}
+            Description: ${event.description}
+        `);
                 } else {
                     alert('Failed to fetch event details');
                 }
@@ -106,22 +119,39 @@
 
         // Apply filters and fetch events
         function applyFilters() {
-            const nameOrPlace = document.getElementById('searchBar').value;
-            const startDate = document.getElementById('startDate').value;
-            const endDate = document.getElementById('endDate').value;
+            const name = document.getElementById('searchByName').value;
+            const location = document.getElementById('searchByLocation').value;
+            const date = document.getElementById('date').value;
 
             const filters = {};
-            if (nameOrPlace) filters.name = nameOrPlace;
-            if (startDate) filters.startDate = startDate;
-            if (endDate) filters.endDate = endDate;
+            if (name) filters.name = name;
+            if (location) filters.location = location;
+            if (date) filters.date = date;
 
             fetchEvents(filters);
+        }
+
+        // Clear filters
+        // Function to clear the filters
+        function clearFilters() {
+            // Clear the values of the search fields
+            document.getElementById('searchByName').value = '';
+            document.getElementById('searchByLocation').value = '';
+            document.getElementById('date').value = '';
+
+            // Reset the filters and fetch all events
+            fetchEvents();
         }
 
         // Fetch events on page load
         document.addEventListener('DOMContentLoaded', () => {
             fetchEvents();
         });
+
+        // Navigate to the main page
+            function goToMainPage() {
+                window.location.href = 'mainPageAfterLogin.html'; // Adjust the URL to match the main page route
+            }
     </script>
 
 </body>

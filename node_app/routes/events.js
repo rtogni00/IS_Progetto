@@ -1,25 +1,80 @@
 const express = require('express');
 const router = express.Router();
 const EventModel = require('../models/event');
+const EventRegistrationModel = require('../models/eventRegistration');
 const tokenChecker = require('../tokenChecker');
-
+const axios = require('axios'); // for geocoding
 
 // Route to get events by optional query parameters (name, date, location)
 router.get('/', async (req, res) => {
     try {
-        const { name, date, location } = req.query; // Destructure query parameters
+        const { name, location, date, map} = req.query; // Destructure query parameters
 
         // Build filter object
         const filter = {};
         if (name) filter.name = { $regex: name, $options: 'i' }; // Case-insensitive partial match
-        if (place) filter.place = { $regex: place, $options: 'i' };
-        if (startDate || endDate) {
-            filter.date = {};
-            if (startDate) filter.date.$gte = new Date(startDate);
-            if (endDate) filter.date.$lte = new Date(endDate);
+        if (location) filter.location = { $regex: location, $options: 'i' };
+        // if (startDate || endDate) {
+        //     filter.date = {};
+        //     if (startDate) filter.date.$gte = new Date(startDate);
+        //     if (endDate) filter.date.$lte = new Date(endDate);
+        // }
+
+        if (date) {
+            // Convert date to a valid Date object
+            const targetDate = new Date(date);
+            filter.date = { $gte: targetDate, $lt: new Date(targetDate).setDate(targetDate.getDate() + 1) }; // Match events within that date
         }
 
-        const events = await EventModel.find(filter);
+        // Debugging logs
+        console.log('Query parameters:', { name, location, date });
+        console.log('Filter object:', filter);
+        // If map=true, only select name, location, and coordinates
+        const eventFields = map === 'true' ? 'name location latitude longitude' : '';
+        let events = await EventModel.find(filter).select(eventFields);
+
+        // If map=true and event has no coordinates, fetch coordinates using geocoding
+        if (map === 'true') {
+            for (let event of events) {
+                if (!event.latitude || !event.longitude) {
+                    try {
+                        let locationQuery = `${event.location}, Trento`; // Default to Trento
+
+                        // Check if location contains "Trento", and avoid adding it again to the query
+                        if (!event.location.toLowerCase().includes('trento')) {
+                            locationQuery = `${event.location}, Trento`; // Add Trento to the search
+                        }
+
+                        console.log(`Fetching coordinates for: ${locationQuery}`);
+
+                        const geocodeResponse = await axios.get('https://nominatim.openstreetmap.org/search', {
+                            params: {
+                                q: locationQuery,
+                                format: 'json',
+                                limit: 1
+                            }
+                        });
+
+                        if (geocodeResponse.data.length > 0) {
+                            const { lat, lon } = geocodeResponse.data[0];
+                            // Double-check if it is within Trento's bounding box
+                            if (lat > 45.5 && lat < 46.2 && lon > 10.9 && lon < 11.2) {  // Rough bounds for Trento
+                                event.latitude = parseFloat(lat);
+                                event.longitude = parseFloat(lon);
+                                await event.save(); // Save the updated event with coordinates
+                                console.log(`Updated event: ${event.name}`);
+                            } else {
+                                console.warn(`Coordinates for ${event.name} are outside of Trento bounds.`);
+                            }
+                        } else {
+                            console.warn(`Could not find coordinates for location: ${event.location}`);
+                        }
+                    } catch (error) {
+                        console.error(`Error fetching coordinates for ${event.name}:`, error.message);
+                    }
+                }
+            }
+        }
 
         if (events.length === 0) {
             return res.status(200).json({ message: 'No events found', events: [] });
@@ -50,17 +105,55 @@ router.get('/:id', async (req, res) => {
 });
 
 // Route to create an event
+// router.post('/create', tokenChecker, async (req, res) => {
+//     try {
+//         const newEvent = new EventModel(req.body);
+//         const savedEvent = await newEvent.save();
+//         res.status(201).json(savedEvent);
+//         console.log("Event created successfully");
+//     } catch (error) {
+//         console.error('Error creating event:', error);  // Log the error details for debugging
+//         res.status(500).json({ message: 'Error creating event', error });
+//     }
+// });
+
 router.post('/create', tokenChecker, async (req, res) => {
     try {
-        const newEvent = new EventModel(req.body);
+        const { location, ...eventData } = req.body;
+
+        // Geocode the location
+        const geocodeResponse = await axios.get('https://nominatim.openstreetmap.org/search', {
+            params: {
+                q: location,
+                format: 'json',
+                limit: 1
+            }
+        });
+
+        if (geocodeResponse.data.length === 0) {
+            return res.status(400).json({ message: `Could not find coordinates for location: ${location}` });
+        }
+
+        const { lat, lon } = geocodeResponse.data[0];
+
+        // Add coordinates to event data
+        const newEvent = new EventModel({
+            ...eventData,
+            location,
+            latitude: parseFloat(lat),
+            longitude: parseFloat(lon)
+        });
+
+        // Save the new event
         const savedEvent = await newEvent.save();
         res.status(201).json(savedEvent);
-        console.log("Event created successfully");
+        console.log("Event created successfully with coordinates:", { latitude: lat, longitude: lon });
     } catch (error) {
         console.error('Error creating event:', error);  // Log the error details for debugging
         res.status(500).json({ message: 'Error creating event', error });
     }
 });
+
 
 //////////////////////////////////////////////////// TODO TEST
 
