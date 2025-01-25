@@ -158,44 +158,73 @@ router.post('/create', tokenChecker, async (req, res) => {
 //////////////////////////////////////////////////// TODO TEST
 
 // Route to register a user for an event
-router.post('/:eventId/register', tokenChecker, async (req, res) => {
-    const { eventId } = req.params;
-
+router.post('/:eventId/enroll', tokenChecker, async (req, res) => {
     try {
-        // Extract the user ID from the decoded token
-        const userId = req.loggedUser.id; // Assuming the token contains a field `id` for the user
+        const userId = req.user.id;
+        const eventId = req.params.eventId;
 
-        // Check if event exists
-        const event = await EventModel.findById(eventId);
-        if (!event) {
-            return res.status(404).json({ message: 'Event not found' });
-        }
+        // Check if the registration already exists
+        const existingRegistration = await RegistrationModel.findOne({ event: eventId, user: userId });
 
-        // Check if the event has capacity
-        const registrationsCount = await EventRegistrationModel.countDocuments({ event: eventId });
-        if (event.capacity && registrationsCount >= event.capacity) {
-            return res.status(400).json({ message: 'Event is full' });
-        }
-
-        // Check if user is already registered
-        const existingRegistration = await EventRegistrationModel.findOne({ event: eventId, user: userId });
         if (existingRegistration) {
-            return res.status(400).json({ message: 'You are already registered for this event' });
+            if (existingRegistration.status === 'registered') {
+                return res.status(400).json({ message: 'User already enrolled in the event' });
+            } else {
+                // Update the status back to "registered" if it was cancelled
+                existingRegistration.status = 'registered';
+                await existingRegistration.save();
+                return res.status(200).json({ message: 'User re-enrolled in the event', registration: existingRegistration });
+            }
         }
 
-        // Register user for the event
-        const newRegistration = new EventRegistrationModel({
-            event: eventId,
-            user: userId,
-            status: 'registered'
-        });
+        // Create a new registration
+        const registration = new RegistrationModel({ event: eventId, user: userId });
+        await registration.save();
 
-        await newRegistration.save();
-
-        res.status(200).json({ message: 'Successfully registered for the event' });
+        res.status(201).json({ message: 'Successfully enrolled in the event', registration });
     } catch (error) {
-        console.error('Error during event registration:', error);
-        res.status(500).json({ message: 'Error during registration', error });
+        console.error('Error enrolling user:', error);
+        res.status(500).json({ message: 'Server error', error });
+    }
+});
+
+// Route to unenroll from an event
+router.post('/:eventId/unenroll', tokenChecker, async (req, res) => {
+    try {
+        const userId = req.user.id;
+        const eventId = req.params.eventId;
+
+        // Find the registration
+        const registration = await RegistrationModel.findOne({ event: eventId, user: userId });
+
+        if (!registration || registration.status === 'cancelled') {
+            return res.status(400).json({ message: 'User is not enrolled in the event' });
+        }
+
+        // Update the status to "cancelled"
+        registration.status = 'cancelled';
+        await registration.save();
+
+        res.status(200).json({ message: 'Successfully unenrolled from the event', registration });
+    } catch (error) {
+        console.error('Error unenrolling user:', error);
+        res.status(500).json({ message: 'Server error', error });
+    }
+});
+
+// Route to get event participants
+router.get('/:eventId/participants', async (req, res) => {
+    try {
+        const eventId = req.params.eventId;
+
+        // Find registrations with "registered" status for the event
+        const participants = await RegistrationModel.find({ event: eventId, status: 'registered' })
+            .populate('user', 'username email'); // Populate user details if needed
+
+        res.status(200).json({ participants });
+    } catch (error) {
+        console.error('Error fetching participants:', error);
+        res.status(500).json({ message: 'Server error', error });
     }
 });
 

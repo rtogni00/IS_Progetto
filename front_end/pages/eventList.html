@@ -86,35 +86,37 @@
                 const eventBox = document.createElement('div');
                 eventBox.className = 'event-box p-4 border rounded shadow-sm bg-white';
                 eventBox.innerHTML = `
-        <h3 class="font-bold text-lg">${event.name}</h3>
-        <p>Place: ${event.location}</p>
-        <p>Date: ${new Date(event.date).toLocaleString()}</p>
-        <button onclick="showEventDetails('${event._id}')" 
-            class="mt-2 text-blue-500 underline">View Details</button>
-    `;
+                    <h3 class="font-bold text-lg">${event.name}</h3>
+                    <p>Place: ${event.location}</p>
+                    <p>Date: ${new Date(event.date).toLocaleString()}</p>
+                    <button onclick="showEventDetails('${event._id}')" 
+                        class="mt-2 text-blue-500 underline">View Details</button>
+                `;
                 eventListContainer.appendChild(eventBox);
             });
         }
 
         // Show full details of a specific event (expand on click)
         async function showEventDetails(eventId) {
-            try {
-                const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}`);
-                const event = await response.json();
+            // try {
+            //     const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}`);
+            //     const event = await response.json();
 
-                if (response.ok) {
-                    alert(`
-            Name: ${event.name}
-            Place: ${event.location}
-            Date: ${new Date(event.date).toLocaleString()}
-            Description: ${event.description}
-        `);
-                } else {
-                    alert('Failed to fetch event details');
-                }
-            } catch (error) {
-                console.error('Error fetching event details:', error);
-            }
+            //     if (response.ok) {
+            //         alert(`
+            //             Name: ${event.name}
+            //             Place: ${event.location}
+            //             Date: ${new Date(event.date).toLocaleString()}
+            //             Description: ${event.description}
+            //         `);
+            //     } else {
+            //         alert('Failed to fetch event details');
+            //     }
+            // } catch (error) {
+            //     console.error('Error fetching event details:', error);
+            // }
+            // Navigate to the eventDetails.html page with the eventId as a query parameter
+            window.location.href = `eventDetails.html?eventId=${eventId}`;
         }
 
         // Apply filters and fetch events
