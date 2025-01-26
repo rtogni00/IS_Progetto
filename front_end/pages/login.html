@@ -95,7 +95,7 @@
 
             if (response.ok) {
                 // If login is successful, store the token and redirect to the main page
-                localStorage.setItem('authToken', result.token);  // Store the JWT token in localStorage
+                localStorage.setItem('token', result.token);  // Store the JWT token in localStorage
 
                 // Wait a moment to ensure localStorage is updated before redirecting
                 setTimeout(() => {

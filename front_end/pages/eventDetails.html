@@ -18,7 +18,7 @@
 
     <!-- Back Button -->
     <div class="mt-20 px-6">
-        <button onclick="window.location.href='eventsList.html'"
+        <button onclick="window.location.href='eventList.html'"
             class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
             <i class="fa-solid fa-arrow-left"></i> Back to Events
         </button>
@@ -84,12 +84,43 @@
         // Extract eventId from the URL query parameter
         const urlParams = new URLSearchParams(window.location.search);
         const eventId = urlParams.get('eventId');
-        const userId = "12345"; // Replace with actual user ID logic
 
-        // Fetch event details and populate the page
+        // Get the user token from localStorage (assumes the token is stored there)
+        const token = localStorage.getItem('token');
+
+        if (!token) {
+            console.error("No token found, user not logged in.");
+            alert("You need to log in first.");
+            window.location.href = "login.html";  // Redirect to login page
+        }
+
+        // Check if the user is enrolled in the event
+        async function isUserEnrolled(eventId, token) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}/isEnrolled`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const data = await response.json();
+                return data.isEnrolled; // true or false based on user enrollment status
+            } catch (error) {
+                console.error('Error checking enrollment status:', error);
+                return false;
+            }
+        }
+
+        // Fetch event details and update the UI
         async function loadEventDetails() {
             try {
-                const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}`);
+                const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
                 if (response.ok) {
                     const event = await response.json();
 
@@ -101,9 +132,12 @@
                     document.getElementById('event-participants').textContent = event.participants;
                     document.getElementById('event-enrolled').textContent = event.enrolledUsers.length;
 
-                    // Set enroll/unenroll button state
+                    // Check if the user is already enrolled
+                    const isEnrolled = await isUserEnrolled(eventId, token);
+
+                    // Set the enroll/unenroll button state
                     const enrollButton = document.getElementById('enroll-button');
-                    if (event.enrolledUsers.includes(userId)) {
+                    if (isEnrolled) {
                         enrollButton.textContent = "Unenroll";
                         enrollButton.className = "bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700";
                         enrollButton.onclick = () => unenrollFromEvent(eventId);
@@ -133,18 +167,22 @@
         }
 
         // Enroll in event
-        async function enrollInEvent(eventId) { // GO ON FROM HERE
+        async function enrollInEvent(eventId) {
             try {
                 const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}/enroll`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ userId })
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
                 });
+
                 if (response.ok) {
                     alert('Successfully enrolled!');
-                    location.reload();
+                    location.reload();  // Reload the page to update the button and event details
                 } else {
-                    alert('Failed to enroll. Please try again.');
+                    const errorData = await response.json();
+                    alert(`Failed to enroll: ${errorData.message}`);
                 }
             } catch (error) {
                 console.error('Error enrolling in event:', error);
@@ -157,12 +195,15 @@
             try {
                 const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}/unenroll`, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ userId })
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`
+                    }
                 });
+
                 if (response.ok) {
                     alert('Successfully unenrolled!');
-                    location.reload();
+                    location.reload();  // Reload the page to update the button and event details
                 } else {
                     alert('Failed to unenroll. Please try again.');
                 }
@@ -175,6 +216,8 @@
         // Load event details on page load
         loadEventDetails();
     </script>
+
+
 
 </body>
 

@@ -154,48 +154,87 @@ router.post('/create', tokenChecker, async (req, res) => {
     }
 });
 
-
-//////////////////////////////////////////////////// TODO TEST
-
 // Route to register a user for an event
 router.post('/:eventId/enroll', tokenChecker, async (req, res) => {
-    try {
-        const userId = req.user.id;
-        const eventId = req.params.eventId;
 
-        // Check if the registration already exists
-        const existingRegistration = await RegistrationModel.findOne({ event: eventId, user: userId });
+    try {
+        const { eventId } = req.params;
+        const userId = req.loggedUser; // loggedUser is populated via middleware
+
+        // Find the event
+        const event = await EventModel.findById(eventId);
+        if (!event) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
+
+        // Check if the event has available capacity
+        if (event.capacity && event.participants >= event.capacity) {
+            return res.status(400).json({ message: 'Event is fully booked' });
+        }
+
+        // Check if the user is already registered for the event
+        const existingRegistration = await EventRegistrationModel.findOne({
+            event: eventId,
+            user: userId,
+        });
 
         if (existingRegistration) {
-            if (existingRegistration.status === 'registered') {
-                return res.status(400).json({ message: 'User already enrolled in the event' });
-            } else {
-                // Update the status back to "registered" if it was cancelled
-                existingRegistration.status = 'registered';
-                await existingRegistration.save();
-                return res.status(200).json({ message: 'User re-enrolled in the event', registration: existingRegistration });
-            }
+            return res.status(400).json({ message: 'User is already registered for this event' });
         }
 
         // Create a new registration
-        const registration = new RegistrationModel({ event: eventId, user: userId });
-        await registration.save();
+        const newRegistration = new EventRegistrationModel({
+            event: eventId,
+            user: userId,
+        });
+        await newRegistration.save();
 
-        res.status(201).json({ message: 'Successfully enrolled in the event', registration });
+        // Increment the participants count in the Event model
+        event.participants += 1;
+        await event.save();
+
+        return res.status(201).json({
+            message: 'Successfully registered for the event',
+            registration: newRegistration,
+        });
     } catch (error) {
-        console.error('Error enrolling user:', error);
-        res.status(500).json({ message: 'Server error', error });
+        console.error(error);
+        return res.status(500).json({ message: 'Internal server error', error: error.message });
+    }
+});
+
+// New route to check if the user is enrolled in the event
+router.get('/:eventId/isEnrolled', async (req, res) => {
+    const eventId = req.params.eventId;
+    const userId = req.loggedUser;  // loggedUser is populated via middleware
+
+    try {
+        // Check if the user is enrolled in the event
+        const existingRegistration = await EventRegistrationModel.findOne({
+            event: eventId,
+            user: userId
+        });
+
+        // Respond with whether the user is enrolled
+        if (existingRegistration) {
+            return res.json({ isEnrolled: true });
+        } else {
+            return res.json({ isEnrolled: false });
+        }
+    } catch (error) {
+        console.error('Error checking enrollment status:', error);
+        res.status(500).json({ message: 'Error checking enrollment status' });
     }
 });
 
 // Route to unenroll from an event
 router.post('/:eventId/unenroll', tokenChecker, async (req, res) => {
     try {
-        const userId = req.user.id;
+        const userId = req.loggedUser;  // Access the user ID from the decoded token
         const eventId = req.params.eventId;
 
         // Find the registration
-        const registration = await RegistrationModel.findOne({ event: eventId, user: userId });
+        const registration = await EventRegistrationModel.findOne({ event: eventId, user: userId });
 
         if (!registration || registration.status === 'cancelled') {
             return res.status(400).json({ message: 'User is not enrolled in the event' });
@@ -211,6 +250,7 @@ router.post('/:eventId/unenroll', tokenChecker, async (req, res) => {
         res.status(500).json({ message: 'Server error', error });
     }
 });
+
 
 // Route to get event participants
 router.get('/:eventId/participants', async (req, res) => {
@@ -228,9 +268,9 @@ router.get('/:eventId/participants', async (req, res) => {
     }
 });
 
-router.post('/:eventId/save', tokenChecker, async (req, res) => {
+router.post('/:eventId/save', tokenChecker, async (req, res) => {  // TODO check
     const { eventId } = req.params;
-    const userId = req.loggedUser.id;
+    const userId = req.loggedUser;
 
     try {
         // Ensure the event exists
@@ -247,9 +287,9 @@ router.post('/:eventId/save', tokenChecker, async (req, res) => {
     }
 });
 
-router.post('/:eventId/markPast', tokenChecker, async (req, res) => {
+router.post('/:eventId/markPast', tokenChecker, async (req, res) => { // TODO check
     const { eventId } = req.params;
-    const userId = req.loggedUser.id;
+    const userId = req.loggedUser;
 
     try {
         // Ensure the event exists
@@ -270,8 +310,5 @@ router.post('/:eventId/markPast', tokenChecker, async (req, res) => {
         res.status(500).json({ message: 'Error marking event as past', error });
     }
 });
-
-
-///////////////////////////////// UP HERE
 
 module.exports = router;
