@@ -4,6 +4,8 @@ const EventModel = require('../models/event');
 const EventRegistrationModel = require('../models/eventRegistration');
 const tokenChecker = require('../tokenChecker');
 const axios = require('axios'); // for geocoding
+var mongoose = require('mongoose');
+
 
 // Route to get events by optional query parameters (name, date, location)
 router.get('/', async (req, res) => {
@@ -27,8 +29,8 @@ router.get('/', async (req, res) => {
         }
 
         // Debugging logs
-        console.log('Query parameters:', { name, location, date });
-        console.log('Filter object:', filter);
+        // console.log('Query parameters:', { name, location, date });
+        // console.log('Filter object:', filter);
         // If map=true, only select name, location, and coordinates
         const eventFields = map === 'true' ? 'name location latitude longitude' : '';
         let events = await EventModel.find(filter).select(eventFields);
@@ -156,67 +158,95 @@ router.post('/create', tokenChecker, async (req, res) => {
 
 // Route to register a user for an event
 router.post('/:eventId/enroll', tokenChecker, async (req, res) => {
+    const userId = req.loggedUser._id;  // Access the user ID from the decoded token
+    const eventId = req.params.eventId;
+
+    const session = await mongoose.startSession();
+    session.startTransaction();
 
     try {
-        const { eventId } = req.params;
-        const userId = req.loggedUser; // loggedUser is populated via middleware
-
         // Find the event
-        const event = await EventModel.findById(eventId);
+        const event = await EventModel.findById(eventId).session(session);
         if (!event) {
+            await session.abortTransaction();
+            session.endSession();
             return res.status(404).json({ message: 'Event not found' });
         }
 
         // Check if the event has available capacity
         if (event.capacity && event.participants >= event.capacity) {
+            await session.abortTransaction();
+            session.endSession();
             return res.status(400).json({ message: 'Event is fully booked' });
         }
 
-        // Check if the user is already registered for the event
+        // Check if the user is already enrolled (active or cancelled)
         const existingRegistration = await EventRegistrationModel.findOne({
             event: eventId,
             user: userId,
-        });
+        }).session(session);
 
-        if (existingRegistration) {
-            return res.status(400).json({ message: 'User is already registered for this event' });
+        if (existingRegistration && existingRegistration.status === 'registered') {
+            await session.abortTransaction();
+            session.endSession();
+            return res.status(400).json({ message: 'User is already enrolled in this event' });
         }
 
-        // Create a new registration
-        const newRegistration = new EventRegistrationModel({
-            event: eventId,
-            user: userId,
-        });
-        await newRegistration.save();
+        // If the user has a cancelled registration, reactivate it
+        if (existingRegistration && existingRegistration.status === 'cancelled') {
+            existingRegistration.status = 'registered';
+            await existingRegistration.save({ session });
+        } else {
+            // Create a new registration if not exists
+            const newRegistration = new EventRegistrationModel({
+                event: eventId,
+                user: userId,
+                status: 'registered',
+            });
+            await newRegistration.save({ session });
+        }
 
         // Increment the participants count in the Event model
         event.participants += 1;
-        await event.save();
+        await event.save({ session });
+
+        // Add the user to the participants list
+        event.enrolledUsers.push(userId);
+        await event.save({ session });
+
+        // Commit the transaction
+        await session.commitTransaction();
+        session.endSession();
 
         return res.status(201).json({
             message: 'Successfully registered for the event',
-            registration: newRegistration,
+            registration: existingRegistration || newRegistration,
         });
     } catch (error) {
+        await session.abortTransaction();
+        session.endSession();
         console.error(error);
         return res.status(500).json({ message: 'Internal server error', error: error.message });
     }
 });
 
+
 // New route to check if the user is enrolled in the event
-router.get('/:eventId/isEnrolled', async (req, res) => {
+router.get('/:eventId/isEnrolled', tokenChecker, async (req, res) => {
     const eventId = req.params.eventId;
     const userId = req.loggedUser;  // loggedUser is populated via middleware
+
+    // console.log("UserId:", userId);
 
     try {
         // Check if the user is enrolled in the event
         const existingRegistration = await EventRegistrationModel.findOne({
             event: eventId,
-            user: userId
+            user: userId._id
         });
 
         // Respond with whether the user is enrolled
-        if (existingRegistration) {
+        if (existingRegistration && existingRegistration.status == "registered") {
             return res.json({ isEnrolled: true });
         } else {
             return res.json({ isEnrolled: false });
@@ -229,27 +259,61 @@ router.get('/:eventId/isEnrolled', async (req, res) => {
 
 // Route to unenroll from an event
 router.post('/:eventId/unenroll', tokenChecker, async (req, res) => {
+    const userId = req.loggedUser._id;  // Access the user ID from the decoded token
+    const eventId = req.params.eventId;
+
+    const session = await mongoose.startSession();
+    session.startTransaction();
+
     try {
-        const userId = req.loggedUser;  // Access the user ID from the decoded token
-        const eventId = req.params.eventId;
+        // Find the registration for the user
+        const registration = await EventRegistrationModel.findOne({ event: eventId, user: userId }).session(session);
 
-        // Find the registration
-        const registration = await EventRegistrationModel.findOne({ event: eventId, user: userId });
-
-        if (!registration || registration.status === 'cancelled') {
+        if (!registration) { // || registration.status === 'cancelled') {
+            await session.abortTransaction();
+            session.endSession();
             return res.status(400).json({ message: 'User is not enrolled in the event' });
         }
 
-        // Update the status to "cancelled"
+        // Update the registration status to "cancelled"
         registration.status = 'cancelled';
-        await registration.save();
+        await registration.save({ session });
+
+        // Find the event
+        const event = await EventModel.findById(eventId).session(session);
+        if (!event) {
+            await session.abortTransaction();
+            session.endSession();
+            return res.status(404).json({ message: 'Event not found' });
+        }
+
+        // Subtract 1 from the number of participants
+        if (event.participants > 0) {
+            event.participants -= 1;
+        }
+
+        // Remove the user from the participants list (if you're storing a list of participants)
+        const userIndex = event.enrolledUsers.indexOf(userId);
+        if (userIndex !== -1) {
+            event.enrolledUsers.splice(userIndex, 1);
+        }
+
+        // Save the event with updated participants count and list
+        await event.save({ session });
+
+        // Commit the transaction
+        await session.commitTransaction();
+        session.endSession();
 
         res.status(200).json({ message: 'Successfully unenrolled from the event', registration });
     } catch (error) {
+        await session.abortTransaction();
+        session.endSession();
         console.error('Error unenrolling user:', error);
         res.status(500).json({ message: 'Server error', error });
     }
 });
+
 
 
 // Route to get event participants

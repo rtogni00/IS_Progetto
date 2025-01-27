@@ -25,6 +25,8 @@ const EventRegistrationSchema = new Schema({
     }
 }, { timestamps: true });
 
+// Add a unique index to prevent duplicate registrations
+EventRegistrationSchema.index({ event: 1, user: 1 }, { unique: true });
 
 // Create and export the Event model
 const RegistrationModel = mongoose.model('Registration', EventRegistrationSchema);

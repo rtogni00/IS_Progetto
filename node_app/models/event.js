@@ -26,11 +26,12 @@ const EventSchema = new Schema({
         description: "Latitude of the location" 
     },
     longitude: { 
-        type: Number, 
+        type: Number,
         description: "Longitude of the location" 
     },
     capacity: {
         type: Number,
+        required: true,
         description: "Maximum number of participants"
     },
     organizer: {
