@@ -4,8 +4,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>380</x>
-      <y>270</y>
+      <x>360</x>
+      <y>160</y>
       <w>20</w>
       <h>560</h>
     </coordinates>
@@ -15,8 +15,8 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>220</y>
+      <x>360</x>
+      <y>110</y>
       <w>30</w>
       <h>650</h>
     </coordinates>
@@ -26,8 +26,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>890</x>
-      <y>270</y>
+      <x>820</x>
+      <y>160</y>
       <w>20</w>
       <h>560</h>
     </coordinates>
@@ -37,8 +37,8 @@
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1070</x>
-      <y>270</y>
+      <x>1000</x>
+      <y>160</y>
       <w>20</w>
       <h>560</h>
     </coordinates>
@@ -48,44 +48,44 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>280</y>
-      <w>240</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-Request event modification</panel_attributes>
-    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>620</x>
-      <y>300</y>
-      <w>290</w>
-      <h>40</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-
-PUT /events/{eventID}</panel_attributes>
-    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>900</x>
-      <y>320</y>
+      <x>370</x>
+      <y>170</y>
       <w>190</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
-Check event exists</panel_attributes>
+Request place deletion</panel_attributes>
     <additional_attributes>170.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1080</x>
-      <y>340</y>
+      <x>550</x>
+      <y>190</y>
+      <w>290</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+DELETE /places/{placeID}</panel_attributes>
+    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>830</x>
+      <y>210</y>
+      <w>190</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Check place exists</panel_attributes>
+    <additional_attributes>170.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1010</x>
+      <y>230</y>
       <w>110</w>
       <h>80</h>
     </coordinates>
@@ -97,19 +97,19 @@ query</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>340</x>
-      <y>200</y>
+      <x>320</x>
+      <y>90</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
-    <panel_attributes>Organizer</panel_attributes>
+    <panel_attributes>Owner</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>850</x>
-      <y>200</y>
+      <x>780</x>
+      <y>90</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -119,8 +119,8 @@ query</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1030</x>
-      <y>200</y>
+      <x>960</x>
+      <y>90</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -130,8 +130,8 @@ query</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>890</x>
-      <y>220</y>
+      <x>820</x>
+      <y>110</y>
       <w>30</w>
       <h>650</h>
     </coordinates>
@@ -141,8 +141,8 @@ query</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1070</x>
-      <y>220</y>
+      <x>1000</x>
+      <y>110</y>
       <w>30</w>
       <h>650</h>
     </coordinates>
@@ -152,8 +152,8 @@ query</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
-      <y>640</y>
+      <x>550</x>
+      <y>530</y>
       <w>290</w>
       <h>40</h>
     </coordinates>
@@ -164,20 +164,20 @@ Return error</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>520</y>
-      <w>240</w>
+      <x>370</x>
+      <y>410</y>
+      <w>190</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 Display error</panel_attributes>
-    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>610</x>
-      <y>270</y>
+      <x>540</x>
+      <y>160</y>
       <w>20</w>
       <h>560</h>
     </coordinates>
@@ -187,8 +187,8 @@ Display error</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>610</x>
-      <y>220</y>
+      <x>540</x>
+      <y>110</y>
       <w>30</w>
       <h>650</h>
     </coordinates>
@@ -198,8 +198,8 @@ Display error</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>570</x>
-      <y>200</y>
+      <x>500</x>
+      <y>90</y>
       <w>100</w>
       <h>30</h>
     </coordinates>
@@ -209,28 +209,28 @@ Display error</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>330</x>
-      <y>580</y>
+      <x>260</x>
+      <y>470</y>
       <w>820</w>
       <h>210</h>
     </coordinates>
     <panel_attributes>Alt
 --
-Event happens in &lt; 1 week
+Place is currently booked
 -.
 
 
 
 
-Event happens in &gt; 1 week
+Place is free
 -.</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>400</y>
+      <x>830</x>
+      <y>290</y>
       <w>190</w>
       <h>40</h>
     </coordinates>
@@ -241,8 +241,8 @@ Validation result</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
-      <y>490</y>
+      <x>550</x>
+      <y>380</y>
       <w>290</w>
       <h>40</h>
     </coordinates>
@@ -253,51 +253,51 @@ Failure response</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>300</x>
-      <y>440</y>
+      <x>230</x>
+      <y>330</y>
       <w>880</w>
       <h>370</h>
     </coordinates>
     <panel_attributes>Alt
 --
-Event does not exist
+Place does not exist
 -.
 
 
 
-Event exists
+Place exists
 -.</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>660</y>
-      <w>240</w>
+      <x>370</x>
+      <y>550</y>
+      <w>190</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 Display error</panel_attributes>
-    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>390</x>
-      <y>740</y>
-      <w>240</w>
+      <x>370</x>
+      <y>630</y>
+      <w>190</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 Display success</panel_attributes>
-    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
-      <y>720</y>
+      <x>550</x>
+      <y>610</y>
       <w>290</w>
       <h>40</h>
     </coordinates>

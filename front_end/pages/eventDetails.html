@@ -43,8 +43,8 @@
                         <span id="event-date">Loading...</span>
                     </p>
                     <p class="text-gray-600">
-                        <strong>Participants:</strong>
-                        <span id="event-participants">Loading...</span>
+                        <strong>Capacity:</strong>
+                        <span id="event-capacity">Loading...</span>
                     </p>
                     <p class="text-gray-600">
                         <strong>Enrolled Users:</strong>
@@ -105,6 +105,8 @@
                 });
 
                 const data = await response.json();
+                console.log('Enrollment status response:', data);
+
                 return data.isEnrolled; // true or false based on user enrollment status
             } catch (error) {
                 console.error('Error checking enrollment status:', error);
@@ -129,11 +131,12 @@
                     document.getElementById('event-location').textContent = event.location;
                     document.getElementById('event-date').textContent = new Date(event.date).toLocaleString();
                     document.getElementById('event-description').textContent = event.description;
-                    document.getElementById('event-participants').textContent = event.participants;
+                    document.getElementById('event-capacity').textContent = event.capacity;
                     document.getElementById('event-enrolled').textContent = event.enrolledUsers.length;
 
                     // Check if the user is already enrolled
                     const isEnrolled = await isUserEnrolled(eventId, token);
+                    // alert(isEnrolled);
 
                     // Set the enroll/unenroll button state
                     const enrollButton = document.getElementById('enroll-button');

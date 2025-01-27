@@ -310,22 +310,99 @@ Gli use case diagrams riportati nel capitolo precendente rappresentano una overv
 
 \newpage
 
-\begin{itemize}
-	\item add place
-	\item remove place
-	\item edit place
-\end{itemize}
+\textbf{Aggiunta di un luogo}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\linewidth]{./images/SequenceDiagramAddPlace.pdf}
+	\caption{Sequence diagram rappresentante l'aggiunta di un luogo.}
+	\label{fig:SeqDiagAddPlace}
+\end{figure}
+
+\newpage
+
+\textbf{Rimozione di un luogo}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\linewidth]{./images/SequenceDiagramPlaceDeletion.pdf}
+	\caption{Sequence diagram rappresentante la rimozione di un luogo.}
+	\label{fig:SeqDiagRemovePlace}
+\end{figure}
+
+\newpage
+
+
+\textbf{Modifica di un luogo}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\linewidth]{./images/SequenceDiagramEditPlace.pdf}
+	\caption{Sequence diagram rappresentante la modifica di un luogo.}
+	\label{fig:SeqDiagEditPlace}
+\end{figure}
+
 
 \newpage
 \section{Analisi dei Componenti}
 
 In questo capitolo vengono presentati i componenti che costituiscono l'architettura del sistema, e che sottostanno alle funzionalità definite in precedenza. L'interconnessione tra i vari componenti è rappresentata tramite l'utilizzo di un component diagram, il quale rende esplicita la presenza di interfacce sia tra i componenti  stessi che con sistemi esterni.
 
-
 \subsection{Definizione dei Componenti}
 
+\subsubsection*{CMP1: Gestione Registrazione}
+\paragraph{Descrizione}
+Il componente si occupa della funzionalità di registrazione di un nuovo account.
+
+\subparagraph{Interfacce Richieste}
+\begin{itemize}
+	\item Credenziali di accesso: le credenziali includono email e password
+\end{itemize}
+
+\subparagraph{Interfacce Fornite}
+\begin{itemize}
+	\item Nuovo utente: una volta completata la procedura di registrazione, il nuovo profilo viene salvato all'interno del database
+\end{itemize}
+
+
+\subsubsection*{CMP2: Gestione autenticazione}
+\paragraph{Descrizione}
+Il componente gestisce login e logout dal sistema. Interagisce con gli altri componenti per gestire la separazione tra attività che richiedono un profilo e attività aperte agli utenti non registrati.
+\subparagraph{Interfacce Richieste}
+\begin{itemize}
+	\item Credenziali di accesso: le credenziali includono email e password
+\end{itemize}
+
+\subparagraph{Interfacce Fornite}
+\begin{itemize}
+	\item Nuovo utente: una volta completata la procedura di registrazione, il nuovo profilo viene salvato all'interno del database
+\end{itemize}
+
+\textbf{CMP3: Gestione database}\\
+
+\textbf{CMP4: Gestione profilo utente}\\
+
+
+\textbf{CMP5: Gestione eventi}\\
+
+\textbf{CMP6: Sistema di ricerca eventi}\\
+
+
+\textbf{CMP7: Gestione iscrizione eventi}\\
+
+\textbf{CMP8: Gestione mappa}\\
+
+\textbf{CMP9: Gestione luoghi}\\
+
+\textbf{CMP10: Sistema di ricerca luoghi}\\
 
 \subsection{Diagramma dei Componenti}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=\linewidth]{./images/ComponentDiagram.pdf}
+	\caption{Diagramma complessivo dei componenti di sistema e delle loro interconnessioni.}
+	\label{fig:ComponentDiagram}
+\end{figure}
+
+
 
 \newpage
 
