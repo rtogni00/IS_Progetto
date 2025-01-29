@@ -78,6 +78,54 @@
 	belowcaptionskip=12pt
 }
 
+\lstdefinelanguage{yaml}{
+	keywords={true,false,null,y,n},
+	keywordstyle=\color{blue},
+	basicstyle=\linespread{1}\footnotesize\ttfamily,
+	sensitive=false,
+	comment=[l]{\#},
+	morecomment=[s]{/*}{*/},
+	commentstyle=\color{green!50!black},
+	stringstyle=\color{magenta},
+	showstringspaces=false,
+	breaklines=true
+}
+
+\lstdefinestyle{yamlcode}{
+	backgroundcolor=\color{gray!10},   
+	commentstyle=\color{green!50!black},
+	keywordstyle=\color{blue},
+	stringstyle=\color{magenta},
+	basicstyle=\linespread{1}\footnotesize\ttfamily,
+	numberstyle=\tiny,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,  % 't' for top 
+	frame=single,
+	keepspaces=true,         
+	language=YAML,        
+	numbers=none,             
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2,
+	aboveskip=1em,
+	belowskip=1em,
+	belowcaptionskip=12pt
+}
+
+\lstdefinestyle{treestyle}{
+	backgroundcolor=\color{gray!10},   
+	basicstyle=\ttfamily\footnotesize,  % Smaller font, monospaced
+	frame=single,                       % Add a border around the listing
+	breaklines=true,                    
+	showstringspaces=false,             
+	tabsize=4,                          
+	captionpos=b,                       
+}
+
+
 % ------------------------------------------------------------------------------
 % Headers and footers
 % ------------------------------------------------------------------------------	

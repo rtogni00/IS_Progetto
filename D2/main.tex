@@ -586,33 +586,36 @@ Di seguito è riportato il diagramma di tutte le classi precedentemente descritt
 
 Lo scopo di questo capitolo consiste nel rappresentare un punto di incontro tra l'aspetto progettuale e quello implementativo del progetto. In particolare, nella seguente tabella sono riportati i vari metodi presenti all'interno del class diagram mostrato in Figura \ref{fig:classDiagram} e la loro controparte in termini di APIs. 
 
+
 \begin{table}[!htb]
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lllllll}
-\toprule
-Classe          & Metodo                               & HTTP Method & URI + query params & Request & Response & Note \\ \midrule
-BasicUser       & register()                           &             &                    &         &          &      \\
-                & login()                              &             &                    &         &          &      \\
-                & logout()                             &             &                    &         &          &      \\
-                & getSavedEvents()                     &             &                    &         &          &      \\
-                & saveEvent(eventId)                   &             &                    &         &          &      \\
-                & changePwd()                          &             &                    &         &          &      \\
-Organizer       & createEvent()                        &             &                    &         &          &      \\\midrule
-                & updateEvent(eventId)                 &             &                    &         &          &      \\
-                & deleteEvent(eventId)                 &             &                    &         &          &      \\
-Owner           & createPlace()                        &             &                    &         &          &      \\
-                & updatePlace(placeId)                 &             &                    &         &          &      \\
-                & deletePlace(placeId)                 &             &                    &         &          &      \\\midrule
-Event           & setPlace()                           &             &                    &         &          &      \\
-EventSearch     & filterEvents(criteria)               &             &                    &         &          &      \\\midrule
-EventEnrollment & registerParticipant(userId, eventId) &             &                    &         &          &      \\\midrule
-Authentication  & generateToken(userId)                &             &                    &         &          &      \\
-                & verifyToken(token)                   &             &                    &         &          &      \\
-                & authorize(user, action)              &             &                    &         &          &      \\\bottomrule
-\end{tabular}
+	\toprule
+	Classe          & Metodo                               & HTTP Method & URI + query params               & Request                        & Response                          & Note \\ \midrule
+	BasicUser       & register()                           & POST        & /api/v1/users/register            & JSON {email, password}         & JSON {token, userData}           & Crea un nuovo utente \\
+	& login()                              & POST        & /api/v1/users/login               & JSON {email, password}         & JSON {token, userData}           & Restituisce il token JWT \\
+	& logout()                             & POST        & /api/v1/users/logout              & Header {Authorization: Token}  & JSON {message}                   & Invalida il token \\
+	& getSavedEvents()                     & GET         & /api/v1/users/savedEvents         & Header {Authorization: Token}  & JSON {savedEvents}               & Ottiene gli eventi salvati \\
+	& saveEvent(eventId)                   & POST        & /api/v1/users/save/{eventId}      & Header {Authorization: Token}  & JSON {message}                   & Salva un evento nei preferiti \\
+	& changePwd()                          & PUT         & /api/v1/users/change-password     & JSON {oldPwd, newPwd}          & JSON {message}                   & Modifica la password \\ \midrule
+	Organizer       & createEvent()                        & POST        & /api/v1/events                    & JSON {eventData}               & JSON {event}                     & Crea un evento \\
+	& updateEvent(eventId)                 & PUT         & /api/v1/events/{eventId}          & JSON {eventData}               & JSON {event}                     & Aggiorna un evento \\
+	& deleteEvent(eventId)                 & DELETE      & /api/v1/events/{eventId}          & Header {Authorization: Token}  & JSON {message}                   & Elimina un evento \\ \midrule
+	Owner           & createPlace()                        & POST        & /api/v1/places                    & JSON {placeData}               & JSON {place}                     & Crea un luogo \\
+	& updatePlace(placeId)                 & PUT         & /api/v1/places/{placeId}          & JSON {placeData}               & JSON {place}                     & Modifica un luogo \\
+	& deletePlace(placeId)                 & DELETE      & /api/v1/places/{placeId}          & Header {Authorization: Token}  & JSON {message}                   & Elimina un luogo \\ \midrule
+	Event           & setPlace()                           & PUT         & /api/v1/events/{eventId}/place    & JSON {placeId}                 & JSON {event}                     & Assegna un luogo a un evento \\
+	& setDate()                            & PUT         & /api/v1/events/{eventId}/date     & JSON {date}                    & JSON {event}                     & Imposta la data di un evento \\ \midrule
+	EventSearch     & filterEvents(criteria)               & GET         & /api/v1/events?filter={criteria}  & Query params                   & JSON {events}                    & Filtra gli eventi \\ \midrule
+	EventEnrollment & registerParticipant(userId, eventId) & POST        & /api/v1/events/{eventId}/register & Header {Authorization: Token}  & JSON {message}                   & Registra un utente a un evento \\ \midrule
+	Authentication  & generateToken(userId)                & POST        & /api/v1/auth/token                & JSON {userId}                  & JSON {token}                     & Genera un JWT \\
+	& verifyToken(token)                   & POST        & /api/v1/auth/verify               & Header {Authorization: Token}  & JSON {valid: true/false}         & Verifica il token \\
+	& authorize(user, action)              & Middleware  & (interno)                         & Header {Authorization: Token}  & (interno)                        & Middleware di autorizzazione \\ \bottomrule
+\end{tabular}%
+}
 \caption{Dal class diagram alle APIs.}
 \label{tab:class2API}
 \end{table}
-
 
 
 

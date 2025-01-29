@@ -167,6 +167,477 @@ Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow cor
 
 \newpage
 \section{Web APIs}
+
+Le API sono state documentate rispettando le specifiche openapi3. La specifica è disponibile nella \href{https://github.com/rtogni00/IS\_Progetto}{repository GitHub}, ed è per comodità riportata di seguito.
+
+\begin{lstlisting}[style=yamlcode, caption={Documentazione API}]
+	openapi: 3.0.0
+	info:
+		version: 1.0.0
+		title: "EvenTrento OpenAPI 3.0"
+		description: API for managing events.
+		license:
+		name: MIT
+	servers:
+
+		- description: Localhost
+		url: http://localhost:8000/api/v1
+	
+	##################
+	# API ENDPOINTS
+	##################
+	
+	paths:
+	# path per gestire la registrazione di un utente
+	/users/signup:
+		post:
+			description: >-
+				Creates a new user in the system.
+			summary: Register a new user
+			requestBody:
+			required: true
+				content:
+					application/json:
+						schema:
+							$ref: '#/components/schemas/User'
+			responses:
+				"201":
+					description: "User created. Link in the Location header"
+					headers:
+						"Location":
+							schema:
+								type: string
+								description: Link to the newly created student.
+				"400":
+					description: "Invalid input. Please verify the request body."
+				"409":
+					description: "User already exists."
+				
+	# path per gestire il login di un utente gia' registrato
+	/users/login:
+		post:
+			summary: Login to the system
+			description: Authenticate the user and return a JWT token.
+			requestBody:
+				required: true
+				content:
+					application/json:
+						schema:
+							type: object
+							properties:
+								email:
+									type: string
+									description: "Email address of the user"
+								password:
+									type: string
+									description: "Password for the user account"
+							required:
+								- email
+								- password
+			responses:
+				'200':
+					description: Login successful
+					content:
+						application/json:
+							schema:
+								type: object
+								properties:
+									token:
+										type: string
+										description: "JWT token to authenticate future requests"
+				'400':
+					description: Invalid email or password
+				'500':
+					description: Internal server error
+	
+	# path per gestire gli eventi salvati dall'utente
+	/users/saved-events:
+		post:
+			summary: Save an event of interest for a user
+			description: Allows a user to save an event they are interested in.
+			security:
+				- bearerAuth: []   # Richiede un token JWT valido per accedere
+			requestBody:
+				required: true
+				content:
+					application/json:
+						schema:
+							type: object
+							properties:
+								eventId:
+									type: integer
+									description: The ID of the event to save
+								userId:
+									type: integer
+									description: The ID of the user saving the event
+			responses:
+				'201':
+					description: 'Event saved successfully'
+					content:
+						application/json:
+							schema:
+								type: object
+								properties:
+									message:
+										type: string
+			'404':
+				description: 'Event not found'
+			'400':
+				description: 'Invalid save request'
+			'500':
+				description: 'Internal server error'
+		get:
+			summary: Retrieve saved events for the authenticated user
+			description: Returns a list of events saved by the authenticated user.
+			security:
+				- bearerAuth: []
+			responses:
+				'200':
+					description: 'List of saved events'
+					content:
+						application/json:
+							schema:
+								type: array
+								items:
+									$ref: '#/components/schemas/Event'
+			'401':
+				description: 'Unauthorized user'
+			'500':
+				description: 'Internal server error'
+				
+	# path per creare e fare il retrieving di eventi
+	/events:
+		get:
+			description: Returns a list of events, optionally filtered by date.
+			summary: View all events (with optional date filter)
+			parameters:
+				- in: query
+					name: startDate
+					schema:
+						type: string
+						format: date-time
+					required: false
+			responses:
+				'200':
+					description: 'Collection of events'
+					content:
+						application/json:
+						schema:
+							type: array
+							items:
+							$ref: '#/components/schemas/Event'
+			'400':
+				description: 'Invalid date format'
+			'500':
+				description: 'Internal server error'
+
+
+	post:
+		description: >-
+			Creates a new event in the system.
+		summary: Create a new event
+		security:
+			- bearerAuth: []   # Richiede un token JWT valido per accedere
+		requestBody:
+			required: true
+			content:
+				application/json:
+					schema:
+						$ref: '#/components/schemas/EventCreation' # Creating a new event
+		responses:
+			'201':
+				description: 'Event successfully created'
+				content:
+					application/json:
+						schema:
+							$ref: '#/components/schemas/Event'  # Returning the created event
+		'400':
+			description: 'Invalid input, check the event details'
+		'403':
+			description: 'User not authorized to create an event (only organizers)'
+		'500':
+			description: 'Internal server error'
+					
+	# path per la modifica di un evento esistente
+	/events/{eventId}:
+		put:
+			summary: Update an existing event
+			description: Allows an organizer to update an event they created.
+			security:
+				- bearerAuth: []   # Richiede un token JWT valido per accedere
+			parameters:
+				- in: path
+					name: eventId
+					schema:
+						type: integer
+					required: true
+					description: The ID of the event to be updated
+			requestBody:
+				required: true
+				content:
+					application/json:
+						schema:
+							$ref: '#/components/schemas/EventUpdate'  # Schema per aggiornamento
+			responses:
+				'200':
+					description: 'Event updated successfully'
+					content:
+						application/json:
+							schema:
+								$ref: '#/components/schemas/Event'
+			'403':
+				description: 'Forbidden. Organizer is not authorized to modify this event.'
+			'404':
+				description: 'Event not found'
+			'500':
+				description: 'Internal server error'
+				
+	# path per l'iscrizione ad un evento                
+	/events/{eventId}/registration:
+		post:
+			summary: Register a participant for an event
+			description: Allows a participant to register for a specific event.
+			security:
+				- bearerAuth: []   # Richiede un token JWT valido per accedere
+			parameters:
+				- in: path
+					name: eventId
+					required: true
+					schema:
+						type: integer
+			responses:
+				'201':
+					description: 'Registration successful'
+					content:
+						application/json:
+							schema:
+								type: object
+								properties:
+									message:
+										type: string
+			'404':
+				description: 'Event not found'
+			'400':
+				description: 'Invalid registration request'
+			'500':
+				description: 'Internal server error'
+			
+	# path per gli spazi
+	/places:
+		get:
+			summary: Retrieve a list of spaces
+			description: Returns a list of all available spaces.
+			security:
+				- bearerAuth: []   # Richiede un token JWT valido per accedere
+			responses:
+				'200':
+					description: 'A list of spaces'
+					content:
+						application/json:
+							schema:
+								type: array
+								items:
+									$ref: '#/components/schemas/Place'
+				'500':
+					description: 'Internal server error'
+					
+		post:
+			summary: Create a new space
+			description: Allows an owner to create a new space for events.
+			security:
+				- bearerAuth: []   # Richiede un token JWT valido per accedere
+			requestBody:
+				required: true
+				content:
+					application/json:
+					schema:
+						$ref: '#/components/schemas/Place'
+			responses:
+				'201':
+					description: 'Place created successfully'
+					content:
+						application/json:
+							schema:
+								$ref: '#/components/schemas/Place'
+			'400':
+				description: 'Invalid input'
+			'500':
+				description: 'Internal server error'
+				
+		put:
+			summary: Update an existing space
+			description: Allows an owner to update a space they created.
+			security:
+				- bearerAuth: []   # Richiede un token JWT valido per accedere
+			parameters:
+				- in: path
+					name: spaceId
+					required: true
+					schema:
+						type: integer
+			requestBody:
+				required: true
+				content:
+					application/json:
+						schema:
+							$ref: '#/components/schemas/PlaceUpdate'
+			responses:
+				'200':
+				description: 'Place updated successfully'
+				content:
+					application/json:
+						schema:
+							$ref: '#/components/schemas/Place'
+			'403':
+				description: 'Forbidden. Owner is not authorized to modify this space.'
+			'404':
+				description: 'Place not found'
+			'400':
+				description: 'Invalid input'
+			'500':
+				description: 'Internal server error'
+				
+	
+	#######################
+	# COMPONENTS SECTION
+	#######################
+	
+	components:
+		schemas:
+			User:
+				type: object
+				required:
+					- username
+					- email
+					- password
+					- role
+				properties:
+					username:
+						type: string
+						description: "Username of the user"
+					email:
+						type: string
+						description: "Email address of the user"
+					password:
+						type: string
+						description: "Password for the user account"
+					role:
+						type: string
+						enum: [basicUser, owner, organizer]
+						description: "Role of the user in the system"
+						
+			Event:
+				type: object
+				required:
+					- id
+					- name
+					- date
+					- location
+					- organizerId
+				properties:
+					id:
+						type: integer
+						description: "Unique identifier of the event"
+					name:
+						type: string
+						description: "Name of the event"
+					description:
+						type: string
+						description: "Brief description of the event"
+					date:
+						type: string
+						format: date-time
+						description: "Date and time of the event"
+					location:
+						type: string
+						description: "Location where the event will be held"
+					organizerId:
+						type: integer
+						description: "The ID of the organizer who created the event"
+			
+			EventCreation:
+				type: object
+				required:
+					- name
+					- date
+					- location
+				properties:
+					name:
+						type: string
+						description: "Name of the event"
+					description:
+						type: string
+						description: "Brief description of the event"
+					date:
+						type: string
+						format: date-time
+						description: "Date and time of the event"
+					location:
+						type: string
+						description: "Location where the event will be held"
+						
+			EventUpdate:
+				type: object
+				required:
+				- name
+				- description
+				- date
+				- location
+				properties:
+					name:
+						type: string
+						description: "Updated name of the event"
+					description:
+						type: string
+						description: "Updated description of the event"
+					date:
+						type: string
+						format: date-time
+						description: "Updated date and time of the event"
+					location:
+						type: string
+						description: "Updated location of the event"
+						
+			Place: # oggetto per la creazione e la visualizzazione dello spazio
+				type: object
+				properties:
+					id:
+						type: integer
+						description: Unique identifier of the space
+					name:
+						type: string
+						description: Name of the space
+					location:
+						type: string
+						description: Location of the space
+					capacity:
+						type: integer
+						description: Maximum capacity of the space
+
+   		    PlaceUpdate: # oggetto per l'aggiornamento dello spazio
+				type: object
+				properties:
+					name:
+						type: string
+						description: Updated name of the space
+					location:
+						type: string
+						description: Updated location of the space
+					capacity:
+						type: integer
+						description: Updated maximum capacity of the space
+	
+			
+		# modalita' di autenticazione che le API utilizzano
+		securitySchemes:
+			bearerAuth:
+				type: http
+				scheme: bearer
+				bearerFormat: JWT
+				
+\end{lstlisting}
+	
+
 \newpage
 
 \section{Implementation}
@@ -174,7 +645,7 @@ Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow cor
 
 Il codice del progetto, disponibile su \href{https://github.com/rtogni00/IS_Progetto}{GitHub}, è organizzato secondo questo schema:
 
-\begin{verbatim}
+\begin{lstlisting}[style=treestyle, caption=Struttura della repository]
 .
 +-- D1
 +-- D2
@@ -183,10 +654,11 @@ Il codice del progetto, disponibile su \href{https://github.com/rtogni00/IS_Prog
 +-- front_end
 |   +-- index.html
 |   +-- pages
+|   +-- scripts
+|   +-- styles
 +-- node_app
 |   +-- app.js
-|   +-- authentication.js  // middleware per l'autenticazione
-|   +-- clearDB.js  // funzione ausiliaria utilizzata durante lo sviluppo
+|   +-- helperFunctions // funzioni ausiliarie usate durante lo sviluppo
 |   +-- .env.example // esempio di file di configurazione delle
 |   |                // variabili d'ambiente
 |   +-- index.js
@@ -194,12 +666,12 @@ Il codice del progetto, disponibile su \href{https://github.com/rtogni00/IS_Prog
 |   +-- package.json  // file di configurazione del progetto npm
 |   +-- package-lock.json
 |   +-- routes  // endpoint routes per le APIs
-|   +-- tokenChecker.js
+|   +-- tokenChecker.js // middleware per l'autenticazione
 +-- README.md
 |   +-- .gitignore // configurazione git repo
 +-- swagger
     +-- evenTrentoAPIs.yaml // documentazione API
-\end{verbatim}
+\end{lstlisting}
 
 
 \subsection{Branching strategy e organizzazione del lavoro}
@@ -229,6 +701,7 @@ Il progetto npm fa uso dei seguenti moduli:
     \item \textbf{Express} come framework per il backend
     \item \textbf{Jsonwebtoken} per gestire l'autenticazione
     \item \textbf{Mongoose} per interfacciarsi con mongoDB
+    \item \textbf{Axios} per interagire con l'API di \href{https://www.openstreetmap.org/#map=6/42.09/12.56}{OpenStreetMap}
 \end{itemize}
 
 Sono inoltre riportate le seguenti dipendenze di sviluppo:
@@ -242,6 +715,14 @@ Sono inoltre riportate le seguenti dipendenze di sviluppo:
 La gestione dei dati è stata realizzata basandosi su un database non
 relazionale. In particolare, si è fatto uso del servizio offerto da
 \href{https://www.mongodb.com/products/platform/atlas-database}{Atlas MongoDB}.
+
+Per la gestione dei dati necessari per il funzionamento dell'applicazione sono state definite quattro strutture dati mediante Mongoose:
+\begin{itemize}
+	\item Event: per gestire tutte le funzionalità legate alla creazione, modifica ed eliminazione degli eventi
+	\item EventRegistration: per gestire correttamente l'iscrizione e la disiscrizione degli utenti dagli eventi
+	\item Place: per gestire tutte le funzionalità legate alla creazione, modifica ed elimazione dei luoghi
+	\item User: per gestire le tre tipologie di utente e le attività ad esse collegate
+\end{itemize}
 
 \newpage
 \subsection{Testing}

@@ -247,7 +247,6 @@ paths:
                     description: 'Invalid registration request'
                 '500':
                     description: 'Internal server error'
-
     
     # path per gli spazi
     /places:
@@ -289,9 +288,6 @@ paths:
                     description: 'Invalid input'
                 '500':
                     description: 'Internal server error'
-
-    # path per la modifica di un spazio esistente
-    /places/{placeId}:
         put:
             summary: Update an existing space
             description: Allows an owner to update a space they created.
@@ -452,11 +448,6 @@ components:
                 capacity:
                     type: integer
                     description: Maximum capacity of the space
-                amenities:
-                    type: array
-                    items:
-                        type: string
-                    description: List of amenities available in the space
 
         PlaceUpdate: # oggetto per l'aggiornamento dello spazio
             type: object
@@ -470,11 +461,7 @@ components:
                 capacity:
                     type: integer
                     description: Updated maximum capacity of the space
-                amenities:
-                    type: array
-                    items:
-                        type: string
-                    description: Updated list of amenities available in the space
+                
     # modalità di autenticazione che le API utilizzano
     securitySchemes:
         bearerAuth:
