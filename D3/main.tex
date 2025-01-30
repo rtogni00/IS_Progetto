@@ -727,6 +727,99 @@ Per la gestione dei dati necessari per il funzionamento dell'applicazione sono s
 \newpage
 \subsection{Testing}
 
+Le API sono state testate tramite una test-suite sviluppata mediante l'utilizzo di \href{https://jestjs.io/}{Jest}. L’implementazione dei test è organizzata in file \verb|.test.js| situati all'interno della cartella \verb*|tests|. Ogni file contiene tutti i test case relativi ad una certa route.
+
+
+\begin{table}[!htb]
+	\centering
+	\renewcommand{\arraystretch}{1.2} % Adjust row height
+	\setlength{\tabcolsep}{6pt} % Adjust column spacing
+	\resizebox{\textwidth}{!}{%
+	\begin{tabular}{p{.5cm} p{3.5cm} p{2.5cm} p{2.5cm} p{5cm} p{1.5cm}}
+		\toprule
+		\# & Descrizione & Test Data & Precondizioni & Risultato Atteso & Risultato Effettivo \\ \midrule
+		1 & Fetching di tutti gli eventi                                                 &                                                               &                                             & Viene ritornato un array contenente tutti gli eventi presenti nel database                                     & Risultato atteso      \\\midrule
+		2 & Fetching degli eventi filtrando per nome                                     & Titolo dell'evento                                            &                                             & Viene ritornato un array contenente gli eventi che corrispondono con i filtri di ricerca (possibilmente vuoto) & Risultato atteso      \\\midrule
+		3 & Fetching degli eventi filtrando per location                                 & Luogo dell'evento                                             &                                             & Viene ritornato un array contenente gli eventi che corrispondono con i filtri di ricerca (possibilmente vuoto) & Risultato atteso      \\\midrule
+		4 & Fetching degli eventi filtrando per data                                     & Data dell'evento                                              &                                             & Viene ritornato un array contenente gli eventi che corrispondono con i filtri di ricerca (possibilmente vuoto) & Risultato atteso      \\\midrule
+		5 & Creazione di un nuovo evento con dati validi                                 & Dati dell'evento che si vuole creare, token di autenticazione & Login effettuato con un profilo "organizer" & Viene creato un evento con i dati specificati                                                                  & Risultato atteso      \\\midrule
+		5.1 & Creazione di un nuovo evento senza essere loggati                            & Dati dell'evento che si vuole creare                          & Login non effettuato                        & Viene mostrato un messaggio di errore e l'evento non viene creato                                              & Risultato atteso      \\\midrule
+		5.2 & Creazione di un nuovo evento essendo loggati con un profilo non  "organizer" & Dati dell'evento che si vuole creare, token di autenticazione &                                             & Viene mostrato un messaggio di errore e l'evento non viene creato                                              & Risultato atteso      \\ \bottomrule
+	\end{tabular}
+}
+\caption{Test case implementati per testare le funzionalità implementate. I dati dell'evento a cui si fa riferimento sono quelli riportati nel Listing \ref{lst:example-js}.}
+\end{table}
+
+Di seguito è riportato per completezza il modello relativo agli eventi.
+
+\begin{lstlisting}[style=jscode, caption={Modello per gli eventi.}, label={lst:example-js}]
+	var mongoose = require('mongoose');
+	var Schema = mongoose.Schema;
+	
+	const EventSchema = new Schema({
+		name: {
+			type: String,
+			required: true,
+			description: "Name of the event"
+		},
+		description: {
+			type: String,
+			description: "Description of the event"
+		},
+		date: {
+			type: Date,
+			required: true,
+			description: "Date and time of the event"
+		},
+		location: {
+			type: String,
+			required: true,
+			description: "Location of the event"
+		},
+		latitude: { 
+			type: Number, 
+			description: "Latitude of the location" 
+		},
+		longitude: { 
+			type: Number,
+			description: "Longitude of the location" 
+		},
+		capacity: {
+			type: Number,
+			required: true,
+			description: "Maximum number of participants"
+		},
+		organizer: {
+			type: String,
+			ref: 'User',
+			required: true,
+			description: "Reference to the organizer who created the event"
+		},
+		pictures: {
+			type: [String], // Array of strings for picture URLs
+			description: "Array of picture URLs of the event location"
+		},
+		participants: {
+			type: Number,
+			default: 0,
+			description: "Current number of participants"
+		},
+		enrolledUsers: {
+			type: [Schema.Types.ObjectId], // Array of user IDs
+			ref: 'User',
+			description: "Array of user IDs representing enrolled users"
+		}
+	}, {
+		timestamps: true
+	});
+	
+	// Create and export the Event model
+	const EventModel = mongoose.model('Event', EventSchema);
+	module.exports = EventModel;
+	
+\end{lstlisting}
+
+
 \textbf{TODO}
 
 \section{Front-End}

@@ -173,6 +173,7 @@ describe("Events API", () => {
 
 /*
 TODO:
+- POST /api/v1/events/create con un profilo NON di tipo organizer
 - GET /api/v1/events/:eventId/participants (Get participants for an event)
 - POST /api/v1/events/:eventId/save (Save an event to user's saved events)
 - POST /api/v1/events/:eventId/markPast (Mark an event as past)

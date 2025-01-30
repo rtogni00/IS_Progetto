@@ -125,6 +125,40 @@
 	captionpos=b,                       
 }
 
+\lstdefinelanguage{JavaScript}{
+	morekeywords={typeof, new, true, false, catch, function, return, null, catch, switch, var, let, const, if, in, while, do, else, case, break, for, try, throw, class, extends, super, import, export, default, async, await},
+	morecomment=[l]{//},       % Line comments
+	morecomment=[s]{/*}{*/},   % Block comments
+	morestring=[b]",           % Double quote strings
+	morestring=[b]',           % Single quote strings
+	morestring=[b]`            % Template literals (backticks)
+}
+
+\lstdefinestyle{jscode}{
+	backgroundcolor=\color{gray!10},   
+	commentstyle=\color{green!50!black},
+	keywordstyle=\color{blue},
+	stringstyle=\color{magenta},
+	numberstyle=\tiny,
+	basicstyle=\linespread{1}\footnotesize\ttfamily,
+	breakatwhitespace=false,         
+	breaklines=true,                 
+	captionpos=b,  % 't' for top
+	frame=single,
+	keepspaces=true,         
+	language=JavaScript,        
+	numbers=none,             
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2,
+	aboveskip=1em,
+	belowskip=1em,
+	belowcaptionskip=12pt
+}
+
+
 
 % ------------------------------------------------------------------------------
 % Headers and footers
