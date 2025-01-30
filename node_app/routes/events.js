@@ -149,9 +149,9 @@ router.post('/create', tokenChecker, async (req, res) => {
         // Save the new event
         const savedEvent = await newEvent.save();
         res.status(201).json(savedEvent);
-        console.log("Event created successfully with coordinates:", { latitude: lat, longitude: lon });
+        // console.log("Event created successfully with coordinates:", { latitude: lat, longitude: lon });
     } catch (error) {
-        console.error('Error creating event:', error);  // Log the error details for debugging
+        // console.error('Error creating event:', error);  // Log the error details for debugging
         res.status(500).json({ message: 'Error creating event', error });
     }
 });
@@ -322,7 +322,7 @@ router.get('/:eventId/participants', async (req, res) => {
         const eventId = req.params.eventId;
 
         // Find registrations with "registered" status for the event
-        const participants = await RegistrationModel.find({ event: eventId, status: 'registered' })
+        const participants = await EventRegistrationModel.find({ event: eventId, status: 'registered' })
             .populate('user', 'username email'); // Populate user details if needed
 
         res.status(200).json({ participants });

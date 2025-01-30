@@ -9,6 +9,10 @@
   },
   "scripts": {
     "start": "node app.js",
-    "dev": "node -r dotenv/config index.js"
+    "dev": "node -r dotenv/config index.js",
+    "test": "jest"
+  },
+  "devDependencies": {
+    "supertest": "^7.0.0"
   }
 }
