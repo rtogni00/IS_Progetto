@@ -3,9 +3,31 @@ const router = express.Router();
 const PlaceModel = require('../models/place'); // Import the Place model
 const tokenChecker = require('../tokenChecker');
 
-// Route to get a place by its name
-router.get('/:name', async (req, res) => {
+// Route to get all places
+router.get('/', tokenChecker, async (req, res) => {
     try {
+        // Check if the logged user is an organizer
+        if (req.loggedUser.role !== 'organizer') {
+            return res.status(403).json({ message: 'Unauthorized: Only organizers can view places.' });
+        }
+
+        const places = await PlaceModel.find({}); // Fetch all places
+        res.status(200).json(places);
+    } catch (error) {
+        console.error('Error fetching places:', error);
+        res.status(500).json({ message: 'Error fetching places', error });
+    }
+});
+
+
+// Route to get a place by its name
+router.get('/:name', tokenChecker, async (req, res) => {
+    try {
+
+        if (req.loggedUser.role !== 'organizer') {
+            return res.status(403).json({ message: 'Unauthorized: Only organizers can view places.' });
+        }
+
         const placeName = req.params.name;
         const place = await PlaceModel.findOne({ name: placeName });
 
@@ -32,9 +54,9 @@ router.post('/create', tokenChecker, async (req, res) => {
         const savedPlace = await newPlace.save();
 
         res.status(201).json(savedPlace);
-        console.log("Place successfully added");
+        // console.log("Place successfully added");
     } catch (error) {
-        console.error('Error creating place:', error);
+        // console.error('Error creating place:', error);
         res.status(500).json({ message: 'Error creating place', error });
     }
 });

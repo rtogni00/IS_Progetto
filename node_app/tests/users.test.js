@@ -4,7 +4,6 @@ const mongoose = require("mongoose");
 require('dotenv').config(); // Load environment variables from .env file
 const UserModel = require("../models/user");
 const dbURI = process.env.MONGODB_URI;
-const jwt = require('jsonwebtoken');
 
 beforeAll(async () => {
     const testDBUri = dbURI;
@@ -16,6 +15,14 @@ afterAll(async () => {
 });
 
 describe("Users API", () => {
+
+    // Cleanup: Remove any test user after each test
+    afterEach(async () => {
+        await UserModel.deleteMany({
+            email: { $in: ["testuser@example.com", "existing@example.com", "valid@example.com"] }
+        });
+    });
+
     // Test: POST registration with complete data
     test('should signup successfully with complete data', async () => {
         const newUser = {
@@ -69,7 +76,8 @@ describe("Users API", () => {
 
         await request(app)
             .post('/api/v1/users/signup')
-            .send(existingUser);
+            .send(existingUser)
+            .expect(201); // Expecting successful signup
 
         // Attempt to register with the same email
         const res = await request(app)
@@ -79,9 +87,10 @@ describe("Users API", () => {
                 email: "existing@example.com", // Same email
                 password: "anotherpassword",
                 role: "user"
-            });
+            })
+            .expect(400); // Expecting Bad Request
 
-        expect(res.status).toBe(400); // Expecting Bad Request
+        // expect(res.status).toBe(400); // Expecting Bad Request
         expect(res.body).toHaveProperty("message");
         expect(res.body.message).toContain("Email already in use");
 

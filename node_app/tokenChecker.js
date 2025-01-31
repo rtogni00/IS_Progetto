@@ -24,7 +24,7 @@ const tokenChecker = function(req, res, next) {
 				message: 'Failed to authenticate token.'
 			});		
 		} else {
-			console.log("Decoded token:", decoded); // Debugging line
+			// console.log("Decoded token:", decoded); // Debugging line
 			// if everything is good, save to request for use in other routes
 			req.loggedUser = decoded;
 			next();

@@ -55,9 +55,12 @@ Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche
 	
 \begin{table}[!htb]
 	\centering
+	\renewcommand{\arraystretch}{1.7} % Increased vertical spacing
 	\begin{tabular}{clp{7cm}l} % Use 'p{7cm}' for the User Story column
 		\toprule
+		\rowcolor{gray!20}
 		\multicolumn{4}{c}{\textbf{Profilo}}\\ \midrule
+		\rowcolor{gray!20}
 		Id & Nome & User Story & Priorità \\ \midrule
 		A1  & Registrazione  & Come utente, voglio registrarmi per utilizzare il sistema & 1 \\
 		A2  & Login & In qualità di utente, devo essere in grado di effettuare il login & 1 \\
@@ -71,9 +74,12 @@ Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche
 
 \begin{table}[!htb]
 	\centering
+	\renewcommand{\arraystretch}{1.7}
 	\begin{tabular}{clp{7cm}l} % Use 'p{7cm}' for the User Story column
 		\toprule
+		\rowcolor{gray!20}
 		\multicolumn{4}{c}{\textbf{Eventi}}\\ \midrule
+		\rowcolor{gray!20}
 		Id & Nome & User Story & Priorità \\ \midrule
 		B1  & Lista eventi            & In qualità di utente, devo essere in grado di scorrere una lista di eventi                                               &  2\\
 		B2  & Filtri eventi           & In qualità di utente, devo essere in grado di filtrare gli eventi in base alla data                                      &  2 \\
@@ -89,11 +95,16 @@ Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche
 	\label{tab:eventi}
 \end{table}
 
+\newpage
+
 \begin{table}[!htb]
 	\centering
+	\renewcommand{\arraystretch}{1.7}
 	\begin{tabular}{clp{7cm}l} % Use 'p{7cm}' for the User Story column
 		\toprule
+		\rowcolor{gray!20}
 		\multicolumn{4}{c}{\textbf{Spazi}}\\ \midrule
+		\rowcolor{gray!20}
 		Id & Nome & User Story & Priorità \\ \midrule
 		C1  & Aggiunta spazio  & In qualità di owner, devo essere in grado di pubblicare uno spazio disponibile & 2\\
 		C2 & Rimozione spazio & In qualità di owner, devo essere in grado di rimuovere uno spazio esistente & 2\\
@@ -108,9 +119,12 @@ Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche
 
 \begin{table}[!htb]
 	\centering
+	\renewcommand{\arraystretch}{1.7}
 	\begin{tabular}{clp{7cm}l} % Use 'p{7cm}' for the User Story column
 		\toprule
+		\rowcolor{gray!20}
 		\multicolumn{4}{c}{\textbf{Mappa}}\\ \midrule
+		\rowcolor{gray!20}
 		Id & Nome & User Story & Priorità \\ \midrule
 		D1  & Esplorazione mappa      & In qualità di utente, devo essere in grado di muovermi nella mappa per visualizzare gli eventi                           & 1 \\
 %		D2  & Aggiunta luogo          & In qualità di owner, devo essere in grado di aggiungere un nuovo luogo alla mappa                                        & \\
@@ -121,6 +135,7 @@ Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche
 \end{table}
 
 \newpage
+
 \section{User Flow}
 
 Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow corrispondenti ad una serie di user stories. La notazione utilizzata nelle descrizioni si riferisce a quella riportata nelle Tabelle \ref{tab:profili}, \ref{tab:eventi}, \ref{tab:spazi} e \ref{tab:mappa}.
@@ -732,11 +747,13 @@ Le API sono state testate tramite una test-suite sviluppata mediante l'utilizzo 
 
 \begin{table}[!htb]
 	\centering
-	\renewcommand{\arraystretch}{1.2} % Adjust row height
+	\renewcommand{\arraystretch}{1.7} % Adjust row height
 	\setlength{\tabcolsep}{6pt} % Adjust column spacing
-	\resizebox{\textwidth}{!}{%
+	\resizebox{\textwidth}{!}
+	{%
 	\begin{tabular}{p{.5cm} p{3.5cm} p{2.5cm} p{2.5cm} p{5cm} p{1.5cm}}
 		\toprule
+		\rowcolor{gray!20}
 		\# & Descrizione & Test Data & Precondizioni & Risultato Atteso & Risultato Effettivo \\ \midrule
 		1 & Fetching di tutti gli eventi                                                 &                                                               &                                             & Viene ritornato un array contenente tutti gli eventi presenti nel database                                     & Risultato atteso      \\\midrule
 		2 & Fetching degli eventi filtrando per nome                                     & Titolo dell'evento                                            &                                             & Viene ritornato un array contenente gli eventi che corrispondono con i filtri di ricerca (possibilmente vuoto) & Risultato atteso      \\\midrule
@@ -752,8 +769,33 @@ Le API sono state testate tramite una test-suite sviluppata mediante l'utilizzo 
 		7 &  Autenticazione con dati corretti & Email e password corretti & Utente precedentemente registrato & L'utente viene loggato nel sistema e può accedere alla propria area personale & Risultato atteso \\\midrule
 		7.1 &  Autenticazione con password errata  & Email corretta, password errata & Utente precedentemente registrato & Viene mostrato un messaggio di errore e l'utente viene reindirizzato alla pagina di login & Risultato atteso \\\midrule
 		7.2 &  Autenticazione con email errata  & Email errata, password corretta & Utente precedentemente registrato & Viene mostrato un messaggio di errore e l'utente viene reindirizzato alla pagina di login & Risultato atteso \\\midrule
-		7.3 &  Autenticazione senza fornire dati  &  & Utente precedentemente registrato & Viene mostrato un messaggio di errore e l'utente viene reindirizzato alla pagina di login & Risultato atteso \\\midrule
-		
+		7.3 &  Autenticazione senza fornire dati  &  & Utente precedentemente registrato & Viene mostrato un messaggio di errore e l'utente viene reindirizzato alla pagina di login & Risultato atteso \\\midrule		
+	\end{tabular}
+}
+
+\end{table}
+
+\newpage
+
+\begin{table}[!htb]
+	\centering
+	\renewcommand{\arraystretch}{1.7} % Adjust row height
+	\setlength{\tabcolsep}{6pt} % Adjust column spacing
+	\resizebox{\textwidth}{!}
+	{%
+	\begin{tabular}{p{.5cm} p{3.5cm} p{2.5cm} p{2.5cm} p{5cm} p{1.5cm}}
+	\toprule
+	8 & Fetching delle location &  & Location presenti nel database & Viene ritornato un array contenente tutte le location presenti nel database & Risultato atteso \\\midrule
+	8.1 & Fetching delle location senza essere loggati &  & Utente non autenticato & L'operazione non è permessa, viene ritornato un messaggio di errore & Risultato atteso \\\midrule
+	8.2 & Fetching delle location con un profilo diverso da "organizer" &  & Utente autenticato con ruolo "user" o "owner" & L'operazione non è permessa, viene ritornato un messaggio di errore & Risultato atteso \\\midrule
+	9 & Fetching di una location in base al nome & Nome della location valido & Database contenente almeno una location con quel nome & Viene ritornato l'oggetto della location corrispondente al nome fornito & Risultato atteso \\\midrule
+	9.1 & Fetching di una location in base al nome senza essere loggati & Nome della location valido & Utente non autenticato & L'operazione non è permessa, viene ritornato un messaggio di errore& Risultato atteso \\\midrule
+	9.2 & Fetching di una location in base al nome con un profilo diverso da "organizer" & Nome della location valido & Utente autenticato con ruolo "user" o "owner" & L'operazione non è permessa, viene ritornato un messaggio di errore & Risultato atteso \\\midrule
+	10 & Creazione di una location & Dati relativi alla location & Utente autenticato con ruolo "owner" & La nuova location viene creata nel database e restituita nella risposta & Risultato atteso \\\midrule
+	10.1 & Creazione di una location senza essere loggati & Dati relativi alla location & Utente non autenticato & L'operazione non è permessa, viene ritornato un messaggio di errore e la location non viene creata & Risultato atteso \\\midrule
+	10.2 & Creazione di una location con un profilo diverso da "owner" & Dati relativi alla location & Utente autenticato con ruolo "user" o "organizer" & L'operazione non è permessa, viene ritornato un messaggio di errore e la location non viene creata & Risultato atteso \\\midrule
+	10.3 & Creazione di una location senza inserire tutti i dati necessari & Dati parziali (e.g., solo nome) & Utente autenticato con ruolo "owner" & Viene ritornato un messaggio di errore e la location non viene creata & Risultato atteso \\\bottomrule
+	
 	\end{tabular}
 }
 \caption{Test case implementati per testare le funzionalità implementate. I dati a cui si fa riferimento nella colonna "Test Data" sono quelli riportati nei Listing \ref{lst:events}, \ref{lst:users}, e \ref{lst:places}.}
