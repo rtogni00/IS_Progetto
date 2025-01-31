@@ -727,7 +727,7 @@ Per la gestione dei dati necessari per il funzionamento dell'applicazione sono s
 \newpage
 \subsection{Testing}
 
-Le API sono state testate tramite una test-suite sviluppata mediante l'utilizzo di \href{https://jestjs.io/}{Jest}. L’implementazione dei test è organizzata in file \verb|.test.js| situati all'interno della cartella \verb*|tests|. Ogni file contiene tutti i test case relativi ad una certa route.
+Le API sono state testate tramite una test-suite sviluppata mediante l'utilizzo di \href{https://jestjs.io/}{Jest}. L’implementazione dei test è organizzata in file \verb|.test.js| situati all'interno della cartella \verb*|tests|. Ogni file contiene tutti i test case relativi ad una determinata route.
 
 
 \begin{table}[!htb]
@@ -744,15 +744,24 @@ Le API sono state testate tramite una test-suite sviluppata mediante l'utilizzo 
 		4 & Fetching degli eventi filtrando per data                                     & Data dell'evento                                              &                                             & Viene ritornato un array contenente gli eventi che corrispondono con i filtri di ricerca (possibilmente vuoto) & Risultato atteso      \\\midrule
 		5 & Creazione di un nuovo evento con dati validi                                 & Dati dell'evento che si vuole creare, token di autenticazione & Login effettuato con un profilo "organizer" & Viene creato un evento con i dati specificati                                                                  & Risultato atteso      \\\midrule
 		5.1 & Creazione di un nuovo evento senza essere loggati                            & Dati dell'evento che si vuole creare                          & Login non effettuato                        & Viene mostrato un messaggio di errore e l'evento non viene creato                                              & Risultato atteso      \\\midrule
-		5.2 & Creazione di un nuovo evento essendo loggati con un profilo non  "organizer" & Dati dell'evento che si vuole creare, token di autenticazione &                                             & Viene mostrato un messaggio di errore e l'evento non viene creato                                              & Risultato atteso      \\ \bottomrule
+		5.2 & Creazione di un nuovo evento essendo loggati con un profilo non  "organizer" & Dati dell'evento che si vuole creare, token di autenticazione &                                             & Viene mostrato un messaggio di errore e l'evento non viene creato                                              & Risultato atteso      \\ \midrule
+		6 &  Registrazione di un nuovo utente inserendo tutti i dati & Dati dell'utente che si vuole registrare & Utente non precedentemente registrato & Viene creato un nuovo User nel database & Risultato atteso \\\midrule
+		6.1 &  Registrazione di un nuovo utente con dati mancanti & Dati parziali dell'utente che si vuole registrare & Utente non precedentemente registrato & Viene mostrato un messaggio di errore e l'utente non viene registrato & Risultato atteso \\\midrule
+		6.2 &  Registrazione di un nuovo utente con email già in uso & Dati dell'utente che si vuole registrare & Utente non precedentemente registrato & Viene mostrato un messaggio di errore e l'utente non viene registrato & Risultato atteso \\\midrule
+		6.3 &  Registrazione di un nuovo utente con username già in uso & Dati dell'utente che si vuole registrare & Utente non precedentemente registrato & Viene mostrato un messaggio di errore e l'utente non viene registrato & Risultato atteso \\\midrule
+		7 &  Autenticazione con dati corretti & Email e password corretti & Utente precedentemente registrato & L'utente viene loggato nel sistema e può accedere alla propria area personale & Risultato atteso \\\midrule
+		7.1 &  Autenticazione con password errata  & Email corretta, password errata & Utente precedentemente registrato & Viene mostrato un messaggio di errore e l'utente viene reindirizzato alla pagina di login & Risultato atteso \\\midrule
+		7.2 &  Autenticazione con email errata  & Email errata, password corretta & Utente precedentemente registrato & Viene mostrato un messaggio di errore e l'utente viene reindirizzato alla pagina di login & Risultato atteso \\\midrule
+		7.3 &  Autenticazione senza fornire dati  &  & Utente precedentemente registrato & Viene mostrato un messaggio di errore e l'utente viene reindirizzato alla pagina di login & Risultato atteso \\\midrule
+		
 	\end{tabular}
 }
-\caption{Test case implementati per testare le funzionalità implementate. I dati dell'evento a cui si fa riferimento sono quelli riportati nel Listing \ref{lst:example-js}.}
+\caption{Test case implementati per testare le funzionalità implementate. I dati a cui si fa riferimento nella colonna "Test Data" sono quelli riportati nei Listing \ref{lst:events}, \ref{lst:users}, e \ref{lst:places}.}
 \end{table}
 
-Di seguito è riportato per completezza il modello relativo agli eventi.
+Di seguito sono riportati per completezza i modelli relativi agli eventi, agli utenti, e ai luoghi.
 
-\begin{lstlisting}[style=jscode, caption={Modello per gli eventi.}, label={lst:example-js}]
+\begin{lstlisting}[style=jscode, caption={Modello per gli eventi.}, label={lst:events}]
 	var mongoose = require('mongoose');
 	var Schema = mongoose.Schema;
 	
@@ -816,12 +825,82 @@ Di seguito è riportato per completezza il modello relativo agli eventi.
 	// Create and export the Event model
 	const EventModel = mongoose.model('Event', EventSchema);
 	module.exports = EventModel;
-	
 \end{lstlisting}
 
 
-\textbf{TODO}
+\begin{lstlisting}[style=jscode, caption={Modello per gli user.}, label={lst:users}]
+	const mongoose = require('mongoose');
+	const Schema = mongoose.Schema;
+	
+	// Define the user schema
+	const UserSchema = new Schema({
+		username: {
+			type: String,
+			required: true,
+			unique: true
+		},
+		email: {
+			type: String,
+			required: true,
+			unique: true
+		},
+		password: {
+			type: String,
+			required: true
+		},
+		role: {
+			type: String,
+			enum: ['user', 'owner', 'organizer'], // user = basicUser
+			required: true
+		},
+		
+		// Array of saved event IDs
+		savedEvents: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Event'
+		}],
+		
+		// Array of past events (event history)
+		pastEvents: [{
+			type: mongoose.Schema.Types.ObjectId,
+			ref: 'Event'
+		}]
+	}, { timestamps: true });
+	
+	// Create and export the User model
+	const UserModel = mongoose.model('User', UserSchema);
+	module.exports = UserModel;
+\end{lstlisting}
 
+\begin{lstlisting}[style=jscode, caption={Modello per i luoghi.}, label={lst:places}]
+	var mongoose = require('mongoose');
+	var Schema = mongoose.Schema;
+	
+	// Define the place schema
+	const PlaceSchema = new Schema({
+		name: {
+			type: String,
+			required: true
+		},
+		location: {
+			type: String,
+			required: true
+		},
+		capacity: {
+			type: Number,
+			required: true
+		},
+		owner: {
+			type: String,
+			required: true
+		}
+	}, { timestamps: true });
+	
+	// Create and export the Place model
+	const PlaceModel = mongoose.model('Place', PlaceSchema);
+	module.exports = PlaceModel;
+\end{lstlisting}
+	
 \section{Front-End}
 
 \section{Deployment}

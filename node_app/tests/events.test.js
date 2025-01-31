@@ -30,7 +30,7 @@ beforeAll(async () => {
     const testDBUri = dbURI;
     await mongoose.connect(testDBUri, {}); // Connect to database
     await EventModel.create(mockEvent);
-    token = 'mockValidToken';  // This is a mock, you can replace it with a real JWT if needed
+    token = 'mockValidToken';  // TODO replace it with a real JWT if needed
 });
 
 afterAll(async () => {

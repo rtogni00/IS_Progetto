@@ -63,7 +63,7 @@ router.post('/login', async (req, res) => {
         const user = await UserModel.findOne({ email });
         // Check if the password matches (direct comparison, not recommended for production)
         if (!user || user.password != password) {
-            return res.status(400).json({ message: 'Invalid email or password' });
+            return res.status(401).json({ message: 'Invalid email or password' });
         }
         // generate jwt token
         const token = jwt.sign({_id: user._id, username: user.username, password: user.password, role: user.role}, SECRET);
