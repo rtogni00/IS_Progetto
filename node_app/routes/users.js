@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const UserModel = require('../models/user')
+const EventModel = require('../models/event')
 const jwt = require('jsonwebtoken');
 require('dotenv').config(); // Load environment variables from .env file
 const tokenChecker = require('../tokenChecker');
@@ -111,6 +112,32 @@ router.post('/logout', async (req, res) => {
     console.error('Error during logout:', error);
     res.status(500).json({ message: 'Error during logout', error: error.message });
   }
+});
+
+// Get saved events
+router.get('/savedEvents', tokenChecker, async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.loggedUser._id).populate('savedEvents', 'name');
+        if (!user) return res.status(404).json({ error: 'User not found' });
+
+        res.json({ events: user.savedEvents });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
+// Get enrolled events
+router.get('/enrolledEvents', tokenChecker, async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.loggedUser._id).populate('enrolledEvents', 'name');
+        if (!user) return res.status(404).json({ error: 'User not found' });
+
+        res.json({ events: user.enrolledEvents });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 });
 
 module.exports = router;

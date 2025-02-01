@@ -62,6 +62,22 @@
                 </ul>
             </div>
         </div>
+
+        <!-- Saved Events Section -->
+        <div class="mt-8 bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-lg font-bold text-gray-700">Saved Events</h2>
+            <ul id="saved-events" class="mt-3 text-left space-y-2">
+                <li class="text-gray-500">Loading...</li>
+            </ul>
+        </div>
+        
+        <!-- Enrolled Events Section -->
+        <div class="mt-6 bg-white shadow-md rounded-lg p-6">
+            <h2 class="text-lg font-bold text-gray-700">Enrolled Events</h2>
+            <ul id="enrolled-events" class="mt-3 text-left space-y-2">
+                <li class="text-gray-500">Loading...</li>
+            </ul>
+        </div>
     </div>
 
     <script>
@@ -104,18 +120,46 @@
 
                     } else {
                         console.log('Invalid token response:', response);
-                        localStorage.removeItem('authToken');
+                        localStorage.removeItem('token');
                         window.location.href = 'login.html';
                     }
+
+                    // Fetch Saved Events
+                    const savedEventsResponse = await fetch('http://localhost:5000/api/v1/users/savedEvents', {
+                        method: 'GET',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+                    if (savedEventsResponse.ok) {
+                        const { events } = await savedEventsResponse.json();
+                        const savedEventsList = document.getElementById('saved-events');
+                        savedEventsList.innerHTML = events.length > 0 ?
+                            events.map(event => `<li><a href="eventDetails.html?eventId=${event._id}" class="text-blue-500 hover:text-blue-600">${event.name}</a></li>`).join('')
+                            : '<li class="text-gray-500">No saved events.</li>';
+                    }
+
+                    // Fetch Enrolled Events
+                    const enrolledEventsResponse = await fetch('http://localhost:5000/api/v1/users/enrolledEvents', {
+                        method: 'GET',
+                        headers: { 'Authorization': `Bearer ${token}` }
+                    });
+
+                    if (enrolledEventsResponse.ok) {
+                        const { events } = await enrolledEventsResponse.json();
+                        const enrolledEventsList = document.getElementById('enrolled-events');
+                        enrolledEventsList.innerHTML = events.length > 0 ?
+                            events.map(event => `<li><a href="eventDetails.html?eventId=${event._id}" class="text-blue-500 hover:text-blue-600">${event.name}</a></li>`).join('')
+                            : '<li class="text-gray-500">No enrolled events.</li>';
+                    }
+
                 } catch (error) {
                     console.error('Error loading user profile:', error);
-                    localStorage.removeItem('authToken');
+                    localStorage.removeItem('token');
                     window.location.href = 'login.html';
                 }
         }
         // Log out function
             document.getElementById('logout').addEventListener('click', () => {
-                localStorage.removeItem('authToken'); // Remove token
+                localStorage.removeItem('token'); // Remove token
                 window.location.href = 'login.html'; // Redirect to login page
             });
 
