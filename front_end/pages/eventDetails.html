@@ -59,10 +59,13 @@
                 </div>
             </div>
 
-            <!-- Enroll Button -->
+            <!-- Enroll and Save Buttons -->
             <div class="mt-4">
                 <button id="enroll-button"
                     class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">Loading...</button>
+                <button id="save-button" class="bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600">
+                    <i class="fa-solid fa-bookmark"></i> Save Event
+                </button>
             </div>
         </div>
 
@@ -92,26 +95,6 @@
             console.error("No token found, user not logged in.");
             alert("You need to log in first.");
             window.location.href = "login.html";  // Redirect to login page
-        }
-
-        // Check if the user is enrolled in the event
-        async function isUserEnrolled(eventId, token) {
-            try {
-                const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}/isEnrolled`, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                const data = await response.json();
-                console.log('Enrollment status response:', data);
-
-                return data.isEnrolled; // true or false based on user enrollment status
-            } catch (error) {
-                console.error('Error checking enrollment status:', error);
-                return false;
-            }
         }
 
         // Fetch event details and update the UI
@@ -150,6 +133,19 @@
                         enrollButton.onclick = () => enrollInEvent(eventId);
                     }
 
+                    const isSaved = await isEventSaved(eventId, token);
+                    // Set the save/unsave button state
+                    const saveButton = document.getElementById('save-button');
+                    if (isSaved) {
+                        saveButton.innerHTML = `<i class="fa-solid fa-bookmark"></i> Saved`;
+                        saveButton.className = "bg-yellow-600 text-white px-4 py-2 rounded-md hover:bg-yellow-700";
+                        saveButton.onclick = () => unsaveEvent(eventId);
+                    } else {
+                        saveButton.innerHTML = `<i class="fa-regular fa-bookmark"></i> Save Event`;
+                        saveButton.className = "bg-yellow-500 text-white px-4 py-2 rounded-md hover:bg-yellow-600";
+                        saveButton.onclick = () => saveEvent(eventId);
+                    }
+
                     // Populate pictures
                     const picturesDiv = document.getElementById('event-pictures');
                     event.pictures.forEach(picture => {
@@ -166,6 +162,95 @@
             } catch (error) {
                 console.error('Error fetching event details:', error);
                 document.body.innerHTML = `<p class="text-center text-red-600 mt-10">Error loading event details. Please try again later.</p>`;
+            }
+        }
+
+        // Check if the user has saved this event
+        async function isEventSaved(eventId, token) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}/isSaved`, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                const data = await response.json();
+                console.log('Saved event status response:', data);
+
+                return data.isSaved; // true or false based on saved status
+            } catch (error) {
+                console.error('Error checking saved status:', error);
+                return false;
+            }
+        }
+
+            // Check if the user is enrolled in the event
+            async function isUserEnrolled(eventId, token) {
+                try {
+                    const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}/isEnrolled`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${token}`
+                        }
+                    });
+
+                    const data = await response.json();
+                    console.log('Enrollment status response:', data);
+
+                    return data.isEnrolled; // true or false based on user enrollment status
+                } catch (error) {
+                    console.error('Error checking enrollment status:', error);
+                    return false;
+                }
+            }
+
+
+        // Save an event
+        async function saveEvent(eventId) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}/save`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert('Event saved successfully!');
+                    location.reload(); // Reload to update the button state
+                } else {
+                    const errorData = await response.json();
+                    alert(`Failed to save event: ${errorData.message}`);
+                }
+            } catch (error) {
+                console.error('Error saving event:', error);
+                alert('Error saving event. Please try again.');
+            }
+        }
+
+        // Unsave an event
+        async function unsaveEvent(eventId) {
+            try {
+                const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}/unsave`, {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    alert('Event removed from saved list.');
+                    location.reload(); // Reload to update the button state
+                } else {
+                    const errorData = await response.json();
+                    alert(`Failed to unsave event: ${errorData.message}`);
+                }
+            } catch (error) {
+                console.error('Error unsaving event:', error);
+                alert('Error removing event. Please try again.');
             }
         }
 

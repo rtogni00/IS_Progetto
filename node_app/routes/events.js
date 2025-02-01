@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const EventModel = require('../models/event');
+const UserModel = require('../models/user');
 const EventRegistrationModel = require('../models/eventRegistration');
 const tokenChecker = require('../tokenChecker');
 const axios = require('axios'); // for geocoding
@@ -156,200 +157,94 @@ router.post('/create', tokenChecker, async (req, res) => {
     }
 });
 
-// Route to register a user for an event
 router.post('/:eventId/enroll', tokenChecker, async (req, res) => {
-    const userId = req.loggedUser._id;  // Access the user ID from the decoded token
-    const eventId = req.params.eventId;
-
-    const session = await mongoose.startSession();
-    session.startTransaction();
-
     try {
-        // Find the event
-        const event = await EventModel.findById(eventId).session(session);
+        const user = await UserModel.findById(req.loggedUser._id);
+        const event = await EventModel.findById(req.params.eventId);
+
         if (!event) {
-            await session.abortTransaction();
-            session.endSession();
             return res.status(404).json({ message: 'Event not found' });
         }
 
-        // Check if the event has available capacity
-        if (event.capacity && event.participants >= event.capacity) {
-            await session.abortTransaction();
-            session.endSession();
-            return res.status(400).json({ message: 'Event is fully booked' });
+        if (event.enrolledUsers.includes(user._id)) {
+            return res.status(400).json({ message: 'User already enrolled' });
         }
 
-        // Check if the user is already enrolled (active or cancelled)
-        const existingRegistration = await EventRegistrationModel.findOne({
-            event: eventId,
-            user: userId,
-        }).session(session);
+        // Add event to user's enrolledEvents
+        user.enrolledEvents.push(event._id);
+        await user.save();
 
-        if (existingRegistration && existingRegistration.status === 'registered') {
-            await session.abortTransaction();
-            session.endSession();
-            return res.status(400).json({ message: 'User is already enrolled in this event' });
-        }
+        // Add user to event's enrolledUsers and update participants count
+        event.enrolledUsers.push(user._id);
+        event.participants = event.enrolledUsers.length;
+        await event.save();
 
-        // If the user has a cancelled registration, reactivate it
-        if (existingRegistration && existingRegistration.status === 'cancelled') {
-            existingRegistration.status = 'registered';
-            await existingRegistration.save({ session });
-        } else {
-            // Create a new registration if not exists
-            const newRegistration = new EventRegistrationModel({
-                event: eventId,
-                user: userId,
-                status: 'registered',
-            });
-            await newRegistration.save({ session });
-        }
-
-        // Increment the participants count in the Event model
-        event.participants += 1;
-        await event.save({ session });
-
-        // Add the user to the participants list
-        event.enrolledUsers.push(userId);
-        await event.save({ session });
-
-        // Commit the transaction
-        await session.commitTransaction();
-        session.endSession();
-
-        return res.status(201).json({
-            message: 'Successfully registered for the event',
-            registration: existingRegistration || newRegistration,
-        });
+        res.json({ message: 'Enrolled successfully' });
     } catch (error) {
-        await session.abortTransaction();
-        session.endSession();
-        console.error(error);
-        return res.status(500).json({ message: 'Internal server error', error: error.message });
+        console.error('Error enrolling user:', error);
+        res.status(500).json({ message: 'Error enrolling user' });
     }
 });
 
 
-// New route to check if the user is enrolled in the event
+
+// New route to check if the user is enrolled in the event\
 router.get('/:eventId/isEnrolled', tokenChecker, async (req, res) => {
-    const eventId = req.params.eventId;
-    const userId = req.loggedUser;  // loggedUser is populated via middleware
-
-    // console.log("UserId:", userId);
-
     try {
-        // Check if the user is enrolled in the event
-        const existingRegistration = await EventRegistrationModel.findOne({
-            event: eventId,
-            user: userId._id
-        });
-
-        // Respond with whether the user is enrolled
-        if (existingRegistration && existingRegistration.status == "registered") {
-            return res.json({ isEnrolled: true });
-        } else {
-            return res.json({ isEnrolled: false });
-        }
+        const user = await UserModel.findById(req.loggedUser._id);
+        const isEnrolled = user.enrolledEvents.includes(req.params.eventId);
+        res.json({ isEnrolled });
     } catch (error) {
         console.error('Error checking enrollment status:', error);
         res.status(500).json({ message: 'Error checking enrollment status' });
     }
 });
 
-// Route to unenroll from an event
 router.post('/:eventId/unenroll', tokenChecker, async (req, res) => {
-    const userId = req.loggedUser._id;  // Access the user ID from the decoded token
-    const eventId = req.params.eventId;
-
-    const session = await mongoose.startSession();
-    session.startTransaction();
-
     try {
-        // Find the registration for the user
-        const registration = await EventRegistrationModel.findOne({ event: eventId, user: userId }).session(session);
+        const user = await UserModel.findById(req.loggedUser._id);
+        const event = await EventModel.findById(req.params.eventId);
 
-        if (!registration) { // || registration.status === 'cancelled') {
-            await session.abortTransaction();
-            session.endSession();
-            return res.status(400).json({ message: 'User is not enrolled in the event' });
-        }
-
-        // Update the registration status to "cancelled"
-        registration.status = 'cancelled';
-        await registration.save({ session });
-
-        // Find the event
-        const event = await EventModel.findById(eventId).session(session);
         if (!event) {
-            await session.abortTransaction();
-            session.endSession();
             return res.status(404).json({ message: 'Event not found' });
         }
 
-        // Subtract 1 from the number of participants
-        if (event.participants > 0) {
-            event.participants -= 1;
+        if (!event.enrolledUsers.includes(user._id)) {
+            return res.status(400).json({ message: 'User is not enrolled' });
         }
 
-        // Remove the user from the participants list (if you're storing a list of participants)
-        const userIndex = event.enrolledUsers.indexOf(userId);
-        if (userIndex !== -1) {
-            event.enrolledUsers.splice(userIndex, 1);
-        }
+        // Remove event from user's enrolledEvents
+        user.enrolledEvents = user.enrolledEvents.filter(eventId => eventId.toString() !== event._id.toString());
+        await user.save();
 
-        // Save the event with updated participants count and list
-        await event.save({ session });
+        // Remove user from event's enrolledUsers and update participants count
+        event.enrolledUsers = event.enrolledUsers.filter(userId => userId.toString() !== user._id.toString());
+        event.participants = event.enrolledUsers.length;
+        await event.save();
 
-        // Commit the transaction
-        await session.commitTransaction();
-        session.endSession();
-
-        res.status(200).json({ message: 'Successfully unenrolled from the event', registration });
+        res.json({ message: 'Unenrolled successfully' });
     } catch (error) {
-        await session.abortTransaction();
-        session.endSession();
         console.error('Error unenrolling user:', error);
-        res.status(500).json({ message: 'Server error', error });
+        res.status(500).json({ message: 'Error unenrolling user' });
     }
 });
 
-
-
-// Route to get event participants
 router.get('/:eventId/participants', async (req, res) => {
     try {
-        const eventId = req.params.eventId;
+        const event = await EventModel.findById(req.params.eventId)
+            .populate('enrolledUsers', 'username email'); // Populate user details if needed
 
-        // Find registrations with "registered" status for the event
-        const participants = await EventRegistrationModel.find({ event: eventId, status: 'registered' })
-            .populate('user', 'username email'); // Populate user details if needed
+        if (!event) {
+            return res.status(404).json({ message: 'Event not found' });
+        }
 
-        res.status(200).json({ participants });
+        res.status(200).json({ participants: event.enrolledUsers });
     } catch (error) {
         console.error('Error fetching participants:', error);
-        res.status(500).json({ message: 'Server error', error });
+        res.status(500).json({ message: 'Server error' });
     }
 });
 
-router.post('/:eventId/save', tokenChecker, async (req, res) => {  // TODO check
-    const { eventId } = req.params;
-    const userId = req.loggedUser;
-
-    try {
-        // Ensure the event exists
-        const event = await EventModel.findById(eventId);
-        if (!event) return res.status(404).json({ message: 'Event not found' });
-
-        // Add the event to the user's saved events
-        await UserModel.findByIdAndUpdate(userId, { $addToSet: { savedEvents: eventId } });
-
-        res.status(200).json({ message: 'Event saved successfully' });
-    } catch (error) {
-        console.error('Error saving event:', error);
-        res.status(500).json({ message: 'Error saving event', error });
-    }
-});
 
 router.post('/:eventId/markPast', tokenChecker, async (req, res) => { // TODO check
     const { eventId } = req.params;
@@ -372,6 +267,59 @@ router.post('/:eventId/markPast', tokenChecker, async (req, res) => { // TODO ch
     } catch (error) {
         console.error('Error marking event as past:', error);
         res.status(500).json({ message: 'Error marking event as past', error });
+    }
+});
+
+router.post('/:eventId/save', tokenChecker, async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.loggedUser._id);
+        if (!user.savedEvents.includes(req.params.eventId)) {
+            user.savedEvents.push(req.params.eventId);
+            await user.save();
+        }
+        res.json({ message: 'Event saved successfully' });
+    } catch (error) {
+        console.error('Error saving event:', error);
+        res.status(500).json({ message: 'Error saving event' });
+    }
+});
+
+router.get('/:eventId/isSaved', tokenChecker, async (req, res) => {
+    try {
+        const user = await UserModel.findById(req.loggedUser._id);
+        const isSaved = user.savedEvents.includes(req.params.eventId);
+        res.json({ isSaved });
+    } catch (error) {
+        console.error('Error checking saved event status:', error);
+        res.status(500).json({ message: 'Error checking saved event status' });
+    }
+});
+
+// Unsave an event
+router.post('/:eventId/unsave', tokenChecker, async (req, res) => {
+    try {
+        const userId = req.loggedUser._id; // Extract user ID from token
+        const eventId = req.params.eventId;
+
+        // Find the user
+        const user = await UserModel.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: "User not found" });
+        }
+
+        // Check if the event is in savedEvents
+        if (!user.savedEvents.includes(eventId)) {
+            return res.status(400).json({ message: "Event is not saved" });
+        }
+
+        // Remove event from savedEvents
+        user.savedEvents = user.savedEvents.filter(id => id.toString() !== eventId);
+        await user.save();
+
+        res.json({ message: "Event unsaved successfully" });
+    } catch (error) {
+        console.error("Error unsaving event:", error);
+        res.status(500).json({ message: "Internal server error" });
     }
 });
 

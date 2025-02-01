@@ -33,6 +33,11 @@ const UserSchema = new Schema({
     pastEvents: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Event'
+    }],
+    // Array of events the user is enrolled to
+    enrolledEvents: [{ 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Event' 
     }]
 }, { timestamps: true });
 

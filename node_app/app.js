@@ -8,7 +8,7 @@ const cors = require('cors'); // Import CORS
 
 // Initialize express app
 const app = express();
-// const port = 5000;
+const port = 5000;
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 //                      DATABASE CONNECTION
