@@ -38,6 +38,11 @@ const UserSchema = new Schema({
     enrolledEvents: [{ 
         type: mongoose.Schema.Types.ObjectId, 
         ref: 'Event' 
+    }],
+    // Array of events the user has created (for organizers only)
+    createdEvents: [{ 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Event' 
     }]
 }, { timestamps: true });
 

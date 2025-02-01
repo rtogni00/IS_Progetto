@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create a New Event</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="bg-gray-100 h-screen flex flex-col items-center justify-center">
+
+    <!-- Header -->
+    <header class="w-full bg-blue-600 text-white py-4 shadow-md fixed top-0">
+        <h1 class="text-center text-2xl font-bold">Create a New Event</h1>
+    </header>
+
+    <!-- Back Button -->
+    <button onclick="window.location.href='userPersonalArea.html'"
+        class="mt-20 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+        <i class="fa-solid fa-arrow-left"></i> Back to Profile
+    </button>
+
+    <!-- Event Creation Form -->
+    <div class="mt-10 bg-white shadow-md rounded-lg p-6 w-full max-w-2xl mx-auto">
+        <h2 class="text-xl font-bold text-gray-700 mb-4 text-center">Event Details</h2>
+
+        <form id="event-form" class="bg-white p-6 shadow-lg rounded-lg">
+            <h2 class="text-2xl font-bold mb-4">Create New Event</h2>
+        
+            <label class="block text-gray-700">Event Name:</label>
+            <input id="event-name" type="text" class="w-full p-2 border rounded-md mb-4" required>
+        
+            <label class="block text-gray-700">Description:</label>
+            <textarea id="event-description" class="w-full p-2 border rounded-md mb-4"></textarea>
+        
+            <label class="block text-gray-700">Date:</label>
+            <input id="event-date" type="datetime-local" class="w-full p-2 border rounded-md mb-4" required>
+        
+            <label class="block text-gray-700">Location:</label>
+            <input id="event-location" type="text" class="w-full p-2 border rounded-md mb-4" required>
+        
+            <label class="block text-gray-700">Capacity:</label>
+            <input id="event-capacity" type="number" class="w-full p-2 border rounded-md mb-4" required>
+        
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                Create Event
+            </button>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const eventForm = document.getElementById("event-form");
+
+            eventForm.addEventListener("submit", async function (event) {
+                event.preventDefault(); // Prevent page reload
+
+                // Collect form data
+                const name = document.getElementById("event-name").value;
+                const description = document.getElementById("event-description").value;
+                const date = document.getElementById("event-date").value;
+                const location = document.getElementById("event-location").value;
+                const capacity = document.getElementById("event-capacity").value;
+
+                // Get JWT token (assuming it's stored after login)
+                const token = localStorage.getItem("token");
+                if (!token) {
+                    alert("You must be logged in to create an event.");
+                    return;
+                }
+
+                try {
+                    // Send POST request to backend
+                    const response = await fetch("http://localhost:5000/api/v1/events/create", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Authorization": `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ name, description, date, location, capacity: Number(capacity) })
+
+                    });
+
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert("Event created successfully!");
+                        window.location.href = "personalArea.html"; // Redirect to profile page
+                    } else {
+                        alert("Error: " + data.message);
+                    }
+                } catch (error) {
+                    console.error("Error creating event:", error);
+                    console.error("Response status:", response.status);
+                    console.error("Response text:", await response.text());
+
+                    alert("An error occurred. Please try again.");
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

@@ -124,13 +124,17 @@ router.post('/create', tokenChecker, async (req, res) => {
     try {
         const { location, ...eventData } = req.body;
 
+        // Ensure capacity is a valid number
+        if (!capacity || isNaN(capacity) || capacity <= 0) {
+            return res.status(400).json({ message: "Capacity must be a positive number" });
+        }
+
+        // Ensure the authenticated user is the organizer
+        const organizer = req.loggedUser._id;
+
         // Geocode the location
         const geocodeResponse = await axios.get('https://nominatim.openstreetmap.org/search', {
-            params: {
-                q: location,
-                format: 'json',
-                limit: 1
-            }
+            params: { q: location, format: 'json', limit: 1 }
         });
 
         if (geocodeResponse.data.length === 0) {
@@ -143,8 +147,10 @@ router.post('/create', tokenChecker, async (req, res) => {
         const newEvent = new EventModel({
             ...eventData,
             location,
+            capacity,
             latitude: parseFloat(lat),
-            longitude: parseFloat(lon)
+            longitude: parseFloat(lon),
+            organizer,
         });
 
         // Save the new event
