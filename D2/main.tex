@@ -56,11 +56,11 @@ Di seguito sono riportati i functional requirements (FR) del sistema sia in ling
 
 \subsubsection*{Use Case FR1: Login}
 
-\textbf{Riassunto}
+\paragraph{Riassunto}
 
 Lo use case in questione descrive come un utente può effettuare il login al sistema.
 
-\textbf{Descrizione}
+\paragraph{Descrizione}
 
 \begin{itemize}
 	\item L'utente visualizza una pagina con un form
@@ -70,14 +70,14 @@ Lo use case in questione descrive come un utente può effettuare il login al sis
 
 \subsubsection*{Use Case FR2: Registrazione}
 
-\textbf{Riassunto}
+\paragraph{Riassunto}
 
 Lo use case in questione descrive come un utente può registrarsi al sistema.
 
-\textbf{Descrizione}
+\paragraph{Descrizione}
 
 \begin{itemize}
-	\item L'utente visualizza una pagina dalla quale inserire nome, cognome, indirizzo mail (vedi \hyperref[Eccezioni-FR2]{Eccezioni})
+	\item L'utente visualizza una pagina dalla quale inserire username, indirizzo mail e password (vedi \hyperref[Eccezioni-FR2]{Eccezioni})
 	\item Il sistema invia una mail all'indirizzo fornito dall'utente contenente un link e una password temporanea
 	\item L'utente deve confermare la registrazione tramite il link di cui sopra (vedi \hyperref[Eccezioni-FR2]{Eccezioni}). Può quindi accedere al sistema tramite la password temporanea
 \end{itemize}
@@ -93,7 +93,7 @@ Lo use case in questione descrive come un utente può registrarsi al sistema.
 \subsubsection*{Estensioni}\label{Estensioni-FR2}
 
 \begin{itemize}
-	\item La password contenuta nella mail generata automaticamente dal sistema a seguito della registrazione dev'essere modificata a seguito del primo login
+	\item La password contenuta nella mail generata automaticamente dal sistema al termine della registrazione dev'essere modificata a seguito del primo login
 \end{itemize}
 
 \subsection{FR4: Visualizzazione Eventi}
@@ -107,11 +107,11 @@ Lo use case in questione descrive come un utente può registrarsi al sistema.
 
 \subsubsection*{Use Case FR4: Visualizzazione Eventi}
 
-\textbf{Riassunto}
+\paragraph{Riassunto}
 
 Lo use case in questione descrive come un utente può filtrare gli eventi presenti all'interno del sistema.
 
-\textbf{Descrizione}
+\paragraph{Descrizione}
 
 \begin{itemize}
 	\item La ricerca di eventi può essere effettuata da qualsiasi utente, anche non loggato
@@ -131,15 +131,15 @@ Lo use case in questione descrive come un utente può filtrare gli eventi presen
 
 \subsubsection*{Use Cases FR5, FR6, FR16, FR17}
 
-\textbf{Riassunto}
+\paragraph{Riassunto}
 
 Lo use case in questione descrive come un utente può interagire con gli eventi offerti dal sistema. In particolare, descrive le attività di salvataggio, di iscrizione, di condivisione, nonché di valutazione della qualità di un evento.
 
-\textbf{Descrizione}
+\paragraph{Descrizione}
 
 \begin{itemize}
 	\item Oltre a poter visualizzare gli eventi (come mostrato nello UCD precedente), qualsiasi utente può condividerli
-	\item Previo login, qualsiasi tipologia di utente può salvare e/o iscriversi ad un evento. L'iscrizione comporta l'eventuale pagamento del biglietto
+	\item Previo login, qualsiasi tipologia di utente può salvare e/o iscriversi ad un evento. L'iscrizione comporta l'eventuale acquisto di un biglietto
 	\item Qualsiasi utente iscritto ad un evento può, dopo il suo verificarsi, lasciare una review
 \end{itemize}
 
@@ -155,13 +155,13 @@ Lo use case in questione descrive come un utente può interagire con gli eventi 
 
 \subsubsection*{Use Case FR8: Creazione Eventi}
 
-\textbf{Riassunto}
+\paragraph{Riassunto}
 
 Lo use case in questione descrive come un utente appartenente alla categoria "Organizer" oppure "Owner" può creare nuovi eventi.
 
 \newpage
 
-\textbf{Descrizione}
+\paragraph{Descrizione}
 
 \begin{itemize}
 	\item Qualora l'utente appartenga alla categoria "Owner" o a quella "Organizer" e sia loggato (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni}), dalla pagina del profilo personale è visibile un pulsante "New event"
@@ -171,11 +171,11 @@ Lo use case in questione descrive come un utente appartenente alla categoria "Or
 
 \subsubsection*{Use case FR10: Modifica Eventi}
 
-\textbf{Riassunto}
+\paragraph{Riassunto}
 
 Lo use case in questione descrive come un utente appartenente alla categoria "Organizer" oppure "Owner" può modificare eventi precedentemente creati.
 
-\textbf{Descrizione}
+\paragraph{Descrizione}
 \begin{itemize}
 	\item Qualora un utente appartenente alle categorie "Owner" o "Organizer" sia loggato e abbia precedentemente creato un evento (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni}), dalla propria pagina personale può raggiungere l'evento in questione tramite il pulsante "My events"
 	\item La pressione del pulsante rimanda ad una lista degli eventi creati. Selezionandone uno è possibile modificare uno qualsiasi dei vari campi entro una settimana dall'evento (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni} e \hyperref[Estensioni-FR8-10]{Estensioni})
@@ -210,24 +210,24 @@ Lo use case in questione descrive come un utente appartenente alla categoria "Or
 
 \subsubsection*{Use Case FR12: Aggiunta Luogo}
 
-\textbf{Riassunto}
+\paragraph{Riassunto}
 
 Lo use case in questione descrive come un utente appartenente alla categoria "Owner" può aggiungere una location.
 
-\textbf{Descrizione}
+\paragraph{Descrizione}
 
 \begin{itemize}
 	\item Qualora l'utente sia loggato con un profilo di tipo "Owner" (vedi \hyperref[Eccezioni-FR12-13]{Eccezioni}), dal proprio profilo personale ha la possibilità di aggiungere un luogo tramite il pulsante "New Place"
-	\item La pressione del pulsante rimanda alla pagina di aggiunta luoghi. Per l'aggiunta di un nuovo luogo occorre inserire una location, un nome, una descrizione, ed un prezzo (vedi \hyperref[Eccezioni-FR12-13]{Eccezioni}). Opzionalmente è possibile inserire delle foto
+	\item La pressione del pulsante rimanda alla pagina di aggiunta luoghi. Per l'aggiunta di un nuovo luogo occorre inserire una location, un nome, una descrizione, ed un prezzo (vedi \hyperref[Eccezioni-FR12-13]{Eccezioni}). Opzionalmente è possibile inserire delle foto.
 \end{itemize}
 
 \subsubsection*{Use Case FR13: Modifica Luogo}
 
-\textbf{Riassunto}
+\paragraph{Riassunto}
 
 Lo use case in questione descrive come un utente appartenente alla categoria "Owner" può modificare una location precedentemente inserita nel sistema.
 
-\textbf{Descrizione}
+\paragraph{Descrizione}
 
 \begin{itemize}
 	\item Qualora l'utente sia loggato con un profilo di tipo "Owner" e abbia precedentemente aggiunto una location, dalla propria pagina personale può raggiungere l'evento in questione tramite il pulsante "My places"
@@ -243,7 +243,7 @@ Lo use case in questione descrive come un utente appartenente alla categoria "Ow
 \end{itemize}
 
 \newpage
-\section{Sequence and Activity Diagram}
+\section{Sequence Diagrams}
 
 Gli use case diagrams riportati nel capitolo precendente rappresentano una overview delle funzionalità del sistema. Nel presente capitolo tali funzionalità vengono estese tramite l'introduzione di un aspetto temporale. L'impiego di sequence diagrams consente quindi di rappresentare l'ordine cronologico con cui i vari elementi dei singoli scenari si verificano, dettagliando il modo in cui gli oggetti collaborano al fine di ottenere la piena funzionalità del sistema.
 
@@ -509,14 +509,14 @@ Di seguito sono riportate le classi individuate, raggruppate per sottosistema di
 \textbf{Categorie di utente}
 
 
-I tre tipi di utente previsti dal sistema sono formalizzate mediante l'utilizzo di ereditarietà. In particolare, la classe \verb*|BasicUser| include tutte le caratteristiche offerte ad utenti appartenti a tutte e tre le categorie. Ogni utente è associato a dei dati personali, e può effettuare quanto previsto dai requisiti funzionali tramite i metodi \verb*|register()|, \verb*|login()|, \verb*|logout()|, \verb*|saveEvent(eventId)|, \verb*|getSavedEvents()|, e \verb*|changePwd()|.
+I tre tipi di utente previsti dal sistema sono formalizzate mediante l'utilizzo di ereditarietà. In particolare, la classe \verb*|BasicUser| include tutte le caratteristiche offerte ad utenti appartenti a tutte e tre le categorie. Ogni utente è associato a dei dati personali, e può effettuare quanto previsto dai requisiti funzionali tramite i metodi \verb*|register()|, \verb*|login()|, \verb*|logout()|, \verb*|saveEvent(eventId)|, \verb*|unsaveEvent(eventId)|, \verb*|enrollEvent(eventId)|, \verb*|unenrollEvent(eventId)|, \verb*|getSavedEvents()|, \verb*|getEnrolledEvents()|, e \verb*|changePwd()|.
 
 
 La classe \verb*|Organizer| estende \verb*|BasicUser| aggiungendo tutte le attività collegate alla creazione, alla modifica e alla rimozione di eventi. Analogamente, la classe \verb*|Owner| estende \verb*|BasicUser| tramite l'aggiunta delle attività relative alla gestione degli spazi.
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=.6\linewidth]{./images/classDiagramUsers.pdf}
+	\includegraphics[width=.8\linewidth]{./images/classDiagramUsers.pdf}
 		\caption{}
 	\label{fig:classDiagramUsers}
 \end{figure}
@@ -530,7 +530,7 @@ L'autenticazione è gestita tramite JWT tokens. Tale processo è rappresentato m
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=.5\linewidth]{./images/classDiagramAuthentication.pdf}
+	\includegraphics[width=.8\linewidth]{./images/classDiagramAuthentication.pdf}
 	\caption{}
 	\label{fig:classDiagramAuthentication}
 \end{figure}
@@ -544,7 +544,7 @@ Gli eventi sono rappresentati dalla classe \verb*|Event|, la quale si appoggia a
 	\item \verb*|EventDescription| per fornire una descrizione dettagliata dell'evento
 \end{itemize}
 
-La ricerca di eventi e l'iscrizione ad essi sono gestite rispettivamente dalle classi \verb*|EventSearch| e \verb*|EventEnrollment|, le quali a loro volta comunicano con la classe \verb*|BasicUser|.
+La ricerca di eventi è gestita dalla classe \verb*|EventSearch|, la quale comunica con la classe \verb*|BasicUser|. L'iscrizione ad eventi e il loro salvataggio sono invece gestite direttamente all'interno della classe \verb*|BasicUser|.
 
 La classe \verb*|Event| è inoltre collegata alla classe \verb*|Organizer|, a rappresentare l'attività di creazione eventi associata a tale categoria di utente.
 
@@ -592,11 +592,18 @@ Lo scopo di questo capitolo consiste nel rappresentare un punto di incontro tra 
 \begin{tabular}{lllllll}
 	\toprule
 	Classe          & Metodo                               & HTTP Method & URI + query params               & Request                        & Response                          & Note \\ \midrule
-	BasicUser       & register()                           & POST        & /api/v1/users/register            & JSON {email, password}         & JSON {token, userData}           & Crea un nuovo utente \\
+	BasicUser       
+	& register()                           & POST        & /api/v1/users/register            & JSON {email, password, role}         & JSON {token, userData}           & Crea un nuovo utente \\
 	& login()                              & POST        & /api/v1/users/login               & JSON {email, password}         & JSON {token, userData}           & Restituisce il token JWT \\
 	& logout()                             & POST        & /api/v1/users/logout              & Header {Authorization: Token}  & JSON {message}                   & Invalida il token \\
-	& getSavedEvents()                     & GET         & /api/v1/users/savedEvents         & Header {Authorization: Token}  & JSON {savedEvents}               & Ottiene gli eventi salvati \\
-	& saveEvent(eventId)                   & POST        & /api/v1/users/save/{eventId}      & Header {Authorization: Token}  & JSON {message}                   & Salva un evento nei preferiti \\
+	
+	& enroll(eventId)()                    & POST        & /api/v1/events/{eventId}/enroll   &   & JSON {savedEvents}                                            & Iscrive l'utente ad un evento  \\
+	& unenroll(eventId)()                    & POST        & /api/v1/events/{eventId}/unenroll   &   & JSON {savedEvents}                                            & Disiscrive l'utente da un evento  \\
+	& saveEvent(eventId)                   & POST        & /api/v1/events/{eventId}/save     & Header {Authorization: Token}  & JSON {message}                   & Salva un evento nei preferiti \\
+	& unsaveEvent(eventId)                   & POST        & /api/v1/events/{eventId}/unsave     & Header {Authorization: Token}  & JSON {message}                   & Rimuove un evento dai preferiti \\
+	& getSavedEvents()                     & GET         & /api/v1/events/{eventId}/isSaved         & Header {Authorization: Token}  & JSON {savedEvents}         & Ottiene gli eventi salvati \\
+	& getEnrolledEvents()                  & GET         & /api/v1/events/{eventId}/isEnrolled         & Header {Authorization: Token}  & JSON {savedEvents}         & Ottiene gli eventi a cui l'utente è iscritto \\
+	
 	& changePwd()                          & PUT         & /api/v1/users/change-password     & JSON {oldPwd, newPwd}          & JSON {message}                   & Modifica la password \\ \midrule
 	Organizer       & createEvent()                        & POST        & /api/v1/events                    & JSON {eventData}               & JSON {event}                     & Crea un evento \\
 	& updateEvent(eventId)                 & PUT         & /api/v1/events/{eventId}          & JSON {eventData}               & JSON {event}                     & Aggiorna un evento \\
@@ -607,7 +614,7 @@ Lo scopo di questo capitolo consiste nel rappresentare un punto di incontro tra 
 	Event           & setPlace()                           & PUT         & /api/v1/events/{eventId}/place    & JSON {placeId}                 & JSON {event}                     & Assegna un luogo a un evento \\
 	& setDate()                            & PUT         & /api/v1/events/{eventId}/date     & JSON {date}                    & JSON {event}                     & Imposta la data di un evento \\ \midrule
 	EventSearch     & filterEvents(criteria)               & GET         & /api/v1/events?filter={criteria}  & Query params                   & JSON {events}                    & Filtra gli eventi \\ \midrule
-	EventEnrollment & registerParticipant(userId, eventId) & POST        & /api/v1/events/{eventId}/register & Header {Authorization: Token}  & JSON {message}                   & Registra un utente a un evento \\ \midrule
+	
 	Authentication  & generateToken(userId)                & POST        & /api/v1/auth/token                & JSON {userId}                  & JSON {token}                     & Genera un JWT \\
 	& verifyToken(token)                   & POST        & /api/v1/auth/verify               & Header {Authorization: Token}  & JSON {valid: true/false}         & Verifica il token \\
 	& authorize(user, action)              & Middleware  & (interno)                         & Header {Authorization: Token}  & (interno)                        & Middleware di autorizzazione \\ \bottomrule
@@ -618,5 +625,9 @@ Lo scopo di questo capitolo consiste nel rappresentare un punto di incontro tra 
 \end{table}
 
 
+
+Si noti come l'iscrizione e il salvataggio di eventi, seppur rappresentati come metodi appartenenti alla classe \verb*|BasicUser|, siano effettivamente implementati all'interno della route \verb*|events|. L'unico parametro è l'id dell'evento in questione in quanto l'identità dell'utente deriva dal middleware di autenticazione. Tale scelta implementativa è giustificata semplicemente da una maggiore linearità del codice, e non impatta in alcun modo sulla funzionalità del sistema.
+
+\textcolor{red}{TODO} Sistema Request and Response
 
 \end{document}
