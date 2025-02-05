@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="15.1">
-  <zoom_level>7</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1176</x>
-      <y>392</y>
-      <w>147</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>symbol=component
-Authentication Module</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>728</x>
-      <y>714</y>
-      <w>119</w>
-      <h>42</h>
+      <x>368</x>
+      <y>784</y>
+      <w>136</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Event Enrollment
@@ -29,10 +17,10 @@ Modue</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1190</x>
-      <y>427</y>
-      <w>119</w>
-      <h>42</h>
+      <x>896</x>
+      <y>352</y>
+      <w>136</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Registration</panel_attributes>
@@ -41,61 +29,61 @@ Registration</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1344</x>
-      <y>455</y>
-      <w>91</w>
-      <h>35</h>
+      <x>1056</x>
+      <y>472</y>
+      <w>96</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=)-
 Credentials</panel_attributes>
-    <additional_attributes>100.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>90.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1302</x>
-      <y>434</y>
-      <w>63</w>
-      <h>42</h>
+      <x>1024</x>
+      <y>360</y>
+      <w>56</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>
 
 </panel_attributes>
-    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;50.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1302</x>
-      <y>483</y>
-      <w>63</w>
-      <h>42</h>
+      <x>1024</x>
+      <y>504</y>
+      <w>56</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>
 
 </panel_attributes>
-    <additional_attributes>10.0;20.0;70.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;50.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1344</x>
-      <y>441</y>
-      <w>21</w>
-      <h>70</h>
+      <x>1056</x>
+      <y>368</y>
+      <w>24</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>
 
 </panel_attributes>
-    <additional_attributes>10.0;80.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;190.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1197</x>
-      <y>343</y>
-      <w>77</w>
-      <h>63</h>
+      <x>912</x>
+      <y>448</y>
+      <w>88</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=)-
 Verify 
@@ -105,10 +93,10 @@ credentials</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1267</x>
-      <y>343</y>
-      <w>70</w>
-      <h>63</h>
+      <x>984</x>
+      <y>448</y>
+      <w>80</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=()-
 Confirm
@@ -118,23 +106,23 @@ credentials</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1092</x>
-      <y>378</y>
-      <w>98</w>
-      <h>77</h>
+      <x>792</x>
+      <y>312</y>
+      <w>120</w>
+      <h>216</h>
     </coordinates>
     <panel_attributes>lt=()-
 Access to 
 personal area</panel_attributes>
-    <additional_attributes>40.0;10.0;40.0;80.0;120.0;80.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;250.0;130.0;250.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>854</x>
-      <y>238</y>
-      <w>119</w>
-      <h>42</h>
+      <x>512</x>
+      <y>224</y>
+      <w>136</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Personal 
@@ -144,21 +132,21 @@ area</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>966</x>
-      <y>245</y>
-      <w>175</w>
-      <h>147</h>
+      <x>640</x>
+      <y>232</y>
+      <w>184</w>
+      <h>96</h>
     </coordinates>
     <panel_attributes>lt=)-</panel_attributes>
-    <additional_attributes>220.0;180.0;220.0;10.0;10.0;10.0</additional_attributes>
+    <additional_attributes>200.0;90.0;200.0;10.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>868</x>
-      <y>273</y>
-      <w>63</w>
-      <h>168</h>
+      <x>528</x>
+      <y>264</y>
+      <w>72</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>lt=()-
 Access to
@@ -168,10 +156,10 @@ Events</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>910</x>
-      <y>273</y>
-      <w>49</w>
-      <h>56</h>
+      <x>576</x>
+      <y>264</y>
+      <w>56</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=()-
 Logout</panel_attributes>
@@ -180,10 +168,10 @@ Logout</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>854</x>
-      <y>490</y>
-      <w>105</w>
-      <h>42</h>
+      <x>512</x>
+      <y>512</y>
+      <w>120</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Event Creation
@@ -193,10 +181,10 @@ Service</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>707</x>
-      <y>490</y>
-      <w>105</w>
-      <h>42</h>
+      <x>368</x>
+      <y>512</y>
+      <w>120</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Event List
@@ -206,10 +194,10 @@ Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>861</x>
-      <y>427</y>
-      <w>35</w>
-      <h>56</h>
+      <x>520</x>
+      <y>440</y>
+      <w>40</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=)-
 </panel_attributes>
@@ -218,10 +206,10 @@ Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>777</x>
-      <y>462</y>
-      <w>21</w>
-      <h>42</h>
+      <x>456</x>
+      <y>480</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>
 
@@ -231,10 +219,10 @@ Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>896</x>
-      <y>462</y>
-      <w>21</w>
-      <h>42</h>
+      <x>560</x>
+      <y>480</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>
 
@@ -244,23 +232,23 @@ Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>777</x>
-      <y>455</y>
-      <w>322</w>
-      <h>42</h>
+      <x>456</x>
+      <y>472</y>
+      <w>352</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>
 
 </panel_attributes>
-    <additional_attributes>10.0;20.0;440.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;420.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>714</x>
-      <y>448</y>
-      <w>70</w>
-      <h>56</h>
+      <x>384</x>
+      <y>464</y>
+      <w>80</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=()-
 Organizer's 
@@ -270,10 +258,10 @@ events</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>770</x>
-      <y>238</y>
-      <w>98</w>
-      <h>35</h>
+      <x>416</x>
+      <y>224</y>
+      <w>112</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=()-
 Access to
@@ -283,10 +271,10 @@ Locations</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>532</x>
-      <y>273</y>
-      <w>119</w>
-      <h>42</h>
+      <x>136</x>
+      <y>264</y>
+      <w>136</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Location Creation
@@ -296,10 +284,10 @@ Service</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>413</x>
-      <y>273</y>
-      <w>105</w>
-      <h>42</h>
+      <x>0</x>
+      <y>264</y>
+      <w>120</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Location List
@@ -309,10 +297,10 @@ Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>483</x>
-      <y>245</y>
-      <w>21</w>
-      <h>42</h>
+      <x>80</x>
+      <y>232</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>
 
@@ -322,10 +310,10 @@ Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>588</x>
-      <y>245</y>
-      <w>21</w>
-      <h>42</h>
+      <x>200</x>
+      <y>232</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>
 
@@ -335,23 +323,23 @@ Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>483</x>
-      <y>238</y>
-      <w>168</w>
-      <h>42</h>
+      <x>80</x>
+      <y>224</y>
+      <w>200</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>
 
 </panel_attributes>
-    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;230.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>231</y>
-      <w>56</w>
-      <h>56</h>
+      <x>8</x>
+      <y>216</y>
+      <w>64</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=()-
 Owner's 
@@ -361,10 +349,10 @@ places</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>238</y>
-      <w>154</w>
-      <h>35</h>
+      <x>256</x>
+      <y>224</y>
+      <w>176</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=)-
 </panel_attributes>
@@ -373,10 +361,10 @@ places</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>861</x>
-      <y>525</y>
-      <w>70</w>
-      <h>56</h>
+      <x>520</x>
+      <y>552</y>
+      <w>80</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=)-
 Locations</panel_attributes>
@@ -385,10 +373,10 @@ Locations</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>931</x>
-      <y>525</y>
-      <w>42</w>
-      <h>56</h>
+      <x>600</x>
+      <y>552</y>
+      <w>48</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=()-
 New 
@@ -398,10 +386,10 @@ event</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>616</x>
-      <y>308</y>
-      <w>42</w>
-      <h>91</h>
+      <x>240</x>
+      <y>304</y>
+      <w>48</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=()-
 New 
@@ -411,10 +399,10 @@ place</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>455</x>
-      <y>413</y>
-      <w>119</w>
-      <h>42</h>
+      <x>56</x>
+      <y>424</y>
+      <w>136</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Map Service</panel_attributes>
@@ -423,10 +411,10 @@ Map Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>511</x>
-      <y>497</y>
-      <w>63</w>
-      <h>35</h>
+      <x>120</x>
+      <y>520</y>
+      <w>72</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=)-
 Events</panel_attributes>
@@ -435,10 +423,10 @@ Events</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>588</x>
-      <y>595</y>
-      <w>140</w>
-      <h>42</h>
+      <x>208</x>
+      <y>632</y>
+      <w>160</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Database</panel_attributes>
@@ -447,10 +435,10 @@ Database</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>721</x>
-      <y>567</y>
-      <w>238</w>
-      <h>63</h>
+      <x>360</x>
+      <y>600</y>
+      <w>272</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=)-
 </panel_attributes>
@@ -459,10 +447,10 @@ Database</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>609</x>
-      <y>385</y>
-      <w>35</w>
-      <h>224</h>
+      <x>232</x>
+      <y>392</y>
+      <w>40</w>
+      <h>256</h>
     </coordinates>
     <panel_attributes>lt=)-
 </panel_attributes>
@@ -471,10 +459,10 @@ Database</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>721</x>
-      <y>567</y>
-      <w>168</w>
-      <h>49</h>
+      <x>360</x>
+      <y>600</y>
+      <w>192</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=()-
 </panel_attributes>
@@ -483,10 +471,10 @@ Database</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>560</x>
-      <y>504</y>
-      <w>63</w>
-      <h>105</h>
+      <x>176</x>
+      <y>528</y>
+      <w>72</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=()-
 </panel_attributes>
@@ -495,10 +483,10 @@ Database</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>539</x>
-      <y>371</y>
-      <w>49</w>
-      <h>56</h>
+      <x>152</x>
+      <y>376</y>
+      <w>56</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=()-
 Events</panel_attributes>
@@ -507,10 +495,10 @@ Events</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>511</x>
-      <y>448</y>
-      <w>21</w>
-      <h>133</h>
+      <x>120</x>
+      <y>464</y>
+      <w>24</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>
 
@@ -520,10 +508,10 @@ Events</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>455</x>
-      <y>567</y>
-      <w>119</w>
-      <h>42</h>
+      <x>56</x>
+      <y>600</y>
+      <w>136</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Event Search 
@@ -533,10 +521,10 @@ Module</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>448</x>
-      <y>518</y>
-      <w>56</w>
-      <h>63</h>
+      <x>48</x>
+      <y>544</y>
+      <w>64</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=)-
 Search 
@@ -546,10 +534,10 @@ criteria</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>518</x>
-      <y>602</y>
-      <w>49</w>
-      <h>56</h>
+      <x>104</x>
+      <y>640</y>
+      <w>56</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=()-
 Events</panel_attributes>
@@ -558,70 +546,71 @@ Events</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>525</x>
-      <y>602</y>
-      <w>133</w>
-      <h>105</h>
+      <x>160</x>
+      <y>640</y>
+      <w>144</w>
+      <h>192</h>
     </coordinates>
     <panel_attributes>lt=()-
 Access to event
 enrollment module</panel_attributes>
-    <additional_attributes>170.0;120.0;60.0;120.0;60.0;10.0</additional_attributes>
+    <additional_attributes>160.0;220.0;10.0;220.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>644</x>
-      <y>672</y>
-      <w>112</w>
-      <h>56</h>
+      <x>288</x>
+      <y>800</y>
+      <w>96</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=)-
 </panel_attributes>
-    <additional_attributes>20.0;20.0;140.0;20.0;140.0;60.0</additional_attributes>
+    <additional_attributes>20.0;20.0;100.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1190</x>
-      <y>483</y>
-      <w>119</w>
-      <h>42</h>
+      <x>896</x>
+      <y>504</y>
+      <w>136</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
-Login</panel_attributes>
+Authentication 
+Module</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>707</y>
-      <w>350</w>
-      <h>35</h>
+      <x>496</x>
+      <y>792</y>
+      <w>384</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=)-
 Credentials</panel_attributes>
-    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>450.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1176</x>
-      <y>525</y>
-      <w>63</w>
-      <h>210</h>
+      <x>864</x>
+      <y>544</y>
+      <w>88</w>
+      <h>280</h>
     </coordinates>
     <panel_attributes>lt=()-</panel_attributes>
-    <additional_attributes>10.0;280.0;70.0;280.0;70.0;10.0</additional_attributes>
+    <additional_attributes>10.0;330.0;90.0;330.0;90.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>637</x>
-      <y>175</y>
-      <w>126</w>
-      <h>42</h>
+      <x>264</x>
+      <y>104</y>
+      <w>144</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Location Deletion
@@ -631,23 +620,23 @@ Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>735</x>
-      <y>210</y>
-      <w>21</w>
-      <h>56</h>
+      <x>376</x>
+      <y>144</y>
+      <w>24</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>
 
 </panel_attributes>
-    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;120.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>707</x>
-      <y>294</y>
-      <w>126</w>
-      <h>42</h>
+      <x>344</x>
+      <y>288</y>
+      <w>144</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Location Modification
@@ -657,10 +646,10 @@ Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>735</x>
-      <y>245</y>
-      <w>21</w>
-      <h>63</h>
+      <x>376</x>
+      <y>232</y>
+      <w>24</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>
 
@@ -670,23 +659,23 @@ Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>672</x>
-      <y>210</y>
-      <w>63</w>
-      <h>175</h>
+      <x>304</x>
+      <y>144</y>
+      <w>72</w>
+      <h>248</h>
     </coordinates>
     <panel_attributes>lt=)-
 Location 
 data</panel_attributes>
-    <additional_attributes>20.0;220.0;20.0;10.0</additional_attributes>
+    <additional_attributes>20.0;280.0;20.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>756</x>
-      <y>329</y>
-      <w>56</w>
-      <h>91</h>
+      <x>400</x>
+      <y>328</y>
+      <w>64</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=()-
 Location
@@ -696,22 +685,22 @@ update</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>686</x>
-      <y>392</y>
-      <w>84</w>
-      <h>217</h>
+      <x>344</x>
+      <y>400</y>
+      <w>72</w>
+      <h>248</h>
     </coordinates>
     <panel_attributes>lt=)-
 </panel_attributes>
-    <additional_attributes>90.0;20.0;10.0;20.0;10.0;290.0</additional_attributes>
+    <additional_attributes>60.0;20.0;10.0;20.0;10.0;290.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>679</x>
-      <y>371</y>
-      <w>21</w>
-      <h>238</h>
+      <x>312</x>
+      <y>376</y>
+      <w>24</w>
+      <h>272</h>
     </coordinates>
     <panel_attributes>lt=()-
 </panel_attributes>
@@ -720,10 +709,10 @@ update</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>679</x>
-      <y>301</y>
-      <w>42</w>
-      <h>42</h>
+      <x>312</x>
+      <y>296</y>
+      <w>48</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>
 
@@ -733,23 +722,23 @@ update</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>658</x>
-      <y>210</y>
-      <w>56</w>
-      <h>77</h>
+      <x>288</x>
+      <y>144</y>
+      <w>64</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>lt=()-
 Delete
 location</panel_attributes>
-    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;150.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>651</x>
-      <y>273</y>
-      <w>63</w>
-      <h>336</h>
+      <x>280</x>
+      <y>264</y>
+      <w>72</w>
+      <h>384</h>
     </coordinates>
     <panel_attributes>lt=)-
 
@@ -760,10 +749,10 @@ data</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>763</x>
-      <y>672</y>
-      <w>77</w>
-      <h>56</h>
+      <x>408</x>
+      <y>736</y>
+      <w>88</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=()-
 New enrolled 
@@ -773,10 +762,10 @@ user</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>973</x>
-      <y>385</y>
-      <w>105</w>
-      <h>42</h>
+      <x>624</x>
+      <y>392</y>
+      <w>144</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Event Modification
@@ -786,10 +775,10 @@ Service</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1036</x>
-      <y>525</y>
-      <w>105</w>
-      <h>42</h>
+      <x>736</x>
+      <y>552</y>
+      <w>120</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Event Deletion
@@ -799,10 +788,10 @@ Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>994</x>
-      <y>420</y>
-      <w>21</w>
-      <h>63</h>
+      <x>672</x>
+      <y>432</y>
+      <w>24</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>
 
@@ -812,10 +801,10 @@ Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1078</x>
-      <y>462</y>
-      <w>21</w>
-      <h>77</h>
+      <x>784</x>
+      <y>480</y>
+      <w>24</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>
 
@@ -825,10 +814,10 @@ Service</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1001</x>
-      <y>420</y>
-      <w>49</w>
-      <h>203</h>
+      <x>680</x>
+      <y>432</y>
+      <w>56</w>
+      <h>232</h>
     </coordinates>
     <panel_attributes>lt=)-
 Event
@@ -838,23 +827,23 @@ data</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1008</x>
-      <y>539</y>
-      <w>42</w>
-      <h>42</h>
+      <x>688</x>
+      <y>568</y>
+      <w>64</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>
 
 </panel_attributes>
-    <additional_attributes>10.0;20.0;40.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;60.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>721</x>
-      <y>609</y>
-      <w>308</w>
-      <h>35</h>
+      <x>360</x>
+      <y>648</y>
+      <w>352</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=()-
 </panel_attributes>
@@ -863,10 +852,10 @@ data</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1106</x>
-      <y>560</y>
-      <w>49</w>
-      <h>56</h>
+      <x>800</x>
+      <y>592</y>
+      <w>56</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=()-
 Delete
@@ -876,10 +865,10 @@ event</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>973</x>
-      <y>420</y>
-      <w>49</w>
-      <h>245</h>
+      <x>648</x>
+      <y>432</y>
+      <w>56</w>
+      <h>280</h>
     </coordinates>
     <panel_attributes>lt=()-
 Modify
@@ -889,10 +878,10 @@ event</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>679</x>
-      <y>630</y>
-      <w>308</w>
-      <h>42</h>
+      <x>312</x>
+      <y>672</y>
+      <w>352</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=)-
 </panel_attributes>
@@ -901,10 +890,10 @@ event</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>644</x>
-      <y>602</y>
-      <w>490</w>
-      <h>77</h>
+      <x>272</x>
+      <y>640</y>
+      <w>560</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=)-
 </panel_attributes>
@@ -913,10 +902,10 @@ event</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>952</x>
-      <y>161</y>
-      <w>77</w>
-      <h>91</h>
+      <x>624</x>
+      <y>136</y>
+      <w>88</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=()-
 Access to
@@ -927,23 +916,24 @@ module</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>427</x>
-      <y>588</y>
-      <w>84</w>
-      <h>175</h>
+      <x>88</x>
+      <y>640</y>
+      <w>72</w>
+      <h>184</h>
     </coordinates>
     <panel_attributes>lt=()-
-Access to event
-save module</panel_attributes>
-    <additional_attributes>10.0;230.0;10.0;10.0;40.0;10.0</additional_attributes>
+Access to 
+event save 
+module</panel_attributes>
+    <additional_attributes>10.0;210.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>588</x>
-      <y>763</y>
-      <w>119</w>
-      <h>42</h>
+      <x>368</x>
+      <y>888</y>
+      <w>136</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Event Save
@@ -953,22 +943,22 @@ Modue</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>420</x>
-      <y>749</y>
-      <w>182</w>
-      <h>49</h>
+      <x>80</x>
+      <y>808</y>
+      <w>304</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>lt=)-
 </panel_attributes>
-    <additional_attributes>20.0;20.0;20.0;50.0;240.0;50.0</additional_attributes>
+    <additional_attributes>20.0;20.0;20.0;130.0;360.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>623</x>
-      <y>721</y>
-      <w>63</w>
-      <h>56</h>
+      <x>408</x>
+      <y>840</y>
+      <w>72</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=()-
 New saved 
@@ -978,50 +968,51 @@ event</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>994</x>
-      <y>714</y>
-      <w>21</w>
-      <h>84</h>
+      <x>672</x>
+      <y>800</y>
+      <w>24</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>
 
 </panel_attributes>
-    <additional_attributes>10.0;100.0;10.0;10.0</additional_attributes>
+    <additional_attributes>10.0;140.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>700</x>
-      <y>770</y>
-      <w>315</w>
-      <h>42</h>
+      <x>496</x>
+      <y>896</y>
+      <w>200</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>
 
 </panel_attributes>
-    <additional_attributes>430.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>230.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>854</x>
-      <y>161</y>
-      <w>70</w>
-      <h>91</h>
+      <x>512</x>
+      <y>136</y>
+      <w>80</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=()-
 Access to
-"enrolled in	"
+"enrolled in"
+events
 module</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;110.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>784</x>
-      <y>84</y>
-      <w>105</w>
-      <h>42</h>
+      <x>432</x>
+      <y>48</y>
+      <w>120</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 "Enrolled in" 
@@ -1031,10 +1022,10 @@ Module</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>924</x>
-      <y>84</y>
-      <w>112</w>
-      <h>42</h>
+      <x>592</x>
+      <y>48</y>
+      <w>128</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>symbol=component
 Saved Events 
@@ -1044,10 +1035,10 @@ Module</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>847</x>
-      <y>119</y>
-      <w>35</w>
-      <h>56</h>
+      <x>504</x>
+      <y>88</y>
+      <w>40</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=)-</panel_attributes>
     <additional_attributes>20.0;50.0;20.0;10.0</additional_attributes>
@@ -1055,10 +1046,10 @@ Module</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>945</x>
-      <y>119</y>
-      <w>35</w>
-      <h>56</h>
+      <x>616</x>
+      <y>88</y>
+      <w>40</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=)-</panel_attributes>
     <additional_attributes>20.0;50.0;20.0;10.0</additional_attributes>
@@ -1066,10 +1057,10 @@ Module</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>798</x>
-      <y>42</y>
-      <w>56</w>
-      <h>56</h>
+      <x>448</x>
+      <y>0</y>
+      <w>64</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=()-
 Unenroll</panel_attributes>
@@ -1078,13 +1069,37 @@ Unenroll</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>952</x>
-      <y>42</y>
-      <w>49</w>
-      <h>56</h>
+      <x>624</x>
+      <y>0</y>
+      <w>56</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=()-
 Unsave</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>904</x>
+      <y>304</y>
+      <w>72</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=()-
+New user</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>248</x>
+      <y>296</y>
+      <w>672</w>
+      <h>448</h>
+    </coordinates>
+    <panel_attributes>lt=)-
+</panel_attributes>
+    <additional_attributes>810.0;20.0;790.0;20.0;790.0;540.0;10.0;540.0;10.0;480.0</additional_attributes>
   </element>
 </diagram>

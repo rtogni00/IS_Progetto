@@ -364,15 +364,16 @@ Il componente si occupa della funzionalità di registrazione di un nuovo account
 
 \subsubsection*{CMP2: Gestione autenticazione}
 \paragraph{Descrizione}
-Il componente gestisce login e logout dal sistema. Interagisce con gli altri componenti per gestire la separazione tra attività che richiedono un profilo e attività aperte agli utenti non registrati.
+Il componente gestisce il login al sistema. Interagisce con gli altri componenti per gestire la separazione tra attività che richiedono un profilo e attività aperte agli utenti non registrati.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
 	\item Credenziali di accesso: le credenziali includono email e password
+	\item Verifica delle credenziali: il sistema confronta le credenziali inserite con quelle presenti nel database
 \end{itemize}
 
 \subparagraph{Interfacce Fornite}
 \begin{itemize}
-	\item Autenticazione: garantisce che l'utente sia loggato, permettendo dunque agli altri componenti di fornire funzionalità specifiche agli utenti con un profilo di un certo tipo
+	\item Conferma credenziali: garantisce che l'utente sia loggato, permettendo dunque agli altri componenti di fornire funzionalità specifiche agli utenti con un profilo di un certo tipo
 \end{itemize}
 
 \subsubsection*{CMP3: Gestione database}
@@ -381,9 +382,9 @@ Il componente salva i dati relativi ad utenti, eventi e luoghi all'interno del d
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
 	\item Credenziali utente: quando un nuovo utente si registra al sistema, i dati vengono salvati nel database
-	\item Dati relativi ai luoghi: la componente deve avere accesso alla variazione dei dati determinata dall'update di un luogo precedentemente inserito
+	\item Dati relativi ai luoghi: la componente deve avere accesso ai luoghi salvati nel database, nonché alla variazione dei dati determinata dall'update o dalla rimozione di un luogo precedentemente inserito
 	\item Dati profilo: la componente deve avere accesso alla variazione dei dati personali causata da una modifica del profilo utente
-	\item Dati relativi agli eventi: la componente deve avere accesso alla variazione dei dati determinata dall'update di un evento precedentemente inserito
+	\item Dati relativi agli eventi: la componente deve avere accesso agli eventi salvati nel database, nonché  alla variazione dei dati determinata dall'update o dalla rimozione di un evento precedentemente inserito
 \end{itemize}
 \subparagraph{Interfacce Fornite}
 \begin{itemize}
@@ -393,9 +394,10 @@ Il componente salva i dati relativi ad utenti, eventi e luoghi all'interno del d
 \end{itemize}
 
 
-\subsubsection*{CMP4: Gestione profilo utente}
+
+\subsubsection*{CMP4: Area personale}
 \paragraph{Descrizione}
-Il componente gestisce le modifiche del profilo utente (e.g., cambio password)
+Il componente gestisce il profilo utente, oltre a fungere da tramite per le attività che necessitano che l'utente possieda un profilo personale.
 
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
@@ -403,47 +405,83 @@ Il componente gestisce le modifiche del profilo utente (e.g., cambio password)
 \end{itemize}
 \subparagraph{Interfacce Fornite}
 \begin{itemize}
-	\item Modifica del profilo: permette all'utente di modificare la password
+	\item Accesso al modulo per la gestione degli eventi a cui l'utente è iscritto
+	\item Acceso al modulo per la gestione degli eventi salvati
 \end{itemize}
 
-\subsubsection*{CMP5: Gestione eventi}
+\subsubsection*{CMP5: Modulo di gestione degli eventi salvati}
 \paragraph{Descrizione}
-Il componente si occupa tutte le funzionalità legate agli eventi, consentendo agli utenti di tipo "organizer" di gestire la loro creazione, modifica e cancellazione.
-
+Il componente si occupa della gestione degli eventi salvati
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Autenticazione: la gestione degli eventi è una funzionalità offerta esclusivamente agli utenti di categoria "organizer"
+	\item Accesso all'area personale
 \end{itemize}
-\subparagraph{Interfacce Fornite}
+\subsection{Interfacce Fornite}
 \begin{itemize}
-	\item Creazione evento: crea un nuovo evento e lo inserisce nel database
-	\item Modifica evento: aggiorna la descrizione di un evento esistente e informa il database della modifica
-	\item Cancellazione evento: elimina dal database un evento precedentemente creato
+	\item Rimozione di un evento dalla lista degli eventi salvati
 \end{itemize}
 
-\subsubsection*{CMP6: Sistema di ricerca eventi}
+\subsubsection*{CMP6: Modulo di gestione degli eventi a cui si è iscritti}
 \paragraph{Descrizione}
-Il componente consente di effettuare la ricerca di eventi presenti nel database.
+Il componente si occupa della gestione degli eventi a cui un utente è iscritto
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Eventi: i dati relativi agli eventi presenti nel database
-	\item Criteri di ricerca: i filtri da utilizzare nella ricerca degli eventi
+	\item Accesso all'area personale
 \end{itemize}
-\subparagraph{Interfacce Fornite}
+\subsection{Interfacce Fornite}
 \begin{itemize}
-	\item Eventi: gli eventi che coincidono con i filtri di ricerca utilizzati
+	\item Disiscrizione da un evento
 \end{itemize}
 
-\subsubsection*{CMP7: Gestione iscrizione eventi}
+\subsubsection*{CMP7: Location list service}
 \paragraph{Descrizione}
-Il componente consente l'iscrizione ad un evento
+Il componente si occupa della gestione dei luoghi creati da un utente di tipo owner
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Autenticazione: solo gli utenti in possesso di un profilo possono iscriversi ad un evento
-	\item Dati evento: le informazioni relative all'evento a cui l'utente loggato desidera iscriversi
+	\item Accesso all'area personale
+\end{itemize}
+\subsection{Interfacce Fornite}
+\begin{itemize}
+	\item Luoghi creati dall'utente
 \end{itemize}
 
-\subsubsection*{CMP8: Gestione mappa}
+\subsubsection*{CMP8: Location Creation service}
+\paragraph{Descrizione}
+Il componente si occupa della creazione di una nuova location
+\subparagraph{Interfacce Richieste}
+\begin{itemize}
+	\item Accesso all'area personale
+\end{itemize}
+\subsection{Interfacce Fornite}
+\begin{itemize}
+	\item Creazione di una nuova location
+\end{itemize}
+
+\subsubsection*{CMP9: Location Deletion service}
+\paragraph{Descrizione}
+Il componente si occupa dell'eliminazione di una location
+\subparagraph{Interfacce Richieste}
+\begin{itemize}
+	\item Accesso all'area personale
+\end{itemize}
+\subsection{Interfacce Fornite}
+\begin{itemize}
+	\item Eliminazione di una location esistente
+\end{itemize}
+
+\subsubsection*{CMP10: Location Modification service}
+\paragraph{Descrizione}
+Il componente si occupa della modifica di una location precedentemente creato
+\subparagraph{Interfacce Richieste}
+\begin{itemize}
+	\item Accesso all'area personale
+\end{itemize}
+\subsection{Interfacce Fornite}
+\begin{itemize}
+	\item Modifica dei dati di una location esistente
+\end{itemize}
+
+\subsubsection*{CMP11: Gestione mappa}
 \paragraph{Descrizione}
 Il componente mostra una mappa con la posizione degli eventi disponibili
 \subparagraph{Interfacce Richieste}
@@ -455,40 +493,100 @@ Il componente mostra una mappa con la posizione degli eventi disponibili
 	\item Eventi: la posizione degli eventi, sottoforma di pallini sulla mappa
 \end{itemize}
 
-\subsubsection*{CMP9: Gestione luoghi}
+\subsubsection*{CMP12: Sistema di ricerca eventi}
 \paragraph{Descrizione}
-Il componente si occupa tutte le funzionalità legate ai luoghi, consentendo agli utenti di tipo "owner" di gestire la loro creazione, modifica ed eliminazione.
+Il componente consente di effettuare la ricerca di eventi presenti nel database.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Autenticazione: la gestione dei luoghi è una funzionalità offerta esclusivamente agli utenti di categoria "owner"
+	\item Eventi: i dati relativi agli eventi presenti nel database
+	\item Criteri di ricerca: i filtri da utilizzare nella ricerca degli eventi
 \end{itemize}
 \subparagraph{Interfacce Fornite}
 \begin{itemize}
-	\item Creazione luogo: aggiunge un nuovo luogo al database
-	\item Modifica luogo: aggiorna la descrizione di un luogo esistente e informa il database della modifica
-	\item Cancellazione luogo: rimuove un luogo dal database, rendendolo non più disponibile
+	\item Eventi: gli eventi che coincidono con i filtri di ricerca utilizzati
+	\item Accesso al modulo per il salvataggio di un evento
+	\item Accesso al modulo per l'iscrizione ad un evento
 \end{itemize}
 
-\subsubsection*{CMP10: Sistema di ricerca luoghi}
+\subsubsection*{CMP13: Gestione iscrizione eventi}
 \paragraph{Descrizione}
-Il componente consente di effettuare la ricerca di luoghi presenti nel database.
+Il componente consente l'iscrizione ad un evento
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Autenticazione: la ricerca di un luogo viene fatta durante la creazione o la modifica di un evento. Si tratta dunque di una funzionalità offerta solamente agli utenti di tipo "organizer"
-	\item Luoghi:i dati relativi ai luoghi presenti nel database
-	\item Criteri di ricerca: i filtri da utilizzare nella ricerca dei luoghi
+	\item Autenticazione: solo gli utenti in possesso di un profilo possono iscriversi ad un evento
+	\item Dati evento: le informazioni relative all'evento a cui l'utente loggato desidera iscriversi
 \end{itemize}
 \subparagraph{Interfacce Fornite}
 \begin{itemize}
-	\item Luoghi: i luoghi che coincidono con i filtri di ricerca utilizzati
+	\item Nuova iscrizione all'evento
 \end{itemize}
 
+\subsubsection*{CMP14: Gestione salvataggio eventi}
+\paragraph{Descrizione}
+Il componente consente il salvataggio di un evento
+\subparagraph{Interfacce Richieste}
+\begin{itemize}
+	\item Autenticazione: solo gli utenti in possesso di un profilo possono iscriversi ad un evento
+	\item Dati evento: le informazioni relative all'evento a cui l'utente loggato desidera iscriversi
+\end{itemize}
+\subparagraph{Interfacce Fornite}
+\begin{itemize}
+	\item Nuovo salvataggio dell'evento
+\end{itemize}
+
+\subsubsection*{CMP15: Event list service}
+\paragraph{Descrizione}
+Il componente si occupa della gestione degli eventi creati da un utente di tipo organiser
+\subparagraph{Interfacce Richieste}
+\begin{itemize}
+	\item Accesso all'area personale
+\end{itemize}
+\subsection{Interfacce Fornite}
+\begin{itemize}
+	\item Eventi organizzati dall'utente
+\end{itemize}
+
+\subsubsection*{CMP16: Event Creation service}
+\paragraph{Descrizione}
+Il componente si occupa della creazione di un nuovo evento
+\subparagraph{Interfacce Richieste}
+\begin{itemize}
+	\item Accesso all'area personale
+\end{itemize}
+\subsection{Interfacce Fornite}
+\begin{itemize}
+	\item Creazione di un nuovo evento
+\end{itemize}
+
+\subsubsection*{CMP17: Event Deletion service}
+\paragraph{Descrizione}
+Il componente si occupa dell'eliminazione di un evento
+\subparagraph{Interfacce Richieste}
+\begin{itemize}
+	\item Accesso all'area personale
+\end{itemize}
+\subsection{Interfacce Fornite}
+\begin{itemize}
+	\item Eliminazione di un evento esistente
+\end{itemize}
+
+\subsubsection*{CMP18: Event Modification service}
+\paragraph{Descrizione}
+Il componente si occupa della modifica dei dati relativi ad un evento precedentemente creato
+\subparagraph{Interfacce Richieste}
+\begin{itemize}
+	\item Accesso all'area personale
+\end{itemize}
+\subsection{Interfacce Fornite}
+\begin{itemize}
+	\item Modifica dei dati di un evento esistente
+\end{itemize}
 
 \subsection{Diagramma dei Componenti}
 
 \begin{figure}[!htb]
 	\centering
-	\includegraphics[width=\linewidth]{./images/ComponentDiagram.pdf}
+	\includegraphics[width=\linewidth]{./images/ComponentDiagramV2.pdf}
 	\caption{Diagramma complessivo dei componenti di sistema e delle loro interconnessioni.}
 	\label{fig:ComponentDiagram}
 \end{figure}
