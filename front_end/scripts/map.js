@@ -1,5 +1,6 @@
 // const url = "http://localhost:5000";
 const url = "https://is-progetto.onrender.com";
+
 document.addEventListener("DOMContentLoaded", function () {
     // Initialize the map with Trento's coordinates
     const map = L.map('map').setView([46.0667, 11.1167], 13); // Trento coordinates
