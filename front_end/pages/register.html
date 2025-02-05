@@ -11,137 +11,75 @@
 
 <body class="bg-gray-100 flex justify-center items-center min-h-screen">
 
-<!-- Register Page -->
-<div class="flex items-center justify-center min-h-screen bg-gray-100">
-    <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 class="text-3xl font-semibold text-center mb-6">Create an Account</h2>
+    <!-- Register Page -->
+    <div class="flex items-center justify-center min-h-screen bg-gray-100">
+        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
+            <h2 class="text-3xl font-semibold text-center mb-6">Create an Account</h2>
 
-        <!-- Registration Form -->
-        <!-- <form id="registerForm" action="http://localhost:5000/api/v1/users/signup" method="POST" class="space-y-6"> -->
-        <form id="registerForm" onsubmit="registerUser(event)" class="space-y-6">
+            <!-- Registration Form -->
+            <!-- <form id="registerForm" action="http://localhost:5000/api/v1/users/signup" method="POST" class="space-y-6"> -->
+            <form id="registerForm" class="space-y-6">
+            <!-- <form id="registerForm" onsubmit="registerUser(event)" class="space-y-6"> -->
 
-            <!-- Email -->
-            <div>
-                <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                <input type="email" id="email" name="email" required
-                    class="mt-2 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
-            </div>
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="email" name="email" required
+                        class="mt-2 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+                </div>
 
-            <!-- Username -->
-            <div>
-                <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
-                <input type="text" id="username" name="username" required
-                    class="mt-2 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
-            </div>
+                <!-- Username -->
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                    <input type="text" id="username" name="username" required
+                        class="mt-2 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+                </div>
 
-            <!-- Password -->
-            <div>
-                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                <div class="relative">
-                    <input type="password" id="password" name="password" required
-                        class="mt-2 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        id="passwordInput">
-                    <div class="absolute top-3 right-3">
-                        <!-- Eye Icon for showing/hiding password -->
-                        <i id="eyeIcon" class="fa fa-eye w-5 h-5 text-gray-500 cursor-pointer"
-                            onclick="togglePasswordVisibility()"></i>
+                <!-- Password -->
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password" required
+                            class="mt-2 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
+                            id="passwordInput">
+                        <div class="absolute top-3 right-3">
+                            <!-- Eye Icon for showing/hiding password -->
+                            <i id="eyeIcon" class="fa fa-eye w-5 h-5 text-gray-500 cursor-pointer"></i>
+                                <!-- onclick="togglePasswordVisibility()"></i> -->
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Role Selection -->
-            <div>
-                <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
-                <select id="role" name="role" required
-                    class="mt-2 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
-                    <option value="user">User</option>
-                    <option value="organizer">Organizer</option>
-                    <option value="owner">Owner</option>
-                </select>
-            </div>
+                <!-- Role Selection -->
+                <div>
+                    <label for="role" class="block text-sm font-medium text-gray-700">Role</label>
+                    <select id="role" name="role" required
+                        class="mt-2 px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400">
+                        <option value="user">User</option>
+                        <option value="organizer">Organizer</option>
+                        <option value="owner">Owner</option>
+                    </select>
+                </div>
 
-            <!-- Submit Button -->
-            <div class="flex justify-center mt-6">
-                <button type="submit"
-                    class="bg-blue-500 text-white px-6 py-2 rounded-md shadow hover:bg-blue-600">Register</button>
-            </div>
+                <!-- Submit Button -->
+                <div class="flex justify-center mt-6">
+                    <button type="submit"
+                        class="bg-blue-500 text-white px-6 py-2 rounded-md shadow hover:bg-blue-600">Register</button>
+                </div>
 
-            <!-- Links to Login -->
-            <div class="text-center mt-4">
-                <p class="text-sm">Already have an account? <a href="login.html" class="text-blue-500">Login here</a></p>
-            </div>
-        </form>
+                <!-- Links to Login -->
+                <div class="text-center mt-4">
+                    <p class="text-sm">Already have an account? <a href="login.html" class="text-blue-500">Login here</a></p>
+                </div>
+            </form>
 
-        <!-- Success Message -->
-        <div id="successMessage" class="hidden mt-4 text-green-500 text-center">
-            Registration successful! Redirecting to login...
+            <!-- Success Message -->
+            <div id="successMessage" class="hidden mt-4 text-green-500 text-center">
+                Registration successful! Redirecting to login...
+            </div>
         </div>
     </div>
-</div>
 
-<script>
-    // Function to toggle password visibility and switch the eye icon
-    function togglePasswordVisibility() {
-        const passwordInput = document.getElementById('password');
-        const eyeIcon = document.getElementById('eyeIcon');
-
-        // Toggle the input type between "password" and "text"
-        if (passwordInput.type === 'password') {
-            passwordInput.type = 'text';  // Show password
-            eyeIcon.classList.remove('fa-eye');  // Remove the eye icon (closed)
-            eyeIcon.classList.add('fa-eye-slash');  // Add the eye-slash icon (visible)
-        } else {
-            passwordInput.type = 'password';  // Hide password
-            eyeIcon.classList.remove('fa-eye-slash');  // Remove the eye-slash icon
-            eyeIcon.classList.add('fa-eye');  // Add the eye icon (hidden)
-        }
-    }
-</script>
-
-<script>
-    async function registerUser(event) {
-        console.log('registerUser function triggered');
-        event.preventDefault(); // Prevent the form from submitting normally
-
-        const form = document.getElementById('registerForm');
-        const formData = new FormData(form);
-
-        const data = {
-            email: formData.get('email'),
-            username: formData.get('username'),
-            password: formData.get('password'),
-            role: formData.get('role'),
-        };
-
-        try {
-            const response = await fetch('http://localhost:5000/api/v1/users/signup', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data),
-            });
-
-            // Check for response status
-            const result = await response.json();
-
-            if (response.ok) {
-                // If signup is successful
-                alert('Registration successful');
-                window.location.href = "login.html"; // Redirect to login page
-            } else {
-                // Handle different error cases based on the message
-                if (result.message === 'Email already in use') {
-                    alert('The email is already in use. Please choose another one.');
-                } else if (result.message === 'Username already in use') {
-                    alert('The username is already in use. Please choose another one.');
-                } else {
-                    alert('An error occurred during registration. Please try again.');
-                }
-            }
-        } catch (error) {
-            console.error('Error during registration:', error);
-            alert('An error occurred while registering the user.');
-        }
-    }
-</script>
+    <script type="module" src="../scripts/register.js"></script>
+</body>
+</html>

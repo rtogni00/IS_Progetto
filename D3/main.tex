@@ -722,7 +722,8 @@ Il progetto npm fa uso dei seguenti moduli:
 Sono inoltre riportate le seguenti dipendenze di sviluppo:
 \begin{itemize}
     \item \textbf{Dotenv} per la gestione delle variabili d'ambiente
-    \item \textbf{TODO}
+    \item \textbf{Jest} per il testing
+    \item \textbf{Supertest} per il testing della endpoint express
 \end{itemize}
 
 \subsection{Database}
@@ -733,10 +734,10 @@ relazionale. In particolare, si è fatto uso del servizio offerto da
 
 Per la gestione dei dati necessari per il funzionamento dell'applicazione sono state definite quattro strutture dati mediante Mongoose:
 \begin{itemize}
-	\item Event: per gestire tutte le funzionalità legate alla creazione, modifica ed eliminazione degli eventi
-	\item EventRegistration: per gestire correttamente l'iscrizione e la disiscrizione degli utenti dagli eventi
-	\item Place: per gestire tutte le funzionalità legate alla creazione, modifica ed elimazione dei luoghi
-	\item User: per gestire le tre tipologie di utente e le attività ad esse collegate
+	\item \textbf{Event}: per gestire tutte le funzionalità legate alla creazione, modifica ed eliminazione degli eventi
+	\item \textbf{EventRegistration}: per gestire correttamente l'iscrizione e la disiscrizione degli utenti dagli eventi
+	\item \textbf{Place}: per gestire tutte le funzionalità legate alla creazione, modifica ed elimazione dei luoghi
+	\item \textbf{User}: per gestire le tre tipologie di utente e le attività ad esse collegate
 \end{itemize}
 
 \newpage
@@ -944,6 +945,96 @@ Di seguito sono riportati per completezza i modelli relativi agli eventi, agli u
 \end{lstlisting}
 	
 \section{Front-End}
+
+Trattandosi di un "solo Dev project", non è stato possibile implementare tutte le funzionalità inizialmente pianificate. A causa di tale limitazione, ho preso la decisione di dedicare la maggior parte del tempo alla progettazione e allo sviluppo della backend. Il risultato è una backend completa, che offre tutte le API necessarie per lo sviluppo di una front-end funzionale. La parte di front-end effettivamente realizzata ruota invece intorno alle funzionalità offerte alla categoria di utenti "BasicUser".
+
+In particolare, l'applicazione consta di una Home Page, di una pagina per la gestione del profilo personale, di una pagaina per il browsing degli eventi e di una pagina per la visualizzazione dei dettagli di un evento\footnote{Gli screenshot riportati sono stati effettuati utilizzando un laptop. L'intero front-end è tuttavia realizzato in modo tale da risultare facilmente utilizzabile anche da un dispositivo mobile.}.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.8\linewidth]{./images/Index.png}
+	\caption{Pagina principale dell'applicazione.}
+	\label{fig:index}
+\end{figure}
+\newpage
+
+In Figura \ref{fig:index} è rappresentata la pagina principale dell'applicazione. Da qui è possibile esplorare la mappa, visualizzare la lista degli eventi o effettuare il login.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.5\linewidth]{./images/Login.png}
+	\caption{Pagina di login.}
+		\label{fig:login}
+\end{figure}
+
+Qualora l'utente sia già in possesso di un profilo, a seguito del login viene mostrata una versione della Home Page aggiornata con un bottone per raggiungere la propria area personale (vedi Figura \ref{fig:mainPageAfterLogin}). Alternativamente, dalla pagina di login mostrata in Figura \ref{fig:login} è possibile raggiungere il modulo per la registrazione di un nuovo utente (vedi Figura \ref{fig:registration}).
+
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./images/mainPageAfterLogin.png}
+	\caption{Pagina principale dell'applicazione a seguito del login.}
+	\label{fig:mainPageAfterLogin}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.3\linewidth]{./images/Registration.png}
+	\caption{Pagina di registrazione.}
+	\label{fig:registration}
+\end{figure}
+
+
+\begin{figure}[htb]
+	\centering
+	\includegraphics[width=\textwidth]{./images/EventList.png} % Adjust width as needed
+	\vskip .5cm
+	\includegraphics[width=\textwidth]{./images/EventListFilter.png} % Adjust width as needed
+	\caption{Top: lista degli eventi senza filtri. Bottom: lista degli eventi filtrando per location.}
+	\label{fig:eventList}
+\end{figure}
+
+
+
+
+In Figura \ref{fig:eventList} è mostrata la lista degli eventi disponibili. Come mostrato nella parte inferiore della figura, è possibile filtrare gli eventi per nome, location e data. Una volta selezionato un evento, si apre una pagina contenente la descrizione dettagliata dello stesso, come mostrato in Figura \ref{fig:eventDetails1}. I pulsanti "Enroll" e "Save Event" consentono di interagire con l'evento in questione, e vengono aggiornati dinamicamente a seconda dello stato corrente del sistema (vedi Figure \ref{fig:eventDetails1}, \ref{fig:eventDetails2} e \ref{fig:eventDetails3}).
+
+\newpage
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./images/EventDetails1.png}
+	\caption{Pagina dettagli evento.}
+	\label{fig:eventDetails1}
+\end{figure}
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./images/EventDetails2.png}
+	\caption{Pagina dettagli evento salvato dallo user.}
+	\label{fig:eventDetails2}
+\end{figure}
+
+\newpage
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./images/EventDetails3.png}
+	\caption{Pagina dettagli evento a cui lo user è iscritto.}
+	\label{fig:eventDetails3}
+\end{figure}
+
+In Figura \ref{fig:profile} è invece mostrato il profilo personale. Da qui l'utente può cambiare la password, effettuare il logout, e gestire gli eventi salvati e a cui è iscritto.
+
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.4\linewidth]{./images/Profile.png}
+	\caption{Profilo personale dello user.}
+	\label{fig:profile}
+\end{figure}
+\newpage
 
 \section{Deployment}
 

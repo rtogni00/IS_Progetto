@@ -691,31 +691,36 @@ Lo scopo di questo capitolo consiste nel rappresentare un punto di incontro tra 
 	\toprule
 	Classe          & Metodo                               & HTTP Method & URI + query params               & Request                        & Response                          & Note \\ \midrule
 	BasicUser       
-	& register()                           & POST        & /api/v1/users/register            & JSON {email, password, role}         & JSON {token, userData}           & Crea un nuovo utente \\
-	& login()                              & POST        & /api/v1/users/login               & JSON {email, password}         & JSON {token, userData}           & Restituisce il token JWT \\
-	& logout()                             & POST        & /api/v1/users/logout              & Header {Authorization: Token}  & JSON {message}                   & Invalida il token \\
+	& register()                           & POST        & /api/v1/users/signup            & JSON {username, email, password, role}         & JSON {message, user, token}           & Crea un nuovo utente \\
+	& login()                              & POST        & /api/v1/users/login               & JSON {email, password}         & JSON {message, token}           & Restituisce il token JWT \\
+	& logout()                             & POST        & /api/v1/users/logout              &  & JSON {message}                   & Invalida il token \\
+	& enroll(eventId)()                    & POST        & /api/v1/events/{eventId}/enroll   &   JSON {enrolledEvents} & JSON {message}                                            & Iscrive l'utente ad un evento  \\
+	& unenroll(eventId)()                    & POST        & /api/v1/events/{eventId}/unenroll   &  JSON {enrolledEvents} & JSON {message}                                            & Disiscrive l'utente da un evento  \\
+	& saveEvent(eventId)                   & POST        & /api/v1/events/{eventId}/save     & JSON {savedEvents}  & JSON {message}                   & Salva un evento nei preferiti \\
+	& unsaveEvent(eventId)                   & POST        & /api/v1/events/{eventId}/unsave     & JSON {savedEvents}  & JSON {message}                   & Rimuove un evento dai preferiti \\
+	& getSavedEvents()                     & GET         & /api/v1/users/savedEvents         &  & JSON {events: [{\_id, name}]}         & Ottiene gli eventi salvati \\
+	& getEnrolledEvents()                  & GET         & /api/v1/users/enrolledEvents         & Header {Authorization: Token}  & JSON {events: [{\_id, name}]}         & Ottiene gli eventi a cui l'utente è iscritto \\
+	& changePwd()                          & PUT         & /api/v1/users/changePwd     & JSON {oldPwd, newPwd}          & JSON {message}                   & Modifica la password \\ \midrule
+
 	
-	& enroll(eventId)()                    & POST        & /api/v1/events/{eventId}/enroll   &   & JSON {savedEvents}                                            & Iscrive l'utente ad un evento  \\
-	& unenroll(eventId)()                    & POST        & /api/v1/events/{eventId}/unenroll   &   & JSON {savedEvents}                                            & Disiscrive l'utente da un evento  \\
-	& saveEvent(eventId)                   & POST        & /api/v1/events/{eventId}/save     & Header {Authorization: Token}  & JSON {message}                   & Salva un evento nei preferiti \\
-	& unsaveEvent(eventId)                   & POST        & /api/v1/events/{eventId}/unsave     & Header {Authorization: Token}  & JSON {message}                   & Rimuove un evento dai preferiti \\
-	& getSavedEvents()                     & GET         & /api/v1/events/{eventId}/isSaved         & Header {Authorization: Token}  & JSON {savedEvents}         & Ottiene gli eventi salvati \\
-	& getEnrolledEvents()                  & GET         & /api/v1/events/{eventId}/isEnrolled         & Header {Authorization: Token}  & JSON {savedEvents}         & Ottiene gli eventi a cui l'utente è iscritto \\
+	Organizer       
+	& createEvent()                        & POST        & /api/v1/events/create                 & JSON {eventData}               & JSON {event}                     & Crea un evento \\
+	& updateEvent(eventId)                 & PUT         & /api/v1/events/{eventId}/update         & JSON {eventData}               & JSON {event}                     & Aggiorna un evento \\
+	& deleteEvent(eventId)                 & DELETE      & /api/v1/events/{eventId}/delete          &  & JSON {message}                   & Elimina un evento \\ \midrule
 	
-	& changePwd()                          & PUT         & /api/v1/users/change-password     & JSON {oldPwd, newPwd}          & JSON {message}                   & Modifica la password \\ \midrule
-	Organizer       & createEvent()                        & POST        & /api/v1/events                    & JSON {eventData}               & JSON {event}                     & Crea un evento \\
-	& updateEvent(eventId)                 & PUT         & /api/v1/events/{eventId}          & JSON {eventData}               & JSON {event}                     & Aggiorna un evento \\
-	& deleteEvent(eventId)                 & DELETE      & /api/v1/events/{eventId}          & Header {Authorization: Token}  & JSON {message}                   & Elimina un evento \\ \midrule
-	Owner           & createPlace()                        & POST        & /api/v1/places                    & JSON {placeData}               & JSON {place}                     & Crea un luogo \\
-	& updatePlace(placeId)                 & PUT         & /api/v1/places/{placeId}          & JSON {placeData}               & JSON {place}                     & Modifica un luogo \\
-	& deletePlace(placeId)                 & DELETE      & /api/v1/places/{placeId}          & Header {Authorization: Token}  & JSON {message}                   & Elimina un luogo \\ \midrule
-	Event           & setPlace()                           & PUT         & /api/v1/events/{eventId}/place    & JSON {placeId}                 & JSON {event}                     & Assegna un luogo a un evento \\
-	& setDate()                            & PUT         & /api/v1/events/{eventId}/date     & JSON {date}                    & JSON {event}                     & Imposta la data di un evento \\ \midrule
-	EventSearch     & filterEvents(criteria)               & GET         & /api/v1/events?filter={criteria}  & Query params                   & JSON {events}                    & Filtra gli eventi \\ \midrule
+	Owner           
+	& createPlace()                        & POST        & /api/v1/places/create                  & JSON {placeData}               & JSON {place}                     & Crea un luogo \\
+	& updatePlace(placeId)                 & PUT         & /api/v1/places/{placeId}/update        & JSON {placeData}               & JSON {place}                     & Modifica un luogo \\
+	& deletePlace(placeId)                 & DELETE      & /api/v1/places/{placeId}/delete          &  & JSON {message}                   & Elimina un luogo \\ \midrule
 	
-	Authentication  & generateToken(userId)                & POST        & /api/v1/auth/token                & JSON {userId}                  & JSON {token}                     & Genera un JWT \\
-	& verifyToken(token)                   & POST        & /api/v1/auth/verify               & Header {Authorization: Token}  & JSON {valid: true/false}         & Verifica il token \\
-	& authorize(user, action)              & Middleware  & (interno)                         & Header {Authorization: Token}  & (interno)                        & Middleware di autorizzazione \\ \bottomrule
+	Event           
+	& setPlace()                           & PUT         & /api/v1/events/{eventId}/setPlace    & JSON {placeId}                 & JSON {event}                     & Assegna un luogo a un evento \\
+	%	& setDate()                            & PUT         & /api/v1/events/{eventId}/setDdate     & JSON {date}                    & JSON {event}                     & Imposta la data di un evento \\ \midrule
+	EventSearch     
+	& filterEvents(criteria)               & GET         & /api/v1/events?filter={criteria}  & JSON query params                   & JSON {events}                    & Filtra gli eventi \\ \midrule
+	
+	Authentication  
+	& middleware                &         & Applied to protected routes                &  Header {Authorization: Token}              & JSON {success, message}                     & Verifica il token e lo assegna a \texttt{req.loggedUser} \\\bottomrule
 \end{tabular}%
 }
 \caption{Dal class diagram alle APIs.}
@@ -726,6 +731,6 @@ Lo scopo di questo capitolo consiste nel rappresentare un punto di incontro tra 
 
 Si noti come l'iscrizione e il salvataggio di eventi, seppur rappresentati come metodi appartenenti alla classe \verb*|BasicUser|, siano effettivamente implementati all'interno della route \verb*|events|. L'unico parametro è l'id dell'evento in questione in quanto l'identità dell'utente deriva dal middleware di autenticazione. Tale scelta implementativa è giustificata semplicemente da una maggiore linearità del codice, e non impatta in alcun modo sulla funzionalità del sistema.
 
-\textcolor{red}{TODO} Sistema Request and Response
+Un'ulteriore differenza tra il diagramma a classi presentato e l'effettiva implementazione consiste nell'utilizzo di un singolo authentication middleware per la gestione di tutte le attività che necessitano di un account.
 
 \end{document}

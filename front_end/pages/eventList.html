@@ -17,7 +17,7 @@
 
     <!-- Back to Main Page Button -->
     <section class="p-6">
-        <button onclick="goToMainPage()"
+        <button id="backToMainPage"
             class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">
             Back to Main Page
         </button>
@@ -37,11 +37,11 @@
             <!-- <input type="date" id="endDate" class="border border-gray-300 rounded-lg px-4 py-2 w-full md:w-1/3"> -->
 
             <!-- Search Button -->
-            <button onclick="applyFilters()"
+            <button id="searchButton"
                 class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500">
                 Search
             </button>
-            <button onclick="clearFilters()" class="bg-gray-300 text-black px-6 py-2 rounded-lg hover:bg-gray-400">
+            <button id="clearButton" class="bg-gray-300 text-black px-6 py-2 rounded-lg hover:bg-gray-400">
                 Clear Filters
             </button>
         </div>
@@ -52,109 +52,7 @@
         <!-- Event boxes will be appended here dynamically -->
     </section>
 
-    <script>
-        // Fetch events with optional filters
-        async function fetchEvents(filters = {}) {
-            try {
-                const queryParams = new URLSearchParams(filters).toString();
-                const response = await fetch(`http://localhost:5000/api/v1/events?${queryParams}`, {
-                    method: 'GET',
-                });
-
-                const events = await response.json();
-                if (response.ok) {
-                    displayEvents(events);
-                } else {
-                    alert(events.message || 'Failed to fetch events');
-                }
-            } catch (error) {
-                console.error('Error fetching events:', error);
-            }
-        }
-
-        // Display events on the page
-        function displayEvents(events) {
-            const eventListContainer = document.getElementById('eventList');
-            eventListContainer.innerHTML = ''; // Clear the container
-
-            if (events.length === 0) {
-                eventListContainer.innerHTML = '<p class="text-gray-500">No events found.</p>';
-                return;
-            }
-
-            events.forEach(event => {
-                const eventBox = document.createElement('div');
-                eventBox.className = 'event-box p-4 border rounded shadow-sm bg-white';
-                eventBox.innerHTML = `
-                    <h3 class="font-bold text-lg">${event.name}</h3>
-                    <p>Place: ${event.location}</p>
-                    <p>Date: ${new Date(event.date).toLocaleString()}</p>
-                    <button onclick="showEventDetails('${event._id}')" 
-                        class="mt-2 text-blue-500 underline">View Details</button>
-                `;
-                eventListContainer.appendChild(eventBox);
-            });
-        }
-
-        // Show full details of a specific event (expand on click)
-        async function showEventDetails(eventId) {
-            // try {
-            //     const response = await fetch(`http://localhost:5000/api/v1/events/${eventId}`);
-            //     const event = await response.json();
-
-            //     if (response.ok) {
-            //         alert(`
-            //             Name: ${event.name}
-            //             Place: ${event.location}
-            //             Date: ${new Date(event.date).toLocaleString()}
-            //             Description: ${event.description}
-            //         `);
-            //     } else {
-            //         alert('Failed to fetch event details');
-            //     }
-            // } catch (error) {
-            //     console.error('Error fetching event details:', error);
-            // }
-            // Navigate to the eventDetails.html page with the eventId as a query parameter
-            window.location.href = `eventDetails.html?eventId=${eventId}`;
-        }
-
-        // Apply filters and fetch events
-        function applyFilters() {
-            const name = document.getElementById('searchByName').value;
-            const location = document.getElementById('searchByLocation').value;
-            const date = document.getElementById('date').value;
-
-            const filters = {};
-            if (name) filters.name = name;
-            if (location) filters.location = location;
-            if (date) filters.date = date;
-
-            fetchEvents(filters);
-        }
-
-        // Clear filters
-        // Function to clear the filters
-        function clearFilters() {
-            // Clear the values of the search fields
-            document.getElementById('searchByName').value = '';
-            document.getElementById('searchByLocation').value = '';
-            document.getElementById('date').value = '';
-
-            // Reset the filters and fetch all events
-            fetchEvents();
-        }
-
-        // Fetch events on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            fetchEvents();
-        });
-
-        // Navigate to the main page
-            function goToMainPage() {
-                window.location.href = 'mainPageAfterLogin.html'; // Adjust the URL to match the main page route
-            }
-    </script>
+    <script type="module" src="../scripts/eventList.js"></script>
 
 </body>
 
