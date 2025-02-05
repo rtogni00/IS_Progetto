@@ -1,4 +1,5 @@
-// map.js
+// const url = "http://localhost:5000";
+const url = "https://is-progetto.onrender.com";
 document.addEventListener("DOMContentLoaded", function () {
     // Initialize the map with Trento's coordinates
     const map = L.map('map').setView([46.0667, 11.1167], 13); // Trento coordinates
@@ -15,7 +16,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Fetch event data from the backend and add markers
 async function fetchEvents(map) {
     try {
-        const response = await fetch('http://localhost:5000/api/v1/events?map=true'); // Use the correct API endpoint
+        const response = await fetch(`${url}/api/v1/events?map=true`); // Use the correct API endpoint
         const events = await response.json();
 
         console.log('Fetched events:', events);
