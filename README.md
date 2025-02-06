@@ -1,6 +1,6 @@
 # Software Engineering Project
 
-This repository tracks the development of an event management app for the 
+This repository tracks the development of an event management app for the
 Software Engineering course at the University of Trento.
 
 ## Documentation
@@ -16,14 +16,23 @@ Project description, featuring:
 
 ### D2
 
-Diagrams describing system functionalities, including:
+Diagrams formally describing system functionalities, including:
 
 -   Use case diagrams;
--   Activity diagrams.
+-   Component diagrams;
+-   Sequence diagrams;
+-   Class diagrams.
+
+Description of the relationship between high-level view given by
+diagrams and actual API implementation.
 
 ### D3
 
-Implementation details expressed through user stories and user flow diagrams.
+-   Implementation details expressed through user stories and user flow diagrams;
+-   Web API documentaiton, along with development approach and code organization strategy;
+-   Testing;
+-   Front-end showcase;
+-   Deployment.
 
 ### D4
 
@@ -39,7 +48,12 @@ Documentation created using swagger, see `swagger/evenTrentoAPIs.yaml`. API rout
 
 ## Front-end
 
-Entry point in `index.html` (main page).
+Entry point in `index.html` (main page). Page structure under `pages/`, corresponding javascript
+files under `scripts/`. Pages include:
 
--   `pages/login.html` &rarr; connects to db, if login successful then redirects to main page
--   `pages/register.html` &rarr; connects to db, if successful then redirects to login page
+-   `login.html` &rarr; connects to db, if login successful then redirects to main page
+-   `register.html` &rarr; connects to db, if successful then redirects to login page
+-   `eventList.html` &rarr; shows list of events available
+-   `eventDetails.html` &rarr; shows details of selected event
+-   `userPersonalArea.html` &rarr; shows user's profile, along with saved events and events
+    they are enrolled in
