@@ -1,5 +1,6 @@
-// const url = "http://localhost:5000";
-const url = "https://is-progetto.onrender.com";
+import config from "./config.js";
+
+const url = config.apiUrl;
 
 // Extract eventId from the URL query parameter
 const urlParams = new URLSearchParams(window.location.search);
@@ -135,7 +136,7 @@ async function saveEvent(eventId) {
         });
 
         if (response.ok) {
-            alert('Event saved successfully!');
+            // alert('Event saved successfully!');
             location.reload(); // Reload to update the button state
         } else {
             const errorData = await response.json();
@@ -159,7 +160,7 @@ async function unsaveEvent(eventId) {
         });
 
         if (response.ok) {
-            alert('Event removed from saved list.');
+            // alert('Event removed from saved list.');
             location.reload(); // Reload to update the button state
         } else {
             const errorData = await response.json();
@@ -183,7 +184,7 @@ async function enrollInEvent(eventId) {
         });
 
         if (response.ok) {
-            alert('Successfully enrolled!');
+            // alert('Successfully enrolled!');
             location.reload();  // Reload the page to update the button and event details
         } else {
             const errorData = await response.json();
@@ -207,7 +208,7 @@ async function unenrollFromEvent(eventId) {
         });
 
         if (response.ok) {
-            alert('Successfully unenrolled!');
+            // alert('Successfully unenrolled!');
             location.reload();  // Reload the page to update the button and event details
         } else {
             alert('Failed to unenroll. Please try again.');

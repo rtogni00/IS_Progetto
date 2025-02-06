@@ -1,9 +1,11 @@
-const express = require('express');
+// const express = require('express');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const SECRET = process.env.SUPER_SECRET;
 
 const tokenChecker = function(req, res, next) {
+	// console.log('JWT Secret:', SECRET); 
 	
 	// Check Authorization header for token (Bearer token format)
     const token = req.body.token || req.query.token || req.headers['x-access-token'] || req.headers['authorization']?.split(' ')[1];
@@ -19,6 +21,7 @@ const tokenChecker = function(req, res, next) {
 	// decode token, verifies secret and checks exp
 	jwt.verify(token, SECRET, (err, decoded) => {			
 		if (err) {
+			console.error('JWT verification error:', err);
 			return res.status(403).send({
 				success: false,
 				message: 'Failed to authenticate token.'

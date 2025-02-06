@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const EventModel = require('../models/event');
 const UserModel = require('../models/user');
 const dbURI = process.env.MONGODB_URI;
+const bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 // Sample events
 const sampleEvents = [
@@ -41,32 +43,38 @@ const sampleEvents = [
     }
 ];
 
-
-// Sample users
-const sampleUsers = [
-    {
-        username: "user",
-        email: "user@example.com",
-        password: "user", // Assume passwords are hashed elsewhere
-        role: "user"
-    },
-    {
-        username: "organizer",
-        email: "organizer@example.com",
-        password: "organizer",
-        role: "organizer"
-    },
-    {
-        username: "owner",
-        email: "owner@example.com",
-        password: "owner",
-        role: "owner"
-    }
-];
-
 // Function to populate database
 async function fillDatabase() {
     try {
+
+        const passwordUser = await bcrypt.hash('user', saltRounds);
+        const passwordOrganizer = await bcrypt.hash('organizer', saltRounds);
+        const passwordOwner = await bcrypt.hash('owner', saltRounds);
+
+
+
+        // Sample users
+        const sampleUsers = [
+            {
+                username: "user",
+                email: "user@example.com",
+                password: passwordUser,
+                role: "user"
+            },
+            {
+                username: "organizer",
+                email: "organizer@example.com",
+                password: passwordOrganizer,
+                role: "organizer"
+            },
+            {
+                username: "owner",
+                email: "owner@example.com",
+                password: passwordOwner,
+                role: "owner"
+            }
+        ];
+        
         // Connect to MongoDB
         await mongoose.connect(dbURI);
 
