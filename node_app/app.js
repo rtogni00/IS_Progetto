@@ -19,7 +19,7 @@ const dbURI = process.env.MONGODB_URI;
 
 async function connectDB() {
     try {
-        const conn = await mongoose.connect(dbURI, { });
+        const conn = await mongoose.connect(dbURI, {});
         console.log("Connected to MongoDB");
     } catch (error) {
         console.error(error.message);
@@ -63,7 +63,7 @@ app.use('/api/v1/places', routes.placesRoute);
 //                      SERVER LISTENER
 ///////////////////////////////////////////////////////////////////////////////////////////
 
-app.listen(port, function() { // starts Express server 
+app.listen(port, function () { // starts Express server 
     console.log('Server running on port ', port);
 });
 

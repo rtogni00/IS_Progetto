@@ -658,7 +658,7 @@ Le API sono state documentate rispettando le specifiche openapi3. La specifica �
 \section{Implementation}
 \subsection{Repository Implementation}
 
-Il codice del progetto, disponibile su \href{https://github.com/rtogni00/IS_Progetto}{GitHub}, è organizzato secondo questo schema:
+Il codice del progetto, disponibile su \href{https://github.com/rtogni00/IS_Progetto}{GitHub}, è organizzato secondo il seguente schema:
 
 \begin{lstlisting}[style=treestyle, caption=Struttura della repository]
 .
@@ -667,23 +667,24 @@ Il codice del progetto, disponibile su \href{https://github.com/rtogni00/IS_Prog
 +-- D3
 +-- D4
 +-- front_end
+|   +-- assets // icona della web app
 |   +-- index.html
-|   +-- pages
-|   +-- scripts
-|   +-- styles
+|   +-- pages // html delle varie pagine
+|   +-- scripts // codice javascript per la gestione delle varie pagine
 +-- node_app
-|   +-- app.js
+|   +-- app.js // entry point dell'app
 |   +-- helperFunctions // funzioni ausiliarie usate durante lo sviluppo
 |   +-- .env.example // esempio di file di configurazione delle
 |   |                // variabili d'ambiente
-|   +-- index.js
+|   +-- index.js // aggregatore di supporto ad app.js per maggiore modularita'
 |   +-- models // modelli dati mongoose
 |   +-- package.json  // file di configurazione del progetto npm
 |   +-- package-lock.json
 |   +-- routes  // endpoint routes per le APIs
 |   +-- tokenChecker.js // middleware per l'autenticazione
+|   +-- tests // testing delle funzinalita'
 +-- README.md
-|   +-- .gitignore // configurazione git repo
++-- .gitignore // configurazione git repo
 +-- swagger
     +-- evenTrentoAPIs.yaml // documentazione API
 \end{lstlisting}
@@ -698,14 +699,44 @@ degli altri due membri del gruppo è limitato al processo di brainstorming e
 alla realizzazione di alcuni grafici relativi allo User Flow. Tali grafici non
 sono presenti nella versione finale del presente documento a causa della loro
 modifica nel corso dello sviluppo dell'applicazione. Una descrizione dettagliata
-delle statistiche finali è riportata in Figura \textbf{TODO}.
+delle statistiche finali è riportata in Figura \ref{fig:commits}. 
+
+Come riportato nei grafici, lo sviluppo ha avuto un forte picco nel corso del mese di ottobre, durante
+il quale è stata svolta buona parte dell'attività di progettazione. Dopodiché si è continuato ad un regime pressoché costante nei mesi di novembre, dicembre e gennaio, con la conclusione del progetto durante la prima settimana di febbraio.
+
+\newpage
 
 
+%\begin{verbatim}
+%git log --format='%aN <%aE>' | sort | uniq -c | sort -nr
+%\end{verbatim}
 
-\begin{verbatim}
-git log --format='%aN <%aE>' | sort | uniq -c | sort -nr
-\end{verbatim}
+\begin{figure}[!htb]
+	\centering
+	\includegraphics[width=0.9\linewidth]{./images/commitsOverTime.pdf}
+	\smallskip
+%	\caption{Grafico rappresentante i commit durante il periodo di sviluppo.}
+%	\label{fig:commits}
+%\end{figure}
+%
+%\begin{figure}[!htb]
+%	\centering
+	\includegraphics[width=0.6\linewidth]{./images/barPlot.pdf}
+	\vskip .5cm
+%	\caption{Grafico rappresentante i commit durante il periodo di sviluppo.}
+%	\label{fig:barPlot}
+%\end{figure}
+%
+%\begin{figure}[!htb]
+%	\centering
+	\includegraphics[width=\linewidth]{./images/calendar24.pdf}
 
+	\vskip .5cm
+	\includegraphics[width=\linewidth]{./images/calendar25.pdf}
+	\caption{Grafici rappresentanti la distribuzione del lavoro durante il periodo di sviluppo.}
+	\label{fig:commits}
+\end{figure}
+\newpage
 
 
 \subsection{Dependencies}
@@ -717,6 +748,7 @@ Il progetto npm fa uso dei seguenti moduli:
     \item \textbf{Jsonwebtoken} per gestire l'autenticazione
     \item \textbf{Mongoose} per interfacciarsi con mongoDB
     \item \textbf{Axios} per interagire con l'API di \href{https://www.openstreetmap.org/#map=6/42.09/12.56}{OpenStreetMap}
+    \item \textbf{Bcrypt} per la gestione delle password
 \end{itemize}
 
 Sono inoltre riportate le seguenti dipendenze di sviluppo:
@@ -1031,6 +1063,8 @@ In Figura \ref{fig:profile} è invece mostrato il profilo personale. Da qui l'ut
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.4\linewidth]{./images/Profile.png}
+	\hspace{1cm}
+	\includegraphics[width=0.25\linewidth]{./images/changePwd.png}
 	\caption{Profilo personale dello user.}
 	\label{fig:profile}
 \end{figure}
@@ -1039,6 +1073,8 @@ In Figura \ref{fig:profile} è invece mostrato il profilo personale. Da qui l'ut
 \section{Deployment}
 
 Per il deployment è stata utilizzata la piattaforma \href{https://render.com/}{Render.com}. Il \href{https://is-progetto-1.onrender.com}{frontend} e il \href{https://is-progetto.onrender.com}{backend} sono deployati separatamente, ma si appoggiano alla stessa repository GitHub.
+
+Per problemi con il deploy contattare \href{mailto:roberto.togni-1@studenti.unitn.it}{roberto.togni-1@studenti.unitn.it}.
 
 	
 \end{document}
