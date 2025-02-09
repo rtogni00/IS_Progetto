@@ -81,8 +81,8 @@ Le seguenti tabelle raccolgono una sere di User Stories divise in diverse epiche
 		\multicolumn{4}{c}{\textbf{Eventi}}\\ \midrule
 		\rowcolor{gray!20}
 		Id & Nome & User Story & Priorità \\ \midrule
-		B1  & Lista eventi            & In qualità di utente, devo essere in grado di scorrere una lista di eventi                                               &  2\\
-		B2  & Filtri eventi           & In qualità di utente, devo essere in grado di filtrare gli eventi in base alla data                                      &  2 \\
+		B1  & Lista eventi            & In qualità di utente, devo essere in grado di scorrere una lista di eventi                                               &  1\\
+		B2  & Filtri eventi           & In qualità di utente, devo essere in grado di filtrare gli eventi in base a diversi criteri                                      &  2 \\
 		B3  & Creazione evento        & In qualità di organizzatore, devo essere in grado di creare un nuovo evento in un determinato luogo                      &  2 \\
 		B4  & Condivisione evento     & In qualità di utente, devo essere in grado di condividere un evento tramite link                                         &  4\\
 		B5  & Pagamento               & In qualità di utente, devo essere in grado di effettuare il pagamento per un evento a cui voglio iscrivermi              & 2\\
@@ -143,7 +143,7 @@ Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow cor
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.7\linewidth]{./images/A1-A2-A3.pdf}
-	\caption{User Flowchart relativo alle user stories A1, A2 e A3.}
+	\caption{Flowchart relativo alle user stories A1, A2 e A3.}
 	\label{fig:A1-A2}
 \end{figure}
 
@@ -152,7 +152,7 @@ Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow cor
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=\linewidth]{./images/B1-B2-B4-B8-D1.pdf}
-	\caption{User Flowchart relativo alle user stories B1, B2, B4, B8 e D1.}
+	\caption{Flowchart relativo alle user stories B1, B2, B4, B8 e D1.}
 	\label{fig:B1-C1}
 \end{figure}
 
@@ -160,7 +160,7 @@ Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow cor
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.8\linewidth]{./images/B5.pdf}
-	\caption{User Flowchart relativo alla user story B5.}
+	\caption{Flowchart relativo alla user story B5.}
 	\label{fig:B5}
 \end{figure}
 
@@ -169,14 +169,14 @@ Di seguito sono riportati i diagrammi di flusso rappresentanti gli user flow cor
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.8\linewidth]{./images/C1-C2.pdf}
-	\caption{User Flowchart relativo alle user stories C1 e C2.}
+	\caption{Flowchart relativo alle user stories C1 e C2.}
 	\label{fig:C1-C2}
 \end{figure}
 
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=0.8\linewidth]{./images/B3-B6-B7-C3.pdf}
-	\caption{User Flowchart relativo alle user stories B3, B6, B7 e C3.}
+	\caption{Flowchart relativo alle user stories B3, B6, B7 e C3.}
 	\label{fig:B3-B6-B7-C3}
 \end{figure}
 
@@ -698,10 +698,13 @@ Come facilmente osservabile dalla commit history del progetto, il contributo
 degli altri due membri del gruppo è limitato al processo di brainstorming e
 alla realizzazione di alcuni grafici relativi allo User Flow. Tali grafici non
 sono presenti nella versione finale del presente documento a causa della loro
-modifica nel corso dello sviluppo dell'applicazione. Una descrizione dettagliata
-delle statistiche finali è riportata in Figura \ref{fig:commits}. 
+modifica nel corso dello sviluppo dell'applicazione.
 
-Come riportato nei grafici, lo sviluppo ha avuto un forte picco nel corso del mese di ottobre, durante
+La branching strategy adottata ha seguito un approccio semplice ma efficace: lo sviluppo è stato incentrato su una
+branch principale, garantendo una versione stabile del progetto. Per lo sviluppo di nuove funzionalità o per modifiche significative si è fatto uso di branch temporanee, in modo da non impattare sulla main branch. Una volta completata e testata la nuova funzionalità, questa veniva reinserita nella main branch, e la branch temporanea veniva eliminata. Questo approccio ha garantito il mantenimento di una struttura pulita della repository, consentendo al contempo uno sviluppo "risk-free" dell'applicazione.
+
+
+Una descrizione dettagliata delle statistiche di sviluppo è riportata in Figura \ref{fig:commits}. Come raffigurato nei grafici, lo sviluppo ha avuto un forte picco nel corso del mese di ottobre, durante
 il quale è stata svolta buona parte dell'attività di progettazione. Dopodiché si è continuato ad un regime pressoché costante nei mesi di novembre, dicembre e gennaio, con la conclusione del progetto durante la prima settimana di febbraio.
 
 \newpage
@@ -743,19 +746,19 @@ il quale è stata svolta buona parte dell'attività di progettazione. Dopodiché
 
 Il progetto npm fa uso dei seguenti moduli:
 \begin{itemize}
-    \item \textbf{Cors} per il supporto alle chiamate cross-origin
-    \item \textbf{Express} come framework per il backend
-    \item \textbf{Jsonwebtoken} per gestire l'autenticazione
-    \item \textbf{Mongoose} per interfacciarsi con mongoDB
-    \item \textbf{Axios} per interagire con l'API di \href{https://www.openstreetmap.org/#map=6/42.09/12.56}{OpenStreetMap}
-    \item \textbf{Bcrypt} per la gestione delle password
+    \item \textbf{Cors} per il supporto alle chiamate cross-origin;
+    \item \textbf{Express} come framework per il backend;
+    \item \textbf{Jsonwebtoken} per gestire l'autenticazione;
+    \item \textbf{Mongoose} per interfacciarsi con mongoDB;
+    \item \textbf{Axios} per interagire con l'API di \href{https://www.openstreetmap.org/#map=6/42.09/12.56}{OpenStreetMap};
+    \item \textbf{Bcrypt} per la gestione delle password.
 \end{itemize}
 
 Sono inoltre riportate le seguenti dipendenze di sviluppo:
 \begin{itemize}
-    \item \textbf{Dotenv} per la gestione delle variabili d'ambiente
-    \item \textbf{Jest} per il testing
-    \item \textbf{Supertest} per il testing della endpoint express
+    \item \textbf{Dotenv} per la gestione delle variabili d'ambiente;
+    \item \textbf{Jest} per il testing;
+    \item \textbf{Supertest} per il testing della endpoint express.
 \end{itemize}
 
 \subsection{Database}
@@ -764,12 +767,12 @@ La gestione dei dati è stata realizzata basandosi su un database non
 relazionale. In particolare, si è fatto uso del servizio offerto da
 \href{https://www.mongodb.com/products/platform/atlas-database}{Atlas MongoDB}.
 
-Per la gestione dei dati necessari per il funzionamento dell'applicazione sono state definite quattro strutture dati mediante Mongoose:
+Per la gestione dei dati necessari per il funzionamento dell'applicazione sono state definite tre strutture dati mediante Mongoose:
 \begin{itemize}
-	\item \textbf{Event}: per gestire tutte le funzionalità legate alla creazione, modifica ed eliminazione degli eventi
-	\item \textbf{EventRegistration}: per gestire correttamente l'iscrizione e la disiscrizione degli utenti dagli eventi
-	\item \textbf{Place}: per gestire tutte le funzionalità legate alla creazione, modifica ed elimazione dei luoghi
-	\item \textbf{User}: per gestire le tre tipologie di utente e le attività ad esse collegate
+	\item \textbf{Event}: per gestire tutte le funzionalità legate alla creazione, modifica ed eliminazione degli eventi, nonché all'interazione tra users ed eventi;
+%	\item \textbf{EventRegistration}: per gestire correttamente l'iscrizione e la disiscrizione degli utenti dagli eventi;
+	\item \textbf{Place}: per gestire tutte le funzionalità legate alla creazione, modifica ed elimazione dei luoghi;
+	\item \textbf{User}: per gestire le tre tipologie di utente e le attività ad esse collegate.
 \end{itemize}
 
 \newpage
@@ -784,7 +787,7 @@ Le API sono state testate tramite una test-suite sviluppata mediante l'utilizzo 
 	\setlength{\tabcolsep}{6pt} % Adjust column spacing
 	\resizebox{\textwidth}{!}
 	{%
-	\begin{tabular}{p{.5cm} p{3.5cm} p{2.5cm} p{2.5cm} p{5cm} p{1.5cm}}
+	\begin{tabular}{p{.4cm} p{3.5cm} p{2.5cm} p{2.5cm} p{5cm} p{1.5cm}}
 		\toprule
 		\rowcolor{gray!20}
 		\# & Descrizione & Test Data & Precondizioni & Risultato Atteso & Risultato Effettivo \\ \midrule
@@ -980,7 +983,7 @@ Di seguito sono riportati per completezza i modelli relativi agli eventi, agli u
 
 Trattandosi di un "solo Dev project", non è stato possibile implementare tutte le funzionalità inizialmente pianificate. A causa di tale limitazione, ho preso la decisione di dedicare la maggior parte del tempo alla progettazione e allo sviluppo della backend. Il risultato è una backend completa, che offre tutte le API necessarie per lo sviluppo di una front-end funzionale. La parte di front-end effettivamente realizzata ruota invece intorno alle funzionalità offerte alla categoria di utenti "BasicUser".
 
-In particolare, l'applicazione consta di una Home Page, di una pagina per la gestione del profilo personale, di una pagaina per il browsing degli eventi e di una pagina per la visualizzazione dei dettagli di un evento\footnote{Gli screenshot riportati sono stati effettuati utilizzando un laptop. L'intero front-end è tuttavia realizzato in modo tale da risultare facilmente utilizzabile anche da un dispositivo mobile.}.
+In particolare, l'applicazione consta di una Home Page, di una pagina per la gestione del profilo personale, di una pagaina per il browsing degli eventi e di una pagina per la visualizzazione dei dettagli di un evento\footnote{Gli screenshot riportati sono stati effettuati utilizzando un laptop. L'intero front-end è tuttavia realizzato in modo tale da risultare totalmente compatibile con i dispositivi mobile.}.
 
 \begin{figure}[!htb]
 	\centering
@@ -1065,7 +1068,7 @@ In Figura \ref{fig:profile} è invece mostrato il profilo personale. Da qui l'ut
 	\includegraphics[width=0.4\linewidth]{./images/Profile.png}
 	\hspace{1cm}
 	\includegraphics[width=0.25\linewidth]{./images/changePwd.png}
-	\caption{Profilo personale dello user.}
+	\caption{Profilo personale dello user (sx), modulo per il cambio password (dx).}
 	\label{fig:profile}
 \end{figure}
 \newpage

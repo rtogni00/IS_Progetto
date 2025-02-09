@@ -63,9 +63,9 @@ Lo use case in questione descrive come un utente può effettuare il login al sis
 \paragraph{Descrizione}
 
 \begin{itemize}
-	\item L'utente visualizza una pagina con un form
-	\item Se l'utente inserisce le credenziali (vedi  \hyperref[Estensioni-FR2]{Estensioni}) corrette (vedi \hyperref[Eccezioni-FR2]{Eccezioni}) e preme sul pulsante "Login", si apre la schermata principale dell'applicazione.
-	\item Qualora l'utente selezioni il logo di Google, il processo di autenticazione verrà gestito da Google SSO
+	\item L'utente visualizza una pagina con un form;
+	\item Se l'utente inserisce le credenziali (vedi  \hyperref[Estensioni-FR2]{Estensioni}) corrette (vedi \hyperref[Eccezioni-FR2]{Eccezioni}) e preme sul pulsante "Login", si apre la schermata principale dell'applicazione;
+	\item Qualora l'utente selezioni il logo di Google, il processo di autenticazione verrà gestito da Google SSO.
 \end{itemize}
 
 \subsubsection*{Use Case FR2: Registrazione}
@@ -77,23 +77,23 @@ Lo use case in questione descrive come un utente può registrarsi al sistema.
 \paragraph{Descrizione}
 
 \begin{itemize}
-	\item L'utente visualizza una pagina dalla quale inserire username, indirizzo mail e password (vedi \hyperref[Eccezioni-FR2]{Eccezioni})
-	\item Il sistema invia una mail all'indirizzo fornito dall'utente contenente un link e una password temporanea
-	\item L'utente deve confermare la registrazione tramite il link di cui sopra (vedi \hyperref[Eccezioni-FR2]{Eccezioni}). Può quindi accedere al sistema tramite la password temporanea
+	\item L'utente visualizza una pagina dalla quale inserire username, indirizzo mail e password (vedi \hyperref[Eccezioni-FR2]{Eccezioni});
+	\item Il sistema invia una mail all'indirizzo fornito dall'utente contenente un link e una password temporanea;
+	\item L'utente deve confermare la registrazione tramite il link di cui sopra (vedi \hyperref[Eccezioni-FR2]{Eccezioni}). Può quindi accedere al sistema tramite la password temporanea.
 \end{itemize}
 
 
 \subsubsection*{Eccezioni}\label{Eccezioni-FR2}
 
 \begin{itemize}
-	\item Qualora le credenziali inserite non siano corrette, l'applicazione restituisce un messaggio di errore
-	\item Qualora l'utente non apra il link contenuto nella mail automatica, la registrazione non viene finalizzata
+	\item Qualora le credenziali inserite non siano corrette, l'applicazione restituisce un messaggio di errore;
+	\item Qualora l'utente non apra il link contenuto nella mail automatica, la registrazione non viene finalizzata.
 \end{itemize}
 
 \subsubsection*{Estensioni}\label{Estensioni-FR2}
 
 \begin{itemize}
-	\item La password contenuta nella mail generata automaticamente dal sistema al termine della registrazione dev'essere modificata a seguito del primo login
+	\item La password contenuta nella mail generata automaticamente dal sistema al termine della registrazione dev'essere modificata a seguito del primo login.
 \end{itemize}
 
 \subsection{FR4: Visualizzazione Eventi}
@@ -114,9 +114,9 @@ Lo use case in questione descrive come un utente può filtrare gli eventi presen
 \paragraph{Descrizione}
 
 \begin{itemize}
-	\item La ricerca di eventi può essere effettuata da qualsiasi utente, anche non loggato
-	\item L'utente può scegliere se esplorare la mappa integrata nella schermata iniziale, o se visualizzare gli eventi in forma di lista
-	\item Qualora l'utente decida di visualizzare la lista degli eventi, viene messo a disposizione un servizio di filtering basato su 3 possibili criteri: data, luogo e nome dell'evento
+	\item La ricerca di eventi può essere effettuata da qualsiasi utente, anche non loggato;
+	\item L'utente può scegliere se esplorare la mappa integrata nella schermata iniziale, o se visualizzare gli eventi in forma di lista;
+	\item Qualora l'utente decida di visualizzare la lista degli eventi, viene messo a disposizione un servizio di filtering basato su 3 criteri: data, luogo e nome dell'evento.
 \end{itemize}
 
 \subsection{FR5, FR6, FR16 e FR17: Feedback, Condivisione, Iscrizione e salvataggio Eventi}
@@ -133,14 +133,14 @@ Lo use case in questione descrive come un utente può filtrare gli eventi presen
 
 \paragraph{Riassunto}
 
-Lo use case in questione descrive come un utente può interagire con gli eventi offerti dal sistema. In particolare, descrive le attività di salvataggio, di iscrizione, di condivisione, nonché di valutazione della qualità di un evento.
+Lo use case in questione descrive come un utente può interagire con gli eventi offerti dal sistema. In particolare, descrive le attività di salvataggio, iscrizione e condivisione, nonché di valutazione della qualità di un evento.
 
 \paragraph{Descrizione}
 
 \begin{itemize}
-	\item Oltre a poter visualizzare gli eventi (come mostrato nello UCD precedente), qualsiasi utente può condividerli
-	\item Previo login, qualsiasi tipologia di utente può salvare e/o iscriversi ad un evento. L'iscrizione comporta l'eventuale acquisto di un biglietto
-	\item Qualsiasi utente iscritto ad un evento può, dopo il suo verificarsi, lasciare una review
+	\item Oltre a poter visualizzare gli eventi (come mostrato nello UCD precedente), qualsiasi utente può condividerli;
+	\item Previo login, qualsiasi tipologia di utente può salvare e/o iscriversi ad un evento. L'iscrizione comporta l'eventuale acquisto di un biglietto;
+	\item Qualsiasi utente iscritto ad un evento può, dopo il suo verificarsi, lasciare una review.
 \end{itemize}
 
 
@@ -157,44 +157,44 @@ Lo use case in questione descrive come un utente può interagire con gli eventi 
 
 \paragraph{Riassunto}
 
-Lo use case in questione descrive come un utente appartenente alla categoria "Organizer" oppure "Owner" può creare nuovi eventi.
+Lo use case in questione descrive come un utente appartenente alla categoria "Organizer" può creare nuovi eventi.
 
 \newpage
 
 \paragraph{Descrizione}
 
 \begin{itemize}
-	\item Qualora l'utente appartenga alla categoria "Owner" o a quella "Organizer" e sia loggato (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni}), dalla pagina del profilo personale è visibile un pulsante "New event"
-	\item La pressione del pulsante rimanda alla pagina di creazione eventi. Per la creazione di un nuovo evento è necessario l'inserimento di un nome, di una data, di una location e di una descrizione (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni})
-	\item L'aggiunta di immagini è facoltativa, così come lo è il prezzo 
+	\item Qualora l'utente appartenga alla categoria "Organizer" e sia loggato (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni}), dalla pagina del profilo personale è visibile un pulsante "New event";
+	\item La pressione del pulsante rimanda alla pagina di creazione eventi. Per la creazione di un nuovo evento è necessario l'inserimento di un nome, di una data, di una location e di una descrizione (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni});
+	\item L'aggiunta di immagini è facoltativa, così come lo è il prezzo.
 \end{itemize}
 
 \subsubsection*{Use case FR10: Modifica Eventi}
 
 \paragraph{Riassunto}
 
-Lo use case in questione descrive come un utente appartenente alla categoria "Organizer" oppure "Owner" può modificare eventi precedentemente creati.
+Lo use case in questione descrive come un utente appartenente alla categoria "Organizer" può modificare eventi precedentemente creati.
 
 \paragraph{Descrizione}
 \begin{itemize}
-	\item Qualora un utente appartenente alle categorie "Owner" o "Organizer" sia loggato e abbia precedentemente creato un evento (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni}), dalla propria pagina personale può raggiungere l'evento in questione tramite il pulsante "My events"
-	\item La pressione del pulsante rimanda ad una lista degli eventi creati. Selezionandone uno è possibile modificare uno qualsiasi dei vari campi entro una settimana dall'evento (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni} e \hyperref[Estensioni-FR8-10]{Estensioni})
+	\item Qualora un utente appartenente allq categoria "Organizer" sia loggato e abbia precedentemente creato un evento (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni}), dalla propria pagina personale può raggiungere l'evento in questione tramite il pulsante "My events";
+	\item La pressione del pulsante rimanda ad una lista degli eventi creati. Selezionandone uno è possibile modificare uno qualsiasi dei vari campi entro una settimana dall'evento (vedi \hyperref[Eccezioni-FR8-10]{Eccezioni} e \hyperref[Estensioni-FR8-10]{Estensioni}).
 \end{itemize}
 
 \subsubsection*{Eccezioni}\label{Eccezioni-FR8-10}
 
 \begin{itemize}
 	\item Qualora l'utente non sia loggato, non esiste alcun profilo personale
-	\item Qualora l'utente appartenga alla categoria "User", la pagina del profilo personale è priva del pulsante per la creazione di eventi
-	\item Se durante la creazione di un evento non viene compilato uno dei campi obbligatori, il pulsante "Create Event" rimane inattivo
-	\item Qualora l'utente non abbia mai creato eventi, il pulsante "My Events" non è attivo
-	\item Qualora manchi meno di una settimana all'evento in questione, i campi non risultano modificabili
+	\item Qualora l'utente appartenga alle categorie "User" o "Owner", la pagina del profilo personale è priva del pulsante per la creazione di eventi;
+	\item Se durante la creazione di un evento non viene compilato uno dei campi obbligatori, il pulsante "Create Event" rimane inattivo;
+	\item Qualora l'utente non abbia mai creato eventi, il pulsante "My Events" non è attivo;
+	\item Qualora manchi meno di una settimana all'evento in questione, i campi non risultano modificabili.
 \end{itemize}
 
 \subsubsection*{Estensioni}\label{Estensioni-FR8-10}
 
 \begin{itemize}
-	\item Gli eventi passati rimangono visualizzabili tramite il pulsante "My events", tuttavia non risultano più editabili
+	\item Gli eventi passati rimangono visualizzabili tramite il pulsante "My events", tuttavia non risultano più editabili.
 \end{itemize}
 
 
@@ -217,7 +217,7 @@ Lo use case in questione descrive come un utente appartenente alla categoria "Ow
 \paragraph{Descrizione}
 
 \begin{itemize}
-	\item Qualora l'utente sia loggato con un profilo di tipo "Owner" (vedi \hyperref[Eccezioni-FR12-13]{Eccezioni}), dal proprio profilo personale ha la possibilità di aggiungere un luogo tramite il pulsante "New Place"
+	\item Qualora l'utente sia loggato con un profilo di tipo "Owner" (vedi \hyperref[Eccezioni-FR12-13]{Eccezioni}), dal proprio profilo personale ha la possibilità di aggiungere un luogo tramite il pulsante "New Place";
 	\item La pressione del pulsante rimanda alla pagina di aggiunta luoghi. Per l'aggiunta di un nuovo luogo occorre inserire una location, un nome, una descrizione, ed un prezzo (vedi \hyperref[Eccezioni-FR12-13]{Eccezioni}). Opzionalmente è possibile inserire delle foto.
 \end{itemize}
 
@@ -230,16 +230,16 @@ Lo use case in questione descrive come un utente appartenente alla categoria "Ow
 \paragraph{Descrizione}
 
 \begin{itemize}
-	\item Qualora l'utente sia loggato con un profilo di tipo "Owner" e abbia precedentemente aggiunto una location, dalla propria pagina personale può raggiungere l'evento in questione tramite il pulsante "My places"
-	\item La pressione del pulsante rimanda ad una lista degli spazi aggiunti. Selezionandone uno è possibile modificare uno qualsiasi dei campi e/o eliminare lo spazio se e solo se lo spazio non è attualmente collegato ad un evento (vedi \hyperref[Eccezioni-FR12-13]{Eccezioni})
+	\item Qualora l'utente sia loggato con un profilo di tipo "Owner" e abbia precedentemente aggiunto una location, dalla propria pagina personale può raggiungere l'evento in questione tramite il pulsante "My places";
+	\item La pressione del pulsante rimanda ad una lista degli spazi aggiunti. Selezionandone uno è possibile modificare uno qualsiasi dei campi e/o eliminare lo spazio se e solo se lo spazio non è attualmente collegato ad un evento (vedi \hyperref[Eccezioni-FR12-13]{Eccezioni}).
 \end{itemize}
 
 \subsubsection*{Eccezioni}\label{Eccezioni-FR12-13}
 \begin{itemize}
-	\item Qualora l'utente non sia loggato, non esiste alcun profilo personale
-	\item Qualora l'utente non appartenga alla categoria "Owner", la pagina del profilo personale è priva del pulsante per l'aggiunta di spazi
-	\item Se durante l'aggiunta di uno spazio non viene compilato uno dei campi obbligatori, il pulsante "Create Place" rimane inattivo
-	\item Qualora lo spazio sia collegato ad un evento, le modifiche sono disattivate a partire da 7 giorni prima della data prevista per l'evento
+	\item Qualora l'utente non sia loggato, non esiste alcun profilo personale;
+	\item Qualora l'utente non appartenga alla categoria "Owner", la pagina del profilo personale è priva del pulsante per l'aggiunta di spazi;
+	\item Se durante l'aggiunta di uno spazio non viene compilato uno dei campi obbligatori, il pulsante "Create Place" rimane inattivo;
+	\item Qualora lo spazio sia collegato ad un evento, le modifiche sono disattivate a partire da 7 giorni prima della data prevista per l'evento.
 \end{itemize}
 
 \newpage
@@ -295,7 +295,7 @@ Gli use case diagrams riportati nel capitolo precendente rappresentano una overv
 \begin{figure}[!htb]
 	\centering
 	\includegraphics[width=\linewidth]{./images/SequenceDiagramEventDeletion.pdf}
-	\caption{Sequence diagram rappresentante la reimozione di un evento creato in precedenza.}
+	\caption{Sequence diagram rappresentante la rimozione di un evento creato in precedenza.}
 	\label{fig:SeqDiagEventDeletion}
 \end{figure}
 
@@ -353,12 +353,12 @@ Il componente si occupa della funzionalità di registrazione di un nuovo account
 
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Credenziali di accesso: le credenziali includono email e password
+	\item Credenziali di accesso: le credenziali includono email e password.
 \end{itemize}
 
 \subparagraph{Interfacce Fornite}
 \begin{itemize}
-	\item Nuovo utente: una volta completata la procedura di registrazione, il nuovo profilo viene salvato all'interno del database
+	\item Nuovo utente: una volta completata la procedura di registrazione, il nuovo profilo viene salvato all'interno del database.
 \end{itemize}
 
 
@@ -367,13 +367,13 @@ Il componente si occupa della funzionalità di registrazione di un nuovo account
 Il componente gestisce il login al sistema. Interagisce con gli altri componenti per gestire la separazione tra attività che richiedono un profilo e attività aperte agli utenti non registrati.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Credenziali di accesso: le credenziali includono email e password
-	\item Verifica delle credenziali: il sistema confronta le credenziali inserite con quelle presenti nel database
+	\item Credenziali di accesso: le credenziali includono email e password;
+	\item Verifica delle credenziali: il sistema confronta le credenziali inserite con quelle presenti nel database.
 \end{itemize}
 
 \subparagraph{Interfacce Fornite}
 \begin{itemize}
-	\item Conferma credenziali: garantisce che l'utente sia loggato, permettendo dunque agli altri componenti di fornire funzionalità specifiche agli utenti con un profilo di un certo tipo
+	\item Conferma credenziali: garantisce che l'utente sia loggato, permettendo dunque agli altri componenti di fornire funzionalità specifiche agli utenti con un profilo di un certo tipo.
 \end{itemize}
 
 \subsubsection*{CMP3: Gestione database}
@@ -381,16 +381,16 @@ Il componente gestisce il login al sistema. Interagisce con gli altri componenti
 Il componente salva i dati relativi ad utenti, eventi e luoghi all'interno del database.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Credenziali utente: quando un nuovo utente si registra al sistema, i dati vengono salvati nel database
-	\item Dati relativi ai luoghi: la componente deve avere accesso ai luoghi salvati nel database, nonché alla variazione dei dati determinata dall'update o dalla rimozione di un luogo precedentemente inserito
-	\item Dati profilo: la componente deve avere accesso alla variazione dei dati personali causata da una modifica del profilo utente
-	\item Dati relativi agli eventi: la componente deve avere accesso agli eventi salvati nel database, nonché  alla variazione dei dati determinata dall'update o dalla rimozione di un evento precedentemente inserito
+	\item Credenziali utente: quando un nuovo utente si registra al sistema, i dati vengono salvati nel database;
+	\item Dati relativi ai luoghi: la componente deve avere accesso ai luoghi salvati nel database, nonché alla variazione dei dati determinata dall'update o dalla rimozione di un luogo precedentemente inserito;
+	\item Dati profilo: la componente deve avere accesso alla variazione dei dati personali causata da una modifica del profilo utente;
+	\item Dati relativi agli eventi: la componente deve avere accesso agli eventi salvati nel database, nonché  alla variazione dei dati determinata dall'update o dalla rimozione di un evento precedentemente inserito.
 \end{itemize}
 \subparagraph{Interfacce Fornite}
 \begin{itemize}
-	\item Dati relativi ai luoghi: la componente fornisce le informazioni relative ai luoghi presenti nel database
-	\item Dati degli utenti: la componente fornisce le informazioni relative ai profili utenti presenti nel database
-	\item Dati relativi agli eventi: la componente fornisce le informazioni relative agli eventi presenti nel database
+	\item Dati relativi ai luoghi: la componente fornisce le informazioni relative ai luoghi presenti nel database;
+	\item Dati degli utenti: la componente fornisce le informazioni relative ai profili utenti presenti nel database;
+	\item Dati relativi agli eventi: la componente fornisce le informazioni relative agli eventi presenti nel database.
 \end{itemize}
 
 
@@ -401,96 +401,96 @@ Il componente gestisce il profilo utente, oltre a fungere da tramite per le atti
 
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Autenticazione: la gestione del profilo è una funzionalità offerta solamente agli utenti che ne possiedono uno
+	\item Autenticazione: la gestione del profilo è una funzionalità offerta solamente agli utenti registrati.
 \end{itemize}
 \subparagraph{Interfacce Fornite}
 \begin{itemize}
-	\item Accesso al modulo per la gestione degli eventi a cui l'utente è iscritto
-	\item Acceso al modulo per la gestione degli eventi salvati
+	\item Accesso al modulo per la gestione degli eventi a cui l'utente è iscritto;
+	\item Acceso al modulo per la gestione degli eventi salvati.
 \end{itemize}
 
 \subsubsection*{CMP5: Modulo di gestione degli eventi salvati}
 \paragraph{Descrizione}
-Il componente si occupa della gestione degli eventi salvati
+Il componente si occupa della gestione degli eventi salvati da un utente.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Accesso all'area personale
+	\item Accesso all'area personale.
 \end{itemize}
 \subsection{Interfacce Fornite}
 \begin{itemize}
-	\item Rimozione di un evento dalla lista degli eventi salvati
+	\item Rimozione di un evento dalla lista degli eventi salvati.
 \end{itemize}
 
 \subsubsection*{CMP6: Modulo di gestione degli eventi a cui si è iscritti}
 \paragraph{Descrizione}
-Il componente si occupa della gestione degli eventi a cui un utente è iscritto
+Il componente si occupa della gestione degli eventi a cui un utente è iscritto.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Accesso all'area personale
+	\item Accesso all'area personale.
 \end{itemize}
 \subsection{Interfacce Fornite}
 \begin{itemize}
-	\item Disiscrizione da un evento
+	\item Disiscrizione da un evento.
 \end{itemize}
 
 \subsubsection*{CMP7: Location list service}
 \paragraph{Descrizione}
-Il componente si occupa della gestione dei luoghi creati da un utente di tipo owner
+Il componente si occupa della gestione dei luoghi creati da un utente di tipo owner.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Accesso all'area personale
+	\item Accesso all'area personale.
 \end{itemize}
 \subsection{Interfacce Fornite}
 \begin{itemize}
-	\item Luoghi creati dall'utente
+	\item Luoghi creati dall'utente.
 \end{itemize}
 
 \subsubsection*{CMP8: Location Creation service}
 \paragraph{Descrizione}
-Il componente si occupa della creazione di una nuova location
+Il componente si occupa della creazione di una nuova location.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Accesso all'area personale
+	\item Accesso all'area personale.
 \end{itemize}
 \subsection{Interfacce Fornite}
 \begin{itemize}
-	\item Creazione di una nuova location
+	\item Creazione di una nuova location.
 \end{itemize}
 
 \subsubsection*{CMP9: Location Deletion service}
 \paragraph{Descrizione}
-Il componente si occupa dell'eliminazione di una location
+Il componente si occupa dell'eliminazione di una location.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Accesso all'area personale
+	\item Accesso all'area personale.
 \end{itemize}
 \subsection{Interfacce Fornite}
 \begin{itemize}
-	\item Eliminazione di una location esistente
+	\item Eliminazione di una location esistente.
 \end{itemize}
 
 \subsubsection*{CMP10: Location Modification service}
 \paragraph{Descrizione}
-Il componente si occupa della modifica di una location precedentemente creato
+Il componente si occupa della modifica di una location precedentemente creata.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Accesso all'area personale
+	\item Accesso all'area personale.
 \end{itemize}
 \subsection{Interfacce Fornite}
 \begin{itemize}
-	\item Modifica dei dati di una location esistente
+	\item Modifica dei dati di una location esistente.
 \end{itemize}
 
 \subsubsection*{CMP11: Gestione mappa}
 \paragraph{Descrizione}
-Il componente mostra una mappa con la posizione degli eventi disponibili
+Il componente mostra una mappa con la posizione degli eventi disponibili.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Eventi: i dati relativi agli eventi
+	\item Eventi: i dati relativi agli eventi.
 \end{itemize}
 \subparagraph{Interfacce Fornite}
 \begin{itemize}
-	\item Eventi: la posizione degli eventi, sottoforma di pallini sulla mappa
+	\item Eventi: la posizione degli eventi, sottoforma di pallini sulla mappa.
 \end{itemize}
 
 \subsubsection*{CMP12: Sistema di ricerca eventi}
@@ -498,88 +498,88 @@ Il componente mostra una mappa con la posizione degli eventi disponibili
 Il componente consente di effettuare la ricerca di eventi presenti nel database.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Eventi: i dati relativi agli eventi presenti nel database
-	\item Criteri di ricerca: i filtri da utilizzare nella ricerca degli eventi
+	\item Eventi: i dati relativi agli eventi presenti nel database;
+	\item Criteri di ricerca: i filtri da utilizzare nella ricerca degli eventi.
 \end{itemize}
 \subparagraph{Interfacce Fornite}
 \begin{itemize}
-	\item Eventi: gli eventi che coincidono con i filtri di ricerca utilizzati
-	\item Accesso al modulo per il salvataggio di un evento
-	\item Accesso al modulo per l'iscrizione ad un evento
+	\item Eventi: gli eventi che coincidono con i filtri di ricerca utilizzati;
+	\item Accesso al modulo per il salvataggio di un evento;
+	\item Accesso al modulo per l'iscrizione ad un evento.
 \end{itemize}
 
 \subsubsection*{CMP13: Gestione iscrizione eventi}
 \paragraph{Descrizione}
-Il componente consente l'iscrizione ad un evento
+Il componente consente l'iscrizione ad un evento.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Autenticazione: solo gli utenti in possesso di un profilo possono iscriversi ad un evento
-	\item Dati evento: le informazioni relative all'evento a cui l'utente loggato desidera iscriversi
+	\item Autenticazione: solo gli utenti in possesso di un profilo possono iscriversi ad un evento;
+	\item Dati evento: le informazioni relative all'evento a cui l'utente loggato desidera iscriversi.
 \end{itemize}
 \subparagraph{Interfacce Fornite}
 \begin{itemize}
-	\item Nuova iscrizione all'evento
+	\item Nuova iscrizione all'evento.
 \end{itemize}
 
 \subsubsection*{CMP14: Gestione salvataggio eventi}
 \paragraph{Descrizione}
-Il componente consente il salvataggio di un evento
+Il componente consente il salvataggio di un evento.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Autenticazione: solo gli utenti in possesso di un profilo possono iscriversi ad un evento
-	\item Dati evento: le informazioni relative all'evento a cui l'utente loggato desidera iscriversi
+	\item Autenticazione: solo gli utenti in possesso di un profilo possono iscriversi ad un evento;
+	\item Dati evento: le informazioni relative all'evento a cui l'utente loggato desidera iscriversi.
 \end{itemize}
 \subparagraph{Interfacce Fornite}
 \begin{itemize}
-	\item Nuovo salvataggio dell'evento
+	\item Salvataggio dell'evento.
 \end{itemize}
 
 \subsubsection*{CMP15: Event list service}
 \paragraph{Descrizione}
-Il componente si occupa della gestione degli eventi creati da un utente di tipo organiser
+Il componente si occupa della gestione degli eventi creati da un utente di tipo organizer.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Accesso all'area personale
+	\item Accesso all'area personale.
 \end{itemize}
 \subsection{Interfacce Fornite}
 \begin{itemize}
-	\item Eventi organizzati dall'utente
+	\item Eventi organizzati dall'utente.
 \end{itemize}
 
 \subsubsection*{CMP16: Event Creation service}
 \paragraph{Descrizione}
-Il componente si occupa della creazione di un nuovo evento
+Il componente si occupa della creazione di un nuovo evento.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Accesso all'area personale
+	\item Accesso all'area personale.
 \end{itemize}
 \subsection{Interfacce Fornite}
 \begin{itemize}
-	\item Creazione di un nuovo evento
+	\item Creazione di un nuovo evento.
 \end{itemize}
 
 \subsubsection*{CMP17: Event Deletion service}
 \paragraph{Descrizione}
-Il componente si occupa dell'eliminazione di un evento
+Il componente si occupa dell'eliminazione di un evento.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Accesso all'area personale
+	\item Accesso all'area personale.
 \end{itemize}
 \subsection{Interfacce Fornite}
 \begin{itemize}
-	\item Eliminazione di un evento esistente
+	\item Eliminazione di un evento esistente.
 \end{itemize}
 
 \subsubsection*{CMP18: Event Modification service}
 \paragraph{Descrizione}
-Il componente si occupa della modifica dei dati relativi ad un evento precedentemente creato
+Il componente si occupa della modifica dei dati relativi ad un evento precedentemente creato.
 \subparagraph{Interfacce Richieste}
 \begin{itemize}
-	\item Accesso all'area personale
+	\item Accesso all'area personale.
 \end{itemize}
 \subsection{Interfacce Fornite}
 \begin{itemize}
-	\item Modifica dei dati di un evento esistente
+	\item Modifica dei dati di un evento esistente.
 \end{itemize}
 
 \subsection{Diagramma dei Componenti}
@@ -598,7 +598,7 @@ Il componente si occupa della modifica dei dati relativi ad un evento precedente
 \section{Diagramma delle Classi}
 
 Nel seguente capitolo vengono presentate le classi previste nell'ambito del progetto "EvenTrento". Ogni classe rappresenta un elemento del sistema, ed è caratterizzata da un nome, da una lista di attributi e da (opzionale) una lista di metodi.
-Mentre le classi rappresentano i dati gestiti e/o utilizzati dalla classe, i metodi definiscono le operazioni rese disponibili dalla classe in questione. L'interazione tra le varie classi è codificata tramite le connessioni rese disponibili dalla sintassi UML.
+Mentre le classi rappresentano i dati gestiti e/o utilizzati dalla classe, i metodi definiscono le operazioni rese disponibili dalla classe in questione. L'interazione tra le varie classi è codificata tramite le connessioni proprie della sintassi UML.
 
 Di seguito sono riportate le classi individuate, raggruppate per sottosistema di appartenenza.
 
@@ -607,7 +607,7 @@ Di seguito sono riportate le classi individuate, raggruppate per sottosistema di
 \textbf{Categorie di utente}
 
 
-I tre tipi di utente previsti dal sistema sono formalizzate mediante l'utilizzo di ereditarietà. In particolare, la classe \verb*|BasicUser| include tutte le caratteristiche offerte ad utenti appartenti a tutte e tre le categorie. Ogni utente è associato a dei dati personali, e può effettuare quanto previsto dai requisiti funzionali tramite i metodi \verb*|register()|, \verb*|login()|, \verb*|logout()|, \verb*|saveEvent(eventId)|, \verb*|unsaveEvent(eventId)|, \verb*|enrollEvent(eventId)|, \verb*|unenrollEvent(eventId)|, \verb*|getSavedEvents()|, \verb*|getEnrolledEvents()|, e \verb*|changePwd()|.
+I tre tipi di utente previsti dal sistema sono formalizzati mediante l'utilizzo di ereditarietà. In particolare, la classe \verb*|BasicUser| include tutte le caratteristiche offerte ad utenti appartenti a tutte e tre le categorie. Ogni utente è associato a dei dati personali, e può effettuare quanto previsto dai requisiti funzionali tramite i metodi \verb*|register()|, \verb*|login()|, \verb*|logout()|, \verb*|saveEvent(eventId)|, \verb*|unsaveEvent(eventId)|, \verb*|enrollEvent(eventId)|, \verb*|unenrollEvent(eventId)|, \verb*|getSavedEvents()|, \verb*|getEnrolledEvents()|, e \verb*|changePwd()|.
 
 
 La classe \verb*|Organizer| estende \verb*|BasicUser| aggiungendo tutte le attività collegate alla creazione, alla modifica e alla rimozione di eventi. Analogamente, la classe \verb*|Owner| estende \verb*|BasicUser| tramite l'aggiunta delle attività relative alla gestione degli spazi.
@@ -635,11 +635,11 @@ L'autenticazione è gestita tramite JWT tokens. Tale processo è rappresentato m
 
 \textbf{Gestione eventi}
 
-Gli eventi sono rappresentati dalla classe \verb*|Event|, la quale si appoggia alle classi :
+Gli eventi sono rappresentati dalla classe \verb*|Event|, la quale si appoggia alle classi:
 \begin{itemize}
-	\item \verb*|Place| per la scelta del luogo in cui si svolgerà l'evento
-	\item \verb*|Date| per specificare il giorno previsto per l'evento
-	\item \verb*|EventDescription| per fornire una descrizione dettagliata dell'evento
+	\item \verb*|Place| per la scelta del luogo in cui si svolgerà l'evento;
+	\item \verb*|Date| per specificare il giorno previsto per l'evento;
+	\item \verb*|EventDescription| per fornire una descrizione dettagliata dell'evento.
 \end{itemize}
 
 La ricerca di eventi è gestita dalla classe \verb*|EventSearch|, la quale comunica con la classe \verb*|BasicUser|. L'iscrizione ad eventi e il loro salvataggio sono invece gestite direttamente all'interno della classe \verb*|BasicUser|.
